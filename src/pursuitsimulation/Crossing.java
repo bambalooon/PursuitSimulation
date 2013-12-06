@@ -17,5 +17,6 @@ public class Crossing {
     public LinkedList<Clue> look() { return clues; }
     public void leaveTrace(Clue c) { clues.add(c); }
 
+
 }
 

@@ -18,4 +18,5 @@ public class Clue {
         destination = c2;
         person = p;
     }
+
 }

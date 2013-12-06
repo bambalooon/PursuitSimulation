@@ -20,4 +20,5 @@ public class Person {
     }
     void move() {}
     void wait(int timestamp) {}
+
 }

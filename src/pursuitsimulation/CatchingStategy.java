@@ -8,4 +8,5 @@ package pursuitsimulation;
  * To change this template use File | Settings | File Templates.
  */
 public interface CatchingStategy extends Strategy {
+
 }

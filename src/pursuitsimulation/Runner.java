@@ -11,4 +11,5 @@ public class Runner extends Person {
     public Runner(Crossing current) {
         super(current);
     }
+
 }

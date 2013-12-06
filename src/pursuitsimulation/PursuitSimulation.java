@@ -15,4 +15,5 @@ public class PursuitSimulation {
     private LinkedList<Runner> runners;
     private Map<Catcher, CatchingStategy> cStrategies;
     private Map<Runner, RunningStrategy> rStrategies;
+
 }

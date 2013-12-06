@@ -16,4 +16,5 @@ public class Catcher extends Person {
         super(current);
         team = new LinkedList<Catcher>();
     }
+
 }

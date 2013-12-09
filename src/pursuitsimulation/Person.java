@@ -10,15 +10,17 @@ package pursuitsimulation;
 public class Person {
     private Crossing prev, next=null;
     private Position pos;
-    private boolean waiting = false;
+    private int waiting = 0; //0 = not, else num of iteration
     public Person(Crossing current) {
         prev = current;
         pos = current.getPos();
     }
-    public Crossing getNextDestination(Strategy s) { //private?
+    public void move(Strategy s) {
+
+    }
+    private Crossing getNextDestination(Strategy s) {
         return new Crossing(0, 0);
     }
-    void move() {}
-    void wait(int timestamp) {}
+    private void wait(int timestamp) {}
 
 }

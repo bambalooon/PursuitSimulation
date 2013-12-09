@@ -9,6 +9,7 @@ import java.util.LinkedList;
  * Time: 23:04
  * To change this template use File | Settings | File Templates.
  */
+
 public class Catcher extends Person {
     private LinkedList<Catcher> team;
     //database;
@@ -16,5 +17,7 @@ public class Catcher extends Person {
         super(current);
         team = new LinkedList<Catcher>();
     }
-
+    public void addTeammate(Catcher c) {
+        team.add(c);
+    }
 }

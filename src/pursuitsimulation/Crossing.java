@@ -9,10 +9,12 @@ import java.util.LinkedList;
  * Time: 22:48
  * To change this template use File | Settings | File Templates.
  */
-public class Crossing {
+public class Crossing extends Vertex {
     private Position pos;
     private LinkedList<Clue> clues;
-    public Crossing(double x, double y) { pos = new Position(x, y); clues = new LinkedList<Clue>(); }    //Position?
+    private double traceProbability;
+    private double callProbability;
+    public Crossing(double x, double y) { pos = new Position(x, y); clues = new LinkedList<Clue>(); }    //Position=lat+lon
     public Position getPos() { return pos; }
     public LinkedList<Clue> look() { return clues; }
     public void leaveTrace(Clue c) { clues.add(c); }

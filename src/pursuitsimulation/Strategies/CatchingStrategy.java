@@ -1,12 +1,12 @@
-package pursuitsimulation;
+package pursuitsimulation.Strategies;
 
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon
  * Date: 05.12.13
- * Time: 23:15
+ * Time: 23:14
  * To change this template use File | Settings | File Templates.
  */
-public interface RunningStrategy extends Strategy {
+public interface CatchingStrategy extends Strategy {
 
 }

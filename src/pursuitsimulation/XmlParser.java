@@ -1,6 +1,7 @@
 package pursuitsimulation;
 
 import com.sun.xml.internal.stream.events.XMLEventAllocatorImpl;
+import pursuitsimulation.util.Position;
 
 import javax.xml.namespace.QName;
 import javax.xml.stream.XMLInputFactory;

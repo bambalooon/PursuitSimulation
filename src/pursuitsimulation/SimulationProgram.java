@@ -1,8 +1,9 @@
 package pursuitsimulation;
 
 import pursuitsimulation.GUI.SimulationGUI;
-import pursuitsimulation.SimulationProgram;
-import pursuitsimulation.XmlParser;
+import pursuitsimulation.Strategies.StandardCatchingStrategy;
+import pursuitsimulation.Strategies.StandardRunningStrategy;
+import pursuitsimulation.util.Position;
 
 import javax.xml.stream.XMLStreamException;
 import java.io.FileNotFoundException;
@@ -37,6 +38,13 @@ public class SimulationProgram {
     }
     void setGraph(Map<Long, Crossing> graph) {
         process.setGraph(graph);
+
+        for(int i=0; i<3; i++) {
+            process.addCatcher(new StandardCatchingStrategy());
+        }
+        for(int i=0; i<3; i++) {
+            process.addRunner(new StandardRunningStrategy());
+        }
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;

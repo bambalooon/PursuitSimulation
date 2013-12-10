@@ -1,4 +1,6 @@
-package pursuitsimulation;
+package pursuitsimulation.People;
+
+import pursuitsimulation.Crossing;
 
 import java.util.LinkedList;
 

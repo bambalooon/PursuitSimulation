@@ -1,5 +1,7 @@
 package pursuitsimulation;
 
+import pursuitsimulation.util.Position;
+
 import java.util.LinkedList;
 
 /**

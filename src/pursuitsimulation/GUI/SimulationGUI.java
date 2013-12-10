@@ -1,26 +1,17 @@
 package pursuitsimulation.GUI;
 
-import pursuitsimulation.Catcher;
-import pursuitsimulation.Position;
-import pursuitsimulation.Runner;
+import pursuitsimulation.People.Catcher;
+import pursuitsimulation.util.Position;
+import pursuitsimulation.People.Runner;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.FontRenderContext;
-import java.awt.font.GlyphVector;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ImageObserver;
-import java.awt.image.RenderedImage;
-import java.awt.image.renderable.RenderableImage;
 import java.io.File;
 import java.io.IOException;
-import java.text.AttributedCharacterIterator;
 import java.util.LinkedList;
-import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.

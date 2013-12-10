@@ -1,4 +1,4 @@
-package pursuitsimulation;
+package pursuitsimulation.util;
 
 /**
  * Created with IntelliJ IDEA.

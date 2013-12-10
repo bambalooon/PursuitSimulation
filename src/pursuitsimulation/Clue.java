@@ -1,5 +1,8 @@
 package pursuitsimulation;
 
+import pursuitsimulation.People.Person;
+import pursuitsimulation.util.Time;
+
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon

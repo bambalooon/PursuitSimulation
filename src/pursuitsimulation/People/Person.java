@@ -1,6 +1,8 @@
-package pursuitsimulation;
+package pursuitsimulation.People;
 
-import pursuitsimulation.Position;
+import pursuitsimulation.Crossing;
+import pursuitsimulation.util.Position;
+import pursuitsimulation.Strategies.Strategy;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,11 +19,13 @@ public class Person {
         prev = current;
         pos = current.getPos();
     }
-    public void move(Strategy s) {
-
+    public void getDestination(Strategy s) {
+        next = s.getDestination();
     }
-    private Crossing getNextDestination(Strategy s) {
-        return null;
+    public void move() {
+        prev = next;
+        next = null;
+        pos = prev.getPos();
     }
     private void wait(int timestamp) {}
     public Position getPos() {

@@ -24,5 +24,8 @@ public class Person {
         return null;
     }
     private void wait(int timestamp) {}
+    public Position getPos() {
+        return pos;
+    }
 
 }

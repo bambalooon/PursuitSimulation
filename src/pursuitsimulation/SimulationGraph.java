@@ -19,5 +19,7 @@ public class SimulationGraph implements Graph {
     public void setGraph(Map<Long,Crossing> graph) {
         vertexes = graph;
     }
-
+    public Crossing getRandomVertex() {
+         return (Crossing) (vertexes.values().toArray()[(int) (Math.random()*vertexes.size())]);
+    }
 }

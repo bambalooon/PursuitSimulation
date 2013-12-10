@@ -20,6 +20,22 @@ public class SimulationProcess {
     private Map<Runner, RunningStrategy> rStrategies = new HashMap<Runner, RunningStrategy>();
     void setGraph(Map<Long, Crossing> graph) {
         this.graph.setGraph(graph);
-    }
 
+
+        for(int i=0; i<10; i++) {
+            Catcher c = new Catcher(this.graph.getRandomVertex());
+            catchers.add(c);
+        }
+        for(int i=0; i<10; i++) {
+            Runner r = new Runner(this.graph.getRandomVertex());
+            runners.add(r);
+        }
+
+    }
+    LinkedList<Catcher> getCatchers() {
+        return catchers;
+    }
+    LinkedList<Runner> getRunners() {
+        return runners;
+    }
 }

@@ -10,6 +10,9 @@ import javax.xml.stream.*;
  * Time: 01:17
  * To change this template use File | Settings | File Templates.
  */
+
+
+//plik do usuniecia!
 public class City {
     private HashMap<Long, Crossing> vertexes;
     //private XmlParser parser;

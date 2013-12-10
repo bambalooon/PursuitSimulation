@@ -10,9 +10,9 @@ package pursuitsimulation;
 public class Time {
     private static final int min2Hour = 60;
     private static final int hour2Day = 24;
-    private int day;
-    private int hour;
-    private int minute;
+    private int day=0;
+    private int hour=0;
+    private int minute=0;
     public int getTimeStamp() {
         return (day*hour2Day+hour)*min2Hour+minute;
     }

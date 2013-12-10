@@ -1,5 +1,7 @@
 package pursuitsimulation;
 
+import pursuitsimulation.Position;
+
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon
@@ -19,7 +21,7 @@ public class Person {
 
     }
     private Crossing getNextDestination(Strategy s) {
-        return new Crossing(0, 0);
+        return null;
     }
     private void wait(int timestamp) {}
 

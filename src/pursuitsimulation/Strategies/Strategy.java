@@ -1,6 +1,7 @@
 package pursuitsimulation.Strategies;
 
 import pursuitsimulation.Crossing;
+import pursuitsimulation.People.Person;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,5 +11,5 @@ import pursuitsimulation.Crossing;
  * To change this template use File | Settings | File Templates.
  */
 public interface Strategy {
-    public Crossing getDestination();
+    public Crossing getDestination(Person p);
 }

@@ -1,6 +1,8 @@
-package pursuitsimulation;
+package pursuitsimulation.Simulation;
 
 import com.sun.xml.internal.stream.events.XMLEventAllocatorImpl;
+import pursuitsimulation.Crossing;
+import pursuitsimulation.Simulation.SimulationProgram;
 import pursuitsimulation.util.Position;
 
 import javax.xml.namespace.QName;

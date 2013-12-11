@@ -30,9 +30,10 @@ public class SimulationGUI {
     private static double mapWidth;  //can be negative!
     private static double mapHeight;
 
-
+    private boolean running=false;
     private JFrame frame;
     private BufferedImage mapImage;
+    private MapPanel mapPanel;
     private int width = 800;
     private int height = 600;
     private LinkedList<Catcher> catchers;
@@ -47,6 +48,13 @@ public class SimulationGUI {
     }
     public void chooseMapFile(String filename) throws IOException {
         mapImage = ImageIO.read(new File(filename));
+        mapPanel = new MapPanel(mapImage);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(mapPanel);//new MapPanel(mapImage));
+        scrollPane.setPreferredSize(new Dimension(width, height));
+        frame.add(scrollPane);
+        frame.pack();
+        frame.setVisible(true);
     }
     public void setCatchersHandle(LinkedList<Catcher> c) {
         catchers = c;
@@ -70,53 +78,30 @@ public class SimulationGUI {
         frame.setVisible(true);
     }
     public void showEditedMap() {
-//        BufferedImage newmapImage = processImage(mapImage);
-//        JLabel map = new JLabel(new ImageIcon(newmapImage));
-//        JScrollPane scrollPane = new JScrollPane();
-//        scrollPane.setViewportView(map);
-//        frame.add(scrollPane);
-
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(new MapPanel(mapImage));
-        scrollPane.setPreferredSize(new Dimension(width, height));
-        frame.add(scrollPane);
+        mapPanel.reload();
+        mapPanel.revalidate();
+        mapPanel.repaint();
         frame.pack();
         frame.setVisible(true);
     }
-//    private BufferedImage processImage(BufferedImage old) {
-//        int w = old.getWidth();
-//        int h = old.getHeight();
-//        BufferedImage img = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-//        Graphics2D g2d = img.createGraphics();
-//        g2d.drawImage(old, 0, 0, null);
-//
-//        int x = w/2;
-//        int y = h/2;
-//        int d = 10;
-//
-//        g2d.setPaint(Color.RED);
-//        Ellipse2D.Double circle = new Ellipse2D.Double(x, y, d, d);
-//        g2d.fill(circle);
-//        g2d.setColor(Color.black);
-//        g2d.drawOval(x, y, d, d);
-//
-//        g2d.dispose();
-//        return img;
-//    }
 
     private class MapPanel extends JPanel {
         private BufferedImage image;
+        private BufferedImage editedImage;
 
         public MapPanel(BufferedImage img) {
             image = img;
             this.setPreferredSize(new Dimension(
                     image.getWidth(), image.getHeight()));
-            image = process(image);
+            editedImage = process(image);
+        }
+        public void reload() {
+            editedImage = process(image);
         }
 
         private Position convert(Position pos) {
-            int w = image.getWidth();
-            int h = image.getHeight();
+            int w = editedImage.getWidth();
+            int h = editedImage.getHeight();
             int x = (int) ((pos.getX()-SimulationGUI.pos.getX())*w/SimulationGUI.mapWidth);
             int y = (int) ((pos.getY()-SimulationGUI.pos.getY())*h/SimulationGUI.mapHeight);
             return new Position(x,y);
@@ -164,7 +149,7 @@ public class SimulationGUI {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(image, 0, 0, null);
+            g.drawImage(editedImage, 0, 0, null);
         }
     }
 }

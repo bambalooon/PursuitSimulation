@@ -1,5 +1,6 @@
-package pursuitsimulation;
+package pursuitsimulation.Simulation;
 
+import pursuitsimulation.Crossing;
 import pursuitsimulation.GUI.SimulationGUI;
 import pursuitsimulation.Strategies.StandardCatchingStrategy;
 import pursuitsimulation.Strategies.StandardRunningStrategy;
@@ -24,7 +25,7 @@ public class SimulationProgram {
     private String xmlFile;
     private String mapFile;
     public SimulationProgram() {
-        process = new SimulationProcess();
+        process = new SimulationProcess(this);
         parser = new XmlParser(this);
     }
     public void setXmlFile(String filename) throws FileNotFoundException, XMLStreamException {
@@ -35,6 +36,9 @@ public class SimulationProgram {
         try {
             gui.chooseMapFile(filename);
         } catch(IOException e) {} //Handle Ex
+    }
+    void updateGuiMap() {
+        gui.showEditedMap();
     }
     void setGraph(Map<Long, Crossing> graph) {
         process.setGraph(graph);
@@ -53,7 +57,6 @@ public class SimulationProgram {
         gui.setDRpos(new Position(19.9307, 50.0524));
         gui.setCatchersHandle(process.getCatchers());
         gui.setRunnersHandle(process.getRunners());
-        gui.showEditedMap();
     }
 
 
@@ -64,6 +67,8 @@ public class SimulationProgram {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 program.setGUI(new SimulationGUI());
+                program.process.setSimulationTimer();
+                program.process.simulationStart();
             }
         });
 

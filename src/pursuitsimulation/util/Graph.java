@@ -1,4 +1,6 @@
-package pursuitsimulation;
+package pursuitsimulation.util;
+
+import pursuitsimulation.Vertex;
 
 /**
  * Created with IntelliJ IDEA.

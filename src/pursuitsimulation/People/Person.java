@@ -12,24 +12,35 @@ import pursuitsimulation.Strategies.Strategy;
  * To change this template use File | Settings | File Templates.
  */
 public class Person {
-    private Crossing prev, next=null;
+    private Crossing prev, curr, next;
     private Position pos;
     private int waiting = 0; //0 = not, else num of iteration
     public Person(Crossing current) {
-        prev = current;
+        prev = null;
+        curr = current;
+        next = null;
         pos = current.getPos();
     }
     public void getDestination(Strategy s) {
-        next = s.getDestination();
+        next = s.getDestination(this);
     }
-    public void move() {
-        prev = next;
+    synchronized public void move() {
+        prev = curr;
+        curr = next;
         next = null;
-        pos = prev.getPos();
+        pos = curr.getPos();
     }
     private void wait(int timestamp) {}
     public Position getPos() {
         return pos;
     }
-
+    public Crossing getPrev() {
+        return prev;
+    }
+    public Crossing getCurr() {
+        return curr;
+    }
+    public Crossing getNext() {
+        return next;
+    }
 }

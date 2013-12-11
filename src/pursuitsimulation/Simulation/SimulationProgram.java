@@ -54,9 +54,11 @@ public class SimulationProgram {
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;
-        setMapFile("./src/files/map.png"); //normalnie wywolywane przez GUI
-        gui.setULpos(new Position(19.8988, 50.0684));
-        gui.setDRpos(new Position(19.9307, 50.0524));
+        setMapFile("./src/files/ny.png"); //map.png normalnie wywolywane przez GUI
+//        gui.setULpos(new Position(19.8988, 50.0684));
+//        gui.setDRpos(new Position(19.9307, 50.0524));
+        gui.setULpos(new Position(-73.9828, 40.7913));
+        gui.setDRpos(new Position(-73.8522, 40.7147));
         gui.setCatchersHandle(process.getCatchers());
         gui.setRunnersHandle(process.getRunners());
     }
@@ -64,7 +66,7 @@ public class SimulationProgram {
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, IOException  {
         final SimulationProgram program = new SimulationProgram();
-        program.setXmlFile("./src/files/map.osm");
+        program.setXmlFile("./src/files/ny.osm"); //map.osm
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

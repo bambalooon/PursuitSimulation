@@ -20,10 +20,14 @@ public class StandardCatchingStrategy implements CatchingStrategy {
         c = (Catcher) c;
         Crossing v = c.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();
+        if(nhood.size()==0)
+            System.out.println("C: ślepy zaułek: "+v.getID());
         nhood.remove(c.getPrev());
         if(nhood.size()==0) {
+            System.out.println("C: powrót");
             return c.getPrev();
         }
-        return (Crossing) (nhood.get((int) (Math.random()*(nhood.size()-1))));
+        return (Crossing) (nhood.get(nhood.size()>1?1:0));
+        //return (Crossing) (nhood.get((int) (Math.random()*(nhood.size()-1))));
     }
 }

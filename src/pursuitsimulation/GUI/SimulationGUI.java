@@ -51,7 +51,7 @@ public class SimulationGUI {
         mapPanel = new MapPanel(mapImage);
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(mapPanel);//new MapPanel(mapImage));
-        scrollPane.setPreferredSize(new Dimension(width, height));
+        //scrollPane.setPreferredSize(new Dimension(width, height));
         frame.add(scrollPane);
         frame.pack();
         frame.setVisible(true);
@@ -79,10 +79,7 @@ public class SimulationGUI {
     }
     public void showEditedMap() {
         mapPanel.reload();
-        mapPanel.revalidate();
         mapPanel.repaint();
-        frame.pack();
-        frame.setVisible(true);
     }
 
     private class MapPanel extends JPanel {

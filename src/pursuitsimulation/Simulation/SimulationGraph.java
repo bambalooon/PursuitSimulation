@@ -25,7 +25,7 @@ public class SimulationGraph implements Graph {
         vertexes = graph;
     }
     public Crossing getRandomVertex() {
-         return (Crossing) (vertexes.values().toArray()[(int) (Math.random()*(vertexes.size()-1))]);
+        return (Crossing) (vertexes.values().toArray()[SimulationProgram.randomGenerator.nextInt(vertexes.size()-1)]);
     }
     public void cleanGraph() { //delete Vertexes without neighbours
         LinkedList<Long> ids = new LinkedList<Long>();
@@ -34,11 +34,16 @@ public class SimulationGraph implements Graph {
             Crossing c = (Crossing) entry.getValue();
             if(c.getNeighbours().size()==0) {
                 ids.add(ID);
+                for(Vertex v : c.getInNeighbours()) {
+                    v.rmNeighbour(c);
+                }
             }
         }
-        System.out.println(ids.size());
+        int size = ids.size();
         for(Long id : ids) {
             vertexes.remove(id);
         }
+        if(size!=0)
+            cleanGraph();
     }
 }

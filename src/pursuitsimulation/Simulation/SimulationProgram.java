@@ -10,6 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -19,6 +20,7 @@ import java.util.Map;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationProgram {
+    public static Random randomGenerator = new Random();
     private SimulationGUI gui = null;
     private SimulationProcess process;
     private XmlParser parser;

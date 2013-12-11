@@ -82,8 +82,11 @@ public class XmlParser {
                         }
                         if(prev!=null) {
                             prev.addNeighbour(c);
-                            if(!oneway)
+                            c.addInNeighbour(prev);
+                            if(!oneway) {
                                 c.addNeighbour(prev);
+                                prev.addInNeighbour(c);
+                            }
                         }
                         prev = c;
                     }

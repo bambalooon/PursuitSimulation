@@ -1,6 +1,7 @@
 package pursuitsimulation.People;
 
 import pursuitsimulation.Crossing;
+import pursuitsimulation.Simulation.SimulationProcess;
 
 import java.util.LinkedList;
 
@@ -14,11 +15,14 @@ import java.util.LinkedList;
 public class Runner extends Person {
     private LinkedList<Runner> team;
     //database; ????
-    public Runner(Crossing current) {
-        super(current);
+    public Runner(Crossing current, SimulationProcess process) {
+        super(current, process);
         team = new LinkedList<Runner>();
     }
-
+    synchronized public void move() {
+        curr.calcualteClue(this, process.getTime());
+        super.move();
+    }
     public void addTeammate(Runner r) {
         team.add(r);
     }

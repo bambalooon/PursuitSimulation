@@ -1,5 +1,7 @@
 package pursuitsimulation.Strategies;
 
+import pursuitsimulation.Simulation.SimulationProcess;
+
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon
@@ -7,6 +9,9 @@ package pursuitsimulation.Strategies;
  * Time: 23:14
  * To change this template use File | Settings | File Templates.
  */
-public interface CatchingStrategy extends Strategy {
+public abstract class CatchingStrategy extends Strategy {
+    public CatchingStrategy(SimulationProcess process) {
+        super(process);
+    }
 
 }

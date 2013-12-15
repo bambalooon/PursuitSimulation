@@ -1,6 +1,7 @@
 package pursuitsimulation.People;
 
 import pursuitsimulation.Crossing;
+import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.Strategies.Strategy;
 
@@ -12,10 +13,12 @@ import pursuitsimulation.Strategies.Strategy;
  * To change this template use File | Settings | File Templates.
  */
 public class Person {
-    private Crossing prev, curr, next;
-    private Position pos;
-    private int waiting = 0; //0 = not, else num of iteration
-    public Person(Crossing current) {
+    protected SimulationProcess process;
+    protected Crossing prev, curr, next;
+    protected Position pos;
+    protected int waiting = 0; //0 = not, else num of iteration
+    public Person(Crossing current, SimulationProcess process) {
+        this.process = process;
         prev = null;
         curr = current;
         next = null;
@@ -30,7 +33,7 @@ public class Person {
         next = null;
         pos = curr.getPos();
     }
-    private void wait(int timestamp) {}
+    protected void wait(int timestamp) {}
     public Position getPos() {
         return pos;
     }

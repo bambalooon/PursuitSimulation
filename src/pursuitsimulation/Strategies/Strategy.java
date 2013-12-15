@@ -2,6 +2,7 @@ package pursuitsimulation.Strategies;
 
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Person;
+import pursuitsimulation.Simulation.SimulationProcess;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,6 +11,12 @@ import pursuitsimulation.People.Person;
  * Time: 23:13
  * To change this template use File | Settings | File Templates.
  */
-public interface Strategy {
-    public Crossing getDestination(Person p);
+public abstract class Strategy {
+    protected SimulationProcess process;
+
+    public Strategy(SimulationProcess process) {
+        this.process = process;
+    }
+
+    public abstract Crossing getDestination(Person p);
 }

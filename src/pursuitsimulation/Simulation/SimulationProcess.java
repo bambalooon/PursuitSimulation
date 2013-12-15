@@ -1,11 +1,14 @@
 package pursuitsimulation.Simulation;
 
+import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Catcher;
+import pursuitsimulation.People.Person;
 import pursuitsimulation.People.Runner;
 import pursuitsimulation.Simulation.SimulationGraph;
 import pursuitsimulation.Strategies.CatchingStrategy;
 import pursuitsimulation.Strategies.RunningStrategy;
+import pursuitsimulation.util.ClueList;
 import pursuitsimulation.util.Time;
 
 import javax.swing.*;
@@ -14,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,10 +32,12 @@ public class SimulationProcess {
     private SimulationGraph graph = new SimulationGraph();
     private LinkedList<Catcher> catchers = new LinkedList<Catcher>();
     private LinkedList<Runner> runners = new LinkedList<Runner>();
+    private Map<Runner, ClueList> clueList = new HashMap<Runner, ClueList>(); //
     private Map<Catcher, CatchingStrategy> cStrategies = new HashMap<Catcher, CatchingStrategy>();
     private Map<Runner, RunningStrategy> rStrategies = new HashMap<Runner, RunningStrategy>();
     private boolean running = false;
     private Timer timer;
+
     SimulationProcess(SimulationProgram program) {
         main = program;
     }
@@ -40,20 +46,24 @@ public class SimulationProcess {
         this.graph.cleanGraph();
     }
     void addCatcher(CatchingStrategy s) {
-        Catcher c = new Catcher(this.graph.getRandomVertex()); //some better way to do it..
+        Catcher c = new Catcher(this.graph.getRandomVertex(), this); //some better way to do it..
         catchers.add(c);
         cStrategies.put(c, s);
     }
     void addRunner(RunningStrategy s) {
-        Runner r = new Runner(this.graph.getRandomVertex()); //some better way to do it..
+        Runner r = new Runner(this.graph.getRandomVertex(), this); //some better way to do it..
         runners.add(r);
         rStrategies.put(r, s);
     }
-    LinkedList<Catcher> getCatchers() {
+
+    public LinkedList<Catcher> getCatchers() {
         return catchers;
     }
-    LinkedList<Runner> getRunners() {
+    public LinkedList<Runner> getRunners() {
         return runners;
+    }
+    public ClueList getClueList(Runner runner) {
+        return clueList.get(runner);
     }
 
     public void setSimulationTimer() { //5s miedzy iteracjami - przeskok z wezla do wezla
@@ -63,8 +73,9 @@ public class SimulationProcess {
         timer = new Timer(100 * Time.timeInterval, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 time.move();
-                for(Runner r : runners)
+                for(Runner r : runners) {
                     r.getDestination(rStrategies.get(r));
+                }
                 for(Catcher c : catchers)
                     c.getDestination(cStrategies.get(c));
                 for(Runner r : runners)
@@ -84,5 +95,9 @@ public class SimulationProcess {
     }
     public void simulationStop() {
         timer.stop();
+    }
+
+    public Time getTime() {
+        return time.getCurrentTime();
     }
 }

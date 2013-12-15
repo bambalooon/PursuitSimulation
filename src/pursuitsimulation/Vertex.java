@@ -12,16 +12,20 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class Vertex {
-    private long ID;
-    private Position pos;
-    private LinkedList<Vertex> outNeighbours;
-    private LinkedList<Vertex> inNeighbours;
+    protected long ID;
+    protected Position pos;
+    protected LinkedList<Vertex> outNeighbours;
+    protected LinkedList<Vertex> inNeighbours;
     //---------------------------------------------------
     public Vertex(long ID, Position pos) {
         outNeighbours = new LinkedList<Vertex>();
         inNeighbours = new LinkedList<Vertex>();
         this.ID = ID;
         this.pos = pos;
+    }
+
+    public double calcualteDistance(Vertex v) {
+        return pos.calculateDistance(v.getPos());
     }
 
     public void addNeighbour(Vertex v) {

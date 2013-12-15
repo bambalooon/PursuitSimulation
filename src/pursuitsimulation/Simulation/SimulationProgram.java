@@ -46,10 +46,10 @@ public class SimulationProgram {
         process.setGraph(graph);
 
         for(int i=0; i<3; i++) {
-            process.addCatcher(new StandardCatchingStrategy());
+            process.addCatcher(new StandardCatchingStrategy(process));
         }
         for(int i=0; i<3; i++) {
-            process.addRunner(new StandardRunningStrategy());
+            process.addRunner(new StandardRunningStrategy(process));
         }
     }
     void setGUI(SimulationGUI gui) {

@@ -15,11 +15,26 @@ public class Clue {
     Crossing currentLocation;
     Crossing destination;
     Person person;
-    Clue(Time t, Crossing c1, Crossing c2, Person p) {
+
+
+    public Clue(Time t, Crossing current, Crossing next, Person p) {
         time = t;
-        currentLocation = c1;
-        destination = c2;
+        currentLocation = current;
+        destination = next;
         person = p;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
+    public Crossing getDestination() { return destination; }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public String toString() {
+        return new String("Jest w:" + currentLocation.getID() + "; Idzie do: " + destination.getID());
+    }
 }

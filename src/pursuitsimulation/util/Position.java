@@ -1,5 +1,8 @@
 package pursuitsimulation.util;
 
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon
@@ -13,4 +16,7 @@ public class Position {
     public double getX() { return x; }
     public double getY() { return y; }
 
+    public double calculateDistance(Position p) {
+        return sqrt(pow((x-p.getX()),2) + pow((y-p.getY()), 2));
+    }
 }

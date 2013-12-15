@@ -22,5 +22,4 @@ public class Runner extends Person {
     public void addTeammate(Runner r) {
         team.add(r);
     }
-
 }

@@ -61,5 +61,14 @@ public class Crossing extends Vertex {
     public double getSpottingProbability() {
         return spottingProbability;
     }
+
+    public long getId() { return ID; }
+
+    public boolean equals(Crossing crossing) {
+        if( crossing == null )
+            return false;
+
+        return ID == crossing.getId();
+    }
 }
 

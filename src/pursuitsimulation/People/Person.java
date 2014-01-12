@@ -17,8 +17,11 @@ public class Person {
     protected Crossing prev, curr, next;
     protected Position pos;
     protected int waiting = 0; //0 = not, else num of iteration
-    public Person(Crossing current, SimulationProcess process) {
+    protected String name;
+
+    public Person(Crossing current, SimulationProcess process, String name) {
         this.process = process;
+        this.name = name;
         prev = null;
         curr = current;
         next = null;
@@ -46,4 +49,5 @@ public class Person {
     public Crossing getNext() {
         return next;
     }
+    public String toString() { return name; }
 }

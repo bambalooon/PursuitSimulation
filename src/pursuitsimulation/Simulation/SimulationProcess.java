@@ -8,6 +8,7 @@ import pursuitsimulation.People.Runner;
 import pursuitsimulation.Simulation.SimulationGraph;
 import pursuitsimulation.Strategies.CatchingStrategy;
 import pursuitsimulation.Strategies.RunningStrategy;
+import pursuitsimulation.util.Astar;
 import pursuitsimulation.util.ClueList;
 import pursuitsimulation.util.Time;
 
@@ -31,12 +32,13 @@ public class SimulationProcess {
     private Time time = new Time();
     private SimulationGraph graph = new SimulationGraph();
     private LinkedList<Catcher> catchers = new LinkedList<Catcher>();
-    private LinkedList<Runner> runners = new LinkedList<Runner>();
-    private Map<Runner, ClueList> clueList = new HashMap<Runner, ClueList>(); //
+    private Runner runner;
+    private ClueList clueList = new ClueList();
     private Map<Catcher, CatchingStrategy> cStrategies = new HashMap<Catcher, CatchingStrategy>();
     private Map<Runner, RunningStrategy> rStrategies = new HashMap<Runner, RunningStrategy>();
     private boolean running = false;
     private Timer timer;
+    private Astar pathAlgorithm = new Astar();
 
     SimulationProcess(SimulationProgram program) {
         main = program;
@@ -45,43 +47,41 @@ public class SimulationProcess {
         this.graph.setGraph(graph);
         this.graph.cleanGraph();
     }
-    void addCatcher(CatchingStrategy s) {
-        Catcher c = new Catcher(this.graph.getRandomVertex(), this); //some better way to do it..
+    public SimulationGraph getGraph() { return graph; }
+    void addCatcher(CatchingStrategy s, String name) {
+        Catcher c = new Catcher(this.graph.getRandomVertex(), this, name); //some better way to do it..
         catchers.add(c);
         cStrategies.put(c, s);
     }
-    void addRunner(RunningStrategy s) {
-        Runner r = new Runner(this.graph.getRandomVertex(), this); //some better way to do it..
-        runners.add(r);
-        rStrategies.put(r, s);
+    void setRunner(RunningStrategy s, String name) {
+        runner = new Runner(this.graph.getRandomVertex(), this, name); //some better way to do it..
+        rStrategies.put(runner, s);
     }
 
     public LinkedList<Catcher> getCatchers() {
         return catchers;
     }
-    public LinkedList<Runner> getRunners() {
-        return runners;
+    public Runner getRunner() {
+        return runner;
     }
-    public ClueList getClueList(Runner runner) {
-        return clueList.get(runner);
-    }
+    public ClueList getClueList() { return clueList; }
 
-    public void setSimulationTimer() { //5s miedzy iteracjami - przeskok z wezla do wezla
+    public void setSimulationTimer() { //5s miedzy iteeracjami - przeskok z wezla do wezla
         if(timer!=null) {
             timer.stop();
         }
         timer = new Timer(100 * Time.timeInterval, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 time.move();
-                for(Runner r : runners) {
-                    r.getDestination(rStrategies.get(r));
-                }
+
+                runner.getDestination(rStrategies.get(runner));
                 for(Catcher c : catchers)
                     c.getDestination(cStrategies.get(c));
-                for(Runner r : runners)
-                    r.move();
+
+                runner.move();
                 for(Catcher c : catchers)
                     c.move();
+
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
                         main.updateGuiMap();
@@ -95,6 +95,10 @@ public class SimulationProcess {
     }
     public void simulationStop() {
         timer.stop();
+    }
+
+    public Astar getPathAlgorithm() {
+        return pathAlgorithm;
     }
 
     public Time getTime() {

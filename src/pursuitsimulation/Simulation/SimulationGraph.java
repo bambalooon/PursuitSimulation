@@ -27,6 +27,7 @@ public class SimulationGraph implements Graph {
     public Crossing getRandomVertex() {
         return (Crossing) (vertexes.values().toArray()[SimulationProgram.randomGenerator.nextInt(vertexes.size()-1)]);
     }
+    public int getGraphSize() { return vertexes.size(); }
     public void cleanGraph() { //delete Vertexes without neighbours
         LinkedList<Long> ids = new LinkedList<Long>();
         for(Map.Entry<Long, Crossing> entry : vertexes.entrySet()) {

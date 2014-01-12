@@ -10,7 +10,7 @@ import pursuitsimulation.util.Time;
  * Time: 22:50
  * To change this template use File | Settings | File Templates.
  */
-public class Clue {
+public class Clue implements Comparable<Clue> {
     Time time;
     Crossing currentLocation;
     Crossing destination;
@@ -36,5 +36,18 @@ public class Clue {
 
     public String toString() {
         return new String("Jest w:" + currentLocation.getID() + "; Idzie do: " + destination.getID());
+    }
+
+    public Boolean equals(Clue c) {
+        if(c.time == time && c.currentLocation == currentLocation && c.destination == destination && c.person == person)
+            return true;
+
+        return false;
+    }
+
+    /* reversed comparison in order to sort ClueList by timestamp, descending */
+    @Override
+    public int compareTo(Clue c) {
+        return c.time.getTimeStamp() - time.getTimeStamp();
     }
 }

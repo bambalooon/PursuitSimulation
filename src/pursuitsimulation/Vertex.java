@@ -51,4 +51,9 @@ public class Vertex {
     public LinkedList<Vertex> getInNeighbours() {
         return inNeighbours;
     }
+
+    @Override
+    public String toString() {
+        return ID + "(" + pos.getX() + "," + pos.getY() + ")";
+    }
 }

@@ -44,13 +44,11 @@ public class SimulationProgram {
     }
     void setGraph(Map<Long, Crossing> graph) {
         process.setGraph(graph);
-
-        for(int i=0; i<3; i++) {
-            process.addCatcher(new StandardCatchingStrategy(process));
+        System.out.println("Created graph with " + process.getGraph().getGraphSize() + " nodes");
+        for(int i=0; i<10; i++) {
+            process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
         }
-        for(int i=0; i<3; i++) {
-            process.addRunner(new StandardRunningStrategy(process));
-        }
+        process.setRunner(new StandardRunningStrategy(process), "Runner");
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;
@@ -60,7 +58,7 @@ public class SimulationProgram {
         gui.setULpos(new Position(-73.9828, 40.7913));
         gui.setDRpos(new Position(-73.8522, 40.7147));
         gui.setCatchersHandle(process.getCatchers());
-        gui.setRunnersHandle(process.getRunners());
+        gui.setRunnersHandle(process.getRunner());
     }
 
 

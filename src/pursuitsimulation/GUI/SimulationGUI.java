@@ -37,7 +37,7 @@ public class SimulationGUI {
     private int width = 800;
     private int height = 600;
     private LinkedList<Catcher> catchers;
-    private LinkedList<Runner> runners;
+    private Runner runner;
     public SimulationGUI() {
         frame = new JFrame("Pursuit Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,8 +59,8 @@ public class SimulationGUI {
     public void setCatchersHandle(LinkedList<Catcher> c) {
         catchers = c;
     }
-    public void setRunnersHandle(LinkedList<Runner> r) {
-        runners = r;
+    public void setRunnersHandle(Runner r) {
+        runner = r;
     }
     public void setULpos(Position pos) {
         SimulationGUI.pos = pos;
@@ -125,20 +125,19 @@ public class SimulationGUI {
                     g2d.drawOval(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
                 }
             }
-            if(runners!=null) {
-                for(Runner r : runners) {
-                    Position p = r.getPos();
-                    p = convert(p);
-                    int x = (int) p.getX();
-                    int y = (int) p.getY();
+            if(runner!=null) {
+                Position p = runner.getPos();
+                p = convert(p);
+                int x = (int) p.getX();
+                int y = (int) p.getY();
 
-                    g2d.setPaint(SimulationGUI.runnerCol);
-                    Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
-                    g2d.fill(circle);
-                    g2d.setColor(SimulationGUI.outerCol);
-                    g2d.drawOval(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
-                }
+                g2d.setPaint(SimulationGUI.runnerCol);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
+                g2d.fill(circle);
+                g2d.setColor(SimulationGUI.outerCol);
+                g2d.drawOval(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
             }
+
             g2d.dispose();
             return img;
         }

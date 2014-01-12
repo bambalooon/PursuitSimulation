@@ -9,6 +9,7 @@ import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.Simulation.SimulationProgram;
 import pursuitsimulation.Strategies.CatchingStrategy;
 import pursuitsimulation.Vertex;
+import pursuitsimulation.util.Astar;
 
 import java.util.LinkedList;
 
@@ -24,35 +25,42 @@ public class StandardCatchingStrategy extends CatchingStrategy {
         super(process);
     }
 
-    public Crossing getDestination(Person c) {
+    public Crossing getDestination(Person p) {
+        Catcher c = (Catcher) p;
         Clue bestClue = null;
-        for(Runner runner : process.getRunners()) { // loop checks for any known clues and if there are any - chooses the closest suspected position
+        // checks for any known clues and if there are any - chooses the closest suspected position
             try {
-                Clue clue = process.getClueList(runner).getFreshClue();
+                Runner runner = process.getRunner();
+                Clue clue = process.getClueList().getFreshClue();
 
-                if(clue != null ) {
-                    if(bestClue == null) {
-                        bestClue = clue;
-                    } else if(clue.getDestination().calcualteDistance(c.getCurr()) < bestClue.getDestination().calcualteDistance(c.getCurr())) {
-                        bestClue = clue;
-                    }
+                if(clue != null) {
+                    bestClue = clue;
                 }
             } catch(NullPointerException e) {}
+
+
+        if( bestClue != null && !bestClue.getDestination().equals( c.getDestination() ) ) {
+            Astar astar = process.getPathAlgorithm();
+            long timeStart;
+            long timeElapsed;
+
+            timeStart = System.nanoTime();
+
+            c.setPath(astar.findPath(c.getCurr(), bestClue.getDestination()));
+            timeElapsed = System.nanoTime() - timeStart;
+
+            System.out.println("A* time for " + c + ": " + (timeElapsed/1000000000.0) + "s");
         }
 
-        if(bestClue != null) {//TODO: funkcja znajdujaca droge do zadanego wierzcholka i zwracajaca aktualnego sasiada prowadzacego do celu
-            return bestClue.getDestination();
+        if(c.peekNextPathStep() != null) {
+            return c.getNextPathStep();
         }
+
+        /* if there's no particular Crossing we want to get to - choose way at random */
 
         Crossing v = c.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();
-        /*if(nhood.size()==0)
-            System.out.println("C: ślepy zaułek: "+v.getID());
-        nhood.remove(c.getPrev());
-        if(nhood.size()==0) {
-            System.out.println("C: powrót");
-            return c.getPrev();
-        }*/
+
 
         if(nhood.size() < 2) {
             return (Crossing) nhood.get(0);

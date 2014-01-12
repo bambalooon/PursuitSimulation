@@ -25,17 +25,6 @@ public class StandardRunningStrategy extends RunningStrategy {
     public Crossing getDestination(Person r) {
         Crossing v = r.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();
-        /*
-        if(nhood.size()==0)
-            System.out.println("R: ślepy zaułek: "+v.getID());
-        nhood.remove(r.getPrev());
-        if(nhood.size()==0) {
-            System.out.println("R: powrót");
-            return r.getPrev();
-        }
-        if(nhood.size()==1)
-            return (Crossing) nhood.get(0);
-            */
 
         if(nhood.size() < 2) {
             return (Crossing) nhood.get(0);

@@ -1,7 +1,9 @@
 package pursuitsimulation.util;
 
 import pursuitsimulation.Clue;
+import pursuitsimulation.People.Person;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.ListIterator;
 
@@ -13,20 +15,25 @@ public class ClueList {
 
     /* adds new clues to the list, sorted by time, descending (i.e. newest clue is at head while oldest is at tail) */
     public void add(Clue clue) {
-        ListIterator<Clue> it = clues.listIterator();
-        Clue c = null;
+        clues.add(clue);
+        Collections.sort(clues);
 
-        while(it.hasNext()) {
-            c = it.next();
+//        ListIterator<Clue> it = clues.listIterator();
+//        Clue c = null;
+//
+//        while(it.hasNext()) {
+//            c = it.next();
+//
+//            if(clue.getTime().getTimeStamp() > c.getTime().getTimeStamp()) {
+//                it.previous();
+//                it.add(clue);
+//
+//                return;
+//            }
+//        }
+//
+//        it.add(clue);
 
-            if(clue.getTime().getTimeStamp() > c.getTime().getTimeStamp()) {
-                it.previous();
-                it.add(clue);
-                return;
-            }
-        }
-
-        it.add(clue);
     }
 
     /* get the head of the list without removing it */

@@ -1,12 +1,15 @@
 package pursuitsimulation.GUI;
 
 import pursuitsimulation.People.Catcher;
+import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.People.Runner;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,15 +35,24 @@ public class SimulationGUI {
 
     private boolean running=false;
     private JFrame frame;
+
+    private SimulationProcess process;
+    private MainWindow window;
+
     private BufferedImage mapImage;
     private MapPanel mapPanel;
     private int width = 800;
     private int height = 600;
     private LinkedList<Catcher> catchers;
     private Runner runner;
-    public SimulationGUI() {
+    public SimulationGUI(SimulationProcess process) {
+        this.process = process;
+
         frame = new JFrame("Pursuit Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        window = new MainWindow();
+        frame.add(window);
 
         frame.pack();
         frame.setVisible(true);
@@ -49,10 +61,15 @@ public class SimulationGUI {
     public void chooseMapFile(String filename) throws IOException {
         mapImage = ImageIO.read(new File(filename));
         mapPanel = new MapPanel(mapImage);
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(mapPanel);//new MapPanel(mapImage));
+
+        //JScrollPane scrollPane = new JScrollPane();
+        //scrollPane.setViewportView(mapPanel);//new MapPanel(mapImage));
+        window.attachMapPanel(mapPanel);
+
         //scrollPane.setPreferredSize(new Dimension(width, height));
-        frame.add(scrollPane);
+
+        //frame.add(scrollPane);
+
         frame.pack();
         frame.setVisible(true);
     }
@@ -69,6 +86,7 @@ public class SimulationGUI {
         mapWidth = pos.getX()-this.pos.getX();
         mapHeight = pos.getY()-this.pos.getY();
     }
+    /*
     public void showMap() {
         JLabel map = new JLabel(new ImageIcon(mapImage));
         JScrollPane scrollPane = new JScrollPane();
@@ -77,9 +95,66 @@ public class SimulationGUI {
         frame.pack();
         frame.setVisible(true);
     }
+    */
     public void showEditedMap() {
         mapPanel.reload();
         mapPanel.repaint();
+    }
+
+    private class MainWindow extends JPanel implements ActionListener {
+        static final private String PLAY = "play";
+        static final private String PAUSE = "pause";
+        static final private String STOP = "stop";
+        JScrollPane scrollPane;
+        MapPanel mapPanel=null;
+        public MainWindow() {
+            super(new BorderLayout());
+            JToolBar toolBar = new JToolBar("Simulation Options Panel");
+            addButtons(toolBar);
+            this.scrollPane = new JScrollPane();
+
+            add(toolBar, BorderLayout.PAGE_START);
+            add(scrollPane, BorderLayout.CENTER);
+
+        }
+        protected void addButtons(JToolBar toolBar) {
+            JButton button;
+
+            button = new JButton();
+            button.addActionListener(this);
+            button.setActionCommand(PLAY);
+            button.setText("play");
+            toolBar.add(button);
+
+            button = new JButton();
+            button.addActionListener(this);
+            button.setActionCommand(PAUSE);
+            button.setText("pause");
+            toolBar.add(button);
+
+            button = new JButton();
+            button.addActionListener(this);
+            button.setActionCommand(STOP);
+            button.setText("stop");
+            toolBar.add(button);
+        }
+        public void attachMapPanel(MapPanel mapPanel) {
+            this.mapPanel = mapPanel;
+            scrollPane.setViewportView(mapPanel);
+        }
+        public void actionPerformed(ActionEvent e) {
+            String cmd = e.getActionCommand();
+
+            // Handle each button.
+            if (PLAY.equals(cmd)) {
+                process.simulationStart();
+            } else if (STOP.equals(cmd)) {
+                process.simulationStop();
+            } else if (PAUSE.equals(cmd)) {
+                process.simulationStop();
+            }
+        }
+
     }
 
     private class MapPanel extends JPanel {

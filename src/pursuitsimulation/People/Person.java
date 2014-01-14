@@ -4,6 +4,7 @@ import pursuitsimulation.Crossing;
 import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.Strategies.Strategy;
+import pursuitsimulation.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -37,6 +38,7 @@ public class Person {
         pos = curr.getPos();
     }
     protected void wait(int timestamp) {}
+    public Vector getVector() { return new Vector(pos.getX(), pos.getY()); }
     public Position getPos() {
         return pos;
     }

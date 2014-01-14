@@ -107,9 +107,12 @@ public class SimulationProcess {
         timer.start();
     }
     public void simulationStop() {
+        timer.stop();
+    }
+
+    private void pursuitEnd() {
         long timeElapsed = System.nanoTime() - startTime;
         System.out.println("Pościg zakończył się po upływie " + (int)(timeElapsed/1000000000.0) + " sekund");
-        timer.stop();
     }
 
     public void eyesOnTargetCheck(Catcher c) {
@@ -131,11 +134,12 @@ public class SimulationProcess {
 
     public void endCheck(Catcher c) {
         if(caughtRunner(c)) {
+            pursuitEnd();
             simulationStop();
-            reset();
-            main.getGui().setRunnerHandle(null);
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
+                    reset();
+                    main.getGui().setRunnerHandle(null);
                     main.showEndAlert();
                 }
             });

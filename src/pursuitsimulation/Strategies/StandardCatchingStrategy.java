@@ -46,10 +46,10 @@ public class StandardCatchingStrategy extends CatchingStrategy {
 
             timeStart = System.nanoTime();
 
-            c.setPath( pathFinder.getPath(c.getCurr(), bestClue.getDestination()) );
+            c.setPath( pathFinder.getPath(c.getCurr(), bestClue.getDestination(), -1) );
             timeElapsed = System.nanoTime() - timeStart;
 
-//            System.out.println("A* time for " + c + ": " + (timeElapsed/1000000000.0) + "s");
+            System.out.println("A* time for " + c + ": " + (timeElapsed/1000000000.0) + "s");
         }
 
         if(c.peekNextPathStep() != null) {

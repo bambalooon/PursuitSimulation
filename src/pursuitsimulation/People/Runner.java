@@ -16,6 +16,7 @@ import java.util.Random;
  */
 public class Runner extends Person {
     private LinkedList<Runner> team;
+    private LinkedList<Crossing> path = null;
     private Random rand = new Random();
 
     public Runner(Crossing current, SimulationProcess process, String name) {
@@ -44,5 +45,30 @@ public class Runner extends Person {
 //            if(process.getClueList().getFreshClue().equals(clue))
 //                System.out.println("It's the best clue!");
         }
+    }
+
+    public void setPath(LinkedList<Crossing> path) {
+        this.path = path;
+    }
+
+    public Crossing getNextPathStep() {
+        if(path == null)
+            return null;
+
+        return path.poll();
+    }
+
+    public Crossing peekNextPathStep() {
+        if(path == null)
+            return null;
+
+        return path.peekFirst();
+    }
+
+    public Crossing getDestination() {
+        if(path == null)
+            return null;
+
+        return path.peekLast();
     }
 }

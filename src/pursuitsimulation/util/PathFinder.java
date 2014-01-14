@@ -30,7 +30,7 @@ public class PathFinder {
         return pathLength( findPath(start, end, -1) );
     }
 
-    public CrossingStructure findPath(Crossing start, Crossing end, int pathLenght) {
+    public CrossingStructure findPath(Crossing start, Crossing end, int pathLength) {
 //        System.out.println("Searching for path!!");
 
         closedList = new ArrayList<CrossingStructure>();
@@ -48,7 +48,7 @@ public class PathFinder {
             openList.remove(current);
             closedList.add(current);
 
-            if( current.getCrossing().equals( end ) ) {
+            if( current.getCrossing().equals( end ) || (pathLength != -1 && current.getParentStep()+1 == pathLength)) {
                 return current;
             }
 

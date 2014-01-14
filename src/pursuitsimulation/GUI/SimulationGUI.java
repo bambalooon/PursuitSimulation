@@ -6,9 +6,12 @@ import pursuitsimulation.Strategies.StandardCatchingStrategy;
 import pursuitsimulation.Strategies.StandardRunningStrategy;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.People.Runner;
+import pursuitsimulation.util.Time;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +19,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.LinkedList;
 
 /**
@@ -63,14 +67,7 @@ public class SimulationGUI {
     public void chooseMapFile(String filename) throws IOException {
         mapImage = ImageIO.read(new File(filename));
         mapPanel = new MapPanel(mapImage);
-
-        //JScrollPane scrollPane = new JScrollPane();
-        //scrollPane.setViewportView(mapPanel);//new MapPanel(mapImage));
         window.attachMapPanel(mapPanel);
-
-        //scrollPane.setPreferredSize(new Dimension(width, height));
-
-        //frame.add(scrollPane);
 
         frame.pack();
         frame.setVisible(true);
@@ -88,16 +85,6 @@ public class SimulationGUI {
         mapWidth = pos.getX()-this.pos.getX();
         mapHeight = pos.getY()-this.pos.getY();
     }
-    /*
-    public void showMap() {
-        JLabel map = new JLabel(new ImageIcon(mapImage));
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setViewportView(map);
-        frame.add(scrollPane);
-        frame.pack();
-        frame.setVisible(true);
-    }
-    */
     public void showEditedMap() {
         mapPanel.reload();
         mapPanel.repaint();
@@ -123,10 +110,13 @@ public class SimulationGUI {
     public void showEndAlert() {
         JOptionPane.showMessageDialog(null, "Złapano Uciekiniera! Koniec symulacji...");
     }
-    private class MainWindow extends JPanel implements ActionListener {
+    private class MainWindow extends JPanel implements ActionListener, ChangeListener {
         static final private String PLAY = "play";
         static final private String PAUSE = "pause";
         static final private String STOP = "stop";
+        static final int INTERVAL_MIN = 0;
+        static final int INTERVAL_MAX = 2000;
+        static final int INTERVAL_INIT = 500;
         JScrollPane scrollPane;
         MapPanel mapPanel=null;
         public MainWindow() {
@@ -159,6 +149,21 @@ public class SimulationGUI {
             button.setActionCommand(STOP);
             button.setText("stop");
             toolBar.add(button);
+
+            JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL,INTERVAL_MIN, INTERVAL_MAX, INTERVAL_INIT);
+            intervalSlider.addChangeListener(this);
+            intervalSlider.setMajorTickSpacing(100);
+            intervalSlider.setPaintTicks(true);
+            intervalSlider.setMaximumSize(new Dimension(200, 50));
+
+            Hashtable labelTable = new Hashtable();
+            labelTable.put( new Integer( Time.minInterval ), new JLabel(Integer.toString(Time.minInterval)) );
+            labelTable.put( new Integer( INTERVAL_INIT ), new JLabel(Integer.toString(INTERVAL_INIT)) );
+            labelTable.put( new Integer( INTERVAL_MAX ), new JLabel(Integer.toString(INTERVAL_MAX)) );
+            intervalSlider.setLabelTable( labelTable );
+            intervalSlider.setPaintLabels(true);
+
+            toolBar.add(intervalSlider);
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
@@ -177,6 +182,17 @@ public class SimulationGUI {
                 simulationStop();
             } else if (PAUSE.equals(cmd)) {
                 process.simulationStop();
+            }
+        }
+        public void stateChanged(ChangeEvent e) {
+            JSlider source = (JSlider)e.getSource();
+            if (!source.getValueIsAdjusting()) {
+                int interval = (int)source.getValue();
+                if(interval<Time.minInterval) {
+                    interval = Time.minInterval;
+                }
+                Time.changeInterval(interval);
+                process.updateTimer();
             }
         }
     }

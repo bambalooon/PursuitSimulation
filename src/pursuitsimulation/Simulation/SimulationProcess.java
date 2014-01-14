@@ -76,7 +76,7 @@ public class SimulationProcess {
         if(timer!=null) {
             timer.stop();
         }
-        timer = new Timer(100 * Time.timeInterval, new ActionListener() {
+        timer = new Timer(Time.timeInterval, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 time.move();
 
@@ -155,5 +155,8 @@ public class SimulationProcess {
     }
     public boolean isRunning() {
         return running;
+    }
+    public void updateTimer() {
+        timer.setDelay(Time.timeInterval);
     }
 }

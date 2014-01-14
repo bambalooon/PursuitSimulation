@@ -82,6 +82,10 @@ public class SimulationGUI {
         mapPanel.repaint();
     }
 
+    public void showEndAlert() {
+        JOptionPane.showMessageDialog(null, "Złapano Uciekiniera! Koniec symulacji...");
+    }
+
     private class MapPanel extends JPanel {
         private BufferedImage image;
         private BufferedImage editedImage;

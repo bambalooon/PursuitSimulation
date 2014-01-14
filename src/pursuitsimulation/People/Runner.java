@@ -17,7 +17,7 @@ import java.util.Random;
 public class Runner extends Person {
     private LinkedList<Runner> team;
     private Random rand = new Random();
-    //database; ????
+
     public Runner(Crossing current, SimulationProcess process, String name) {
         super(current, process, name);
         team = new LinkedList<Runner>();
@@ -40,9 +40,9 @@ public class Runner extends Person {
             );
             process.getClueList().add(clue);
 
-            System.out.println(this + " has left a clue with timestamp " + clue.getTime().getTimeStamp());
-            if(process.getClueList().getFreshClue().equals(clue))
-                System.out.println("It's the best clue!");
+//            System.out.println(this + " has left a clue with timestamp " + clue.getTime().getTimeStamp());
+//            if(process.getClueList().getFreshClue().equals(clue))
+//                System.out.println("It's the best clue!");
         }
     }
 }

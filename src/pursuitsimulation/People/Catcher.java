@@ -32,9 +32,9 @@ public class Catcher extends Person {
             c = it.next();
             process.getClueList().add(c);
 
-            System.out.println(this + " has found a clue with timestamp " + c.getTime().getTimeStamp());
-            if(process.getClueList().getFreshClue().equals(c))
-                System.out.println("It's the best clue!");
+//            System.out.println(this + " has found a clue with timestamp " + c.getTime().getTimeStamp());
+//            if(process.getClueList().getFreshClue().equals(c))
+//                System.out.println("It's the best clue!");
         }
     }
 

@@ -7,9 +7,9 @@ import pursuitsimulation.People.Person;
 import pursuitsimulation.People.Runner;
 import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.Simulation.SimulationProgram;
-import pursuitsimulation.Strategies.CatchingStrategy;
 import pursuitsimulation.Vertex;
-import pursuitsimulation.util.Astar;
+import pursuitsimulation.util.Heuristic.CrowsDistanceHeuristic;
+import pursuitsimulation.util.PathFinder;
 
 import java.util.LinkedList;
 
@@ -40,16 +40,16 @@ public class StandardCatchingStrategy extends CatchingStrategy {
 
 
         if( bestClue != null && !bestClue.getDestination().equals( c.getDestination() ) ) {
-            Astar astar = process.getPathAlgorithm();
+            PathFinder pathFinder = new PathFinder( new CrowsDistanceHeuristic());
             long timeStart;
             long timeElapsed;
 
             timeStart = System.nanoTime();
 
-            c.setPath(astar.findPath(c.getCurr(), bestClue.getDestination()));
+            c.setPath( pathFinder.getPath(c.getCurr(), bestClue.getDestination()) );
             timeElapsed = System.nanoTime() - timeStart;
 
-            System.out.println("A* time for " + c + ": " + (timeElapsed/1000000000.0) + "s");
+//            System.out.println("A* time for " + c + ": " + (timeElapsed/1000000000.0) + "s");
         }
 
         if(c.peekNextPathStep() != null) {

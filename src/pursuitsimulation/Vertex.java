@@ -35,9 +35,9 @@ public class Vertex {
         inNeighbours.add(v);
     }
     public void rmNeighbour(Vertex v) {
-        System.out.print(ID+": "+outNeighbours.size()+"-");
+//        System.out.print(ID+": "+outNeighbours.size()+"-");
         outNeighbours.remove(v);
-        System.out.println(outNeighbours.size());
+//        System.out.println(outNeighbours.size());
     }
     public long getID() {
         return ID;

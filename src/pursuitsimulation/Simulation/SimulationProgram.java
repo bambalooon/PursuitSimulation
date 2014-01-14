@@ -44,11 +44,14 @@ public class SimulationProgram {
     }
     void setGraph(Map<Long, Crossing> graph) {
         process.setGraph(graph);
-        System.out.println("Created graph with " + process.getGraph().getGraphSize() + " nodes");
+//        System.out.println("Created graph with " + process.getGraph().getGraphSize() + " nodes");
         for(int i=0; i<10; i++) {
             process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
         }
         process.setRunner(new StandardRunningStrategy(process), "Runner");
+    }
+    void showEndAlert() {
+        gui.showEndAlert();
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;

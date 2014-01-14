@@ -3,12 +3,11 @@ package pursuitsimulation.Simulation;
 import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Catcher;
-import pursuitsimulation.People.Person;
 import pursuitsimulation.People.Runner;
-import pursuitsimulation.Simulation.SimulationGraph;
 import pursuitsimulation.Strategies.CatchingStrategy;
 import pursuitsimulation.Strategies.RunningStrategy;
-import pursuitsimulation.util.Astar;
+import pursuitsimulation.util.Heuristic.CrowsDistanceHeuristic;
+import pursuitsimulation.util.PathFinder;
 import pursuitsimulation.util.ClueList;
 import pursuitsimulation.util.Time;
 
@@ -18,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -30,6 +28,7 @@ import java.util.Random;
 public class SimulationProcess {
     private SimulationProgram main;
     private Time time = new Time();
+    private long startTime;
     private SimulationGraph graph = new SimulationGraph();
     private LinkedList<Catcher> catchers = new LinkedList<Catcher>();
     private Runner runner;
@@ -38,7 +37,7 @@ public class SimulationProcess {
     private Map<Runner, RunningStrategy> rStrategies = new HashMap<Runner, RunningStrategy>();
     private boolean running = false;
     private Timer timer;
-    private Astar pathAlgorithm = new Astar();
+    private PathFinder pathFinder = new PathFinder(new CrowsDistanceHeuristic());
 
     SimulationProcess(SimulationProgram program) {
         main = program;
@@ -79,8 +78,13 @@ public class SimulationProcess {
                     c.getDestination(cStrategies.get(c));
 
                 runner.move();
-                for(Catcher c : catchers)
+                for(Catcher c : catchers) {
+                    endCheck(c);
+                    eyesOnTargetCheck(c);
                     c.move();
+                    endCheck(c);
+                }
+
 
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
@@ -91,14 +95,45 @@ public class SimulationProcess {
         });
     }
     public void simulationStart() {
+        startTime = System.nanoTime();
         timer.start();
     }
     public void simulationStop() {
+        long timeElapsed = System.nanoTime() - startTime;
+        System.out.println("Pościg zakończył się po upływie " + (int)(timeElapsed/1000000000.0) + " sekund");
         timer.stop();
     }
 
-    public Astar getPathAlgorithm() {
-        return pathAlgorithm;
+    public void eyesOnTargetCheck(Catcher c) {
+        try {
+            if(distanceToRunner(c) <= 5)
+                System.out.println("Catcher #" + c + " has eyes on target!");
+                clueList.add( new Clue(
+                        getTime(),
+                        runner.getPrev(),
+                        runner.getCurr(),
+                        runner
+                ));
+        } catch(Exception e) {} //Exception is thrown when there's no path to the Runner -> no distance -> we do nothing
+    }
+
+    public int distanceToRunner(Catcher c) throws Exception {
+        return pathFinder.getDistance( c.getCurr(), runner.getCurr() );
+    }
+
+    public void endCheck(Catcher c) {
+        if(caughtRunner(c)) {
+            simulationStop();
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    main.showEndAlert();
+                }
+            });
+        }
+    }
+
+    public Boolean caughtRunner(Catcher c) {
+        return c.getCurr().equals(runner.getCurr());
     }
 
     public Time getTime() {

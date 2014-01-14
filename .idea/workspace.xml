@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="412afe30-fd7c-45d5-861e-f8210185ae21" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/BlankHeuristic.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/CrowsDistanceHeuristic.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/Heuristic.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/pursuitsimulation/util/Astar.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/People/Catcher.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/People/Catcher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/People/Runner.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/People/Runner.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProcess.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProcess.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Vertex.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Vertex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PursuitSimulation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -121,10 +104,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlankHeuristic.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BlankHeuristic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/BlankHeuristic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.4231465" vertical-offset="0" max-vertical-offset="553">
+            <state line="13" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
               <folding />
             </state>
           </provider>
@@ -148,11 +131,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SimulationGUI.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="SimulationGUI.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="28" selection-start="2553" selection-end="2565" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="2592">
-              <folding />
+            <state line="229" column="0" selection-start="7597" selection-end="7597" vertical-scroll-proportion="0.8526603" vertical-offset="3209" max-vertical-offset="3942">
+              <folding>
+                <element signature="e#2293#2294#0" expanded="true" />
+                <element signature="e#2319#2320#0" expanded="true" />
+                <element signature="e#2360#2361#0" expanded="true" />
+                <element signature="e#2399#2400#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -202,7 +190,6 @@
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/ClueList.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Clue.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationGraph.java" />
-        <option value="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/People/Runner.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/People/Catcher.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" />
@@ -214,11 +201,12 @@
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProcess.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/BlankHeuristic.java" />
+        <option value="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1" />
+    <option name="x" value="1599" />
     <option name="y" value="-4" />
     <option name="width" value="1602" />
     <option name="height" value="905" />
@@ -675,7 +663,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="-4" width="1602" height="905" extended-state="6" />
+    <frame x="1599" y="-4" width="1602" height="905" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -695,7 +683,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.213125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23017903" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23017903" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1010,13 +998,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="28" selection-start="2553" selection-end="2565" vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="2592">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/People/Catcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="0" selection-start="854" selection-end="1087" vertical-scroll-proportion="0.716094" vertical-offset="180" max-vertical-offset="1224">
@@ -1097,8 +1078,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/BlankHeuristic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.4231465" vertical-offset="0" max-vertical-offset="553">
+        <state line="13" column="0" selection-start="273" selection-end="273" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="229" column="0" selection-start="7597" selection-end="7597" vertical-scroll-proportion="0.8526603" vertical-offset="3209" max-vertical-offset="3942">
+          <folding>
+            <element signature="e#2293#2294#0" expanded="true" />
+            <element signature="e#2319#2320#0" expanded="true" />
+            <element signature="e#2360#2361#0" expanded="true" />
+            <element signature="e#2399#2400#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

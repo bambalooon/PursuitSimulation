@@ -71,9 +71,10 @@ public class SimulationProgram {
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                program.setGUI(new SimulationGUI());
+                program.setGUI(new SimulationGUI(program.process));
                 program.process.setSimulationTimer();
-                program.process.simulationStart();
+
+                //program.process.simulationStart();
             }
         });
 

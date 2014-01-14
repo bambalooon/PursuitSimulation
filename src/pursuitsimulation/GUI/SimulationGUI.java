@@ -2,6 +2,8 @@ package pursuitsimulation.GUI;
 
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.Simulation.SimulationProcess;
+import pursuitsimulation.Strategies.CatchingStrategy;
+import pursuitsimulation.Strategies.RunningStrategy;
 import pursuitsimulation.Strategies.StandardCatchingStrategy;
 import pursuitsimulation.Strategies.StandardRunningStrategy;
 import pursuitsimulation.util.Position;
@@ -19,8 +21,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
+import java.util.Vector;
 
 /**
  * Created with IntelliJ IDEA.
@@ -38,6 +42,9 @@ public class SimulationGUI {
     private static Position pos;
     private static double mapWidth;  //can be negative!
     private static double mapHeight;
+
+    private static int selectedCatchingStrategyIndex = 0;
+    private static int selectedRunningStrategyIndex = 0;
 
     private boolean running=false;
     private JFrame frame;
@@ -90,10 +97,25 @@ public class SimulationGUI {
         mapPanel.repaint();
     }
     private void simulationStart() {
+        System.out.println(CatchingStrategy.catchingStrategies[0].getSimpleName());
+
+
         for(int i=0; i<SimulationProcess.catchersNumber; i++) {
-            process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
+            try {
+                CatchingStrategy s = (CatchingStrategy)
+                                CatchingStrategy.catchingStrategies[SimulationGUI.selectedCatchingStrategyIndex]
+                                        .getConstructor(SimulationProcess.class).newInstance(process);
+                process.addCatcher(s, "Catcher #"+(i+1));
+            } catch(Exception e) { System.out.println("Error while creating new object from class"); }
+//            process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
         }
-        process.setRunner(new StandardRunningStrategy(process), "Runner");
+        try {
+            RunningStrategy s = (RunningStrategy)
+                    RunningStrategy.runningStrategies[SimulationGUI.selectedRunningStrategyIndex]
+                            .getConstructor(SimulationProcess.class).newInstance(process);
+            process.setRunner(new StandardRunningStrategy(process), "Runner");
+        } catch(Exception e) { System.out.println("Error while creating new object from class"); }
+//        process.setRunner(new StandardRunningStrategy(process), "Runner");
         setCatchersHandle(process.getCatchers());
         setRunnerHandle(process.getRunner());
     }
@@ -114,6 +136,8 @@ public class SimulationGUI {
         static final private String PLAY = "play";
         static final private String PAUSE = "pause";
         static final private String STOP = "stop";
+        static final private String CATCHING_STRATEGY = "CatchingStrategy";
+        static final private String RUNNING_STRATEGY = "RunningStrategy";
         static final int INTERVAL_MIN = 0;
         static final int INTERVAL_MAX = 2000;
         static final int INTERVAL_INIT = 500;
@@ -184,6 +208,28 @@ public class SimulationGUI {
             spinner.addChangeListener(this);
             toolBar.add(spinner);
 
+            Vector<String> cStrategies = new Vector<String>();
+            for(Class strategy : CatchingStrategy.catchingStrategies) {
+                cStrategies.add(strategy.getSimpleName());
+            }
+            JComboBox cStrategiesCombo = new JComboBox(cStrategies);
+            cStrategiesCombo.setSelectedIndex(0);
+            cStrategiesCombo.setMaximumSize(new Dimension(200, 30));
+            cStrategiesCombo.addActionListener(this); //to do
+            cStrategiesCombo.setActionCommand(CATCHING_STRATEGY);
+            toolBar.add(cStrategiesCombo);
+
+            Vector<String> rStrategies = new Vector<String>();
+            for(Class strategy : RunningStrategy.runningStrategies) {
+                rStrategies.add(strategy.getSimpleName());
+            }
+            JComboBox rStrategiesCombo = new JComboBox(rStrategies);
+            rStrategiesCombo.setSelectedIndex(0);
+            rStrategiesCombo.setMaximumSize(new Dimension(200, 30));
+            rStrategiesCombo.addActionListener(this); //to do
+            rStrategiesCombo.setActionCommand(RUNNING_STRATEGY);
+            toolBar.add(rStrategiesCombo);
+
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
@@ -202,7 +248,14 @@ public class SimulationGUI {
                 simulationStop();
             } else if (PAUSE.equals(cmd)) {
                 process.simulationStop();
+            } else if (CATCHING_STRATEGY.equals(cmd)) {
+                JComboBox box = (JComboBox) e.getSource();
+                SimulationGUI.selectedCatchingStrategyIndex = box.getSelectedIndex();
+            } else if (RUNNING_STRATEGY.equals(cmd)) {
+                JComboBox box = (JComboBox) e.getSource();
+                SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
             }
+
         }
         public void stateChanged(ChangeEvent e) {
             if(e.getSource().getClass()==JSlider.class) {

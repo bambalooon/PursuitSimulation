@@ -10,6 +10,7 @@ import pursuitsimulation.Simulation.SimulationProcess;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class RunningStrategy extends Strategy {
+    public static Class[] runningStrategies = {StandardRunningStrategy.class};
     public RunningStrategy(SimulationProcess process) {
         super(process);
     }

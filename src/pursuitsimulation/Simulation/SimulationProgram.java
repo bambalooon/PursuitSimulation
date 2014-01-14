@@ -39,16 +39,15 @@ public class SimulationProgram {
             gui.chooseMapFile(filename);
         } catch(IOException e) {} //Handle Ex
     }
+    public SimulationGUI getGui() {
+        return gui;
+    }
     void updateGuiMap() {
         gui.showEditedMap();
     }
     void setGraph(Map<Long, Crossing> graph) {
         process.setGraph(graph);
 //        System.out.println("Created graph with " + process.getGraph().getGraphSize() + " nodes");
-        for(int i=0; i<10; i++) {
-            process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
-        }
-        process.setRunner(new StandardRunningStrategy(process), "Runner");
     }
     void showEndAlert() {
         gui.showEndAlert();
@@ -60,8 +59,8 @@ public class SimulationProgram {
 //        gui.setDRpos(new Position(19.9307, 50.0524));
         gui.setULpos(new Position(-73.9828, 40.7913));
         gui.setDRpos(new Position(-73.8522, 40.7147));
-        gui.setCatchersHandle(process.getCatchers());
-        gui.setRunnersHandle(process.getRunner());
+        //gui.setCatchersHandle(process.getCatchers());
+        //gui.setRunnersHandle(process.getRunner());
     }
 
 

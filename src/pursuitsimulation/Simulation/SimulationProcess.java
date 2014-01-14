@@ -34,7 +34,7 @@ public class SimulationProcess {
     private Runner runner;
     private ClueList clueList = new ClueList();
     private Map<Catcher, CatchingStrategy> cStrategies = new HashMap<Catcher, CatchingStrategy>();
-    private Map<Runner, RunningStrategy> rStrategies = new HashMap<Runner, RunningStrategy>();
+    private RunningStrategy rStrategy;
     private boolean running = false;
     private Timer timer;
     private PathFinder pathFinder = new PathFinder(new CrowsDistanceHeuristic());
@@ -46,15 +46,22 @@ public class SimulationProcess {
         this.graph.setGraph(graph);
         this.graph.cleanGraph();
     }
+    public void reset() {
+        running = false;
+        catchers.clear();
+        runner = null;
+        cStrategies.clear();
+        rStrategy = null;
+    }
     public SimulationGraph getGraph() { return graph; }
-    void addCatcher(CatchingStrategy s, String name) {
+    public void addCatcher(CatchingStrategy s, String name) {
         Catcher c = new Catcher(this.graph.getRandomVertex(), this, name); //some better way to do it..
         catchers.add(c);
         cStrategies.put(c, s);
     }
-    void setRunner(RunningStrategy s, String name) {
+    public void setRunner(RunningStrategy s, String name) {
         runner = new Runner(this.graph.getRandomVertex(), this, name); //some better way to do it..
-        rStrategies.put(runner, s);
+        rStrategy = s;
     }
 
     public LinkedList<Catcher> getCatchers() {
@@ -73,7 +80,7 @@ public class SimulationProcess {
             public void actionPerformed(ActionEvent e) {
                 time.move();
 
-                runner.getDestination(rStrategies.get(runner));
+                runner.getDestination(rStrategy);
                 for(Catcher c : catchers)
                     c.getDestination(cStrategies.get(c));
 
@@ -95,13 +102,17 @@ public class SimulationProcess {
         });
     }
     public void simulationStart() {
+        running = true;
         startTime = System.nanoTime();
         timer.start();
     }
     public void simulationStop() {
+        timer.stop();
+    }
+
+    private void pursuitEnd() {
         long timeElapsed = System.nanoTime() - startTime;
         System.out.println("Pościg zakończył się po upływie " + (int)(timeElapsed/1000000000.0) + " sekund");
-        timer.stop();
     }
 
     public void eyesOnTargetCheck(Catcher c) {
@@ -123,9 +134,12 @@ public class SimulationProcess {
 
     public void endCheck(Catcher c) {
         if(caughtRunner(c)) {
+            pursuitEnd();
             simulationStop();
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
+                    reset();
+                    main.getGui().setRunnerHandle(null);
                     main.showEndAlert();
                 }
             });
@@ -138,5 +152,8 @@ public class SimulationProcess {
 
     public Time getTime() {
         return time.getCurrentTime();
+    }
+    public boolean isRunning() {
+        return running;
     }
 }

@@ -2,6 +2,8 @@ package pursuitsimulation.GUI;
 
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.Simulation.SimulationProcess;
+import pursuitsimulation.Strategies.StandardCatchingStrategy;
+import pursuitsimulation.Strategies.StandardRunningStrategy;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.People.Runner;
 
@@ -76,7 +78,7 @@ public class SimulationGUI {
     public void setCatchersHandle(LinkedList<Catcher> c) {
         catchers = c;
     }
-    public void setRunnersHandle(Runner r) {
+    public void setRunnerHandle(Runner r) {
         runner = r;
     }
     public void setULpos(Position pos) {
@@ -100,11 +102,27 @@ public class SimulationGUI {
         mapPanel.reload();
         mapPanel.repaint();
     }
+    private void simulationStart() {
+        for(int i=0; i<10; i++) {
+            process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
+        }
+        process.setRunner(new StandardRunningStrategy(process), "Runner");
+        setCatchersHandle(process.getCatchers());
+        setRunnerHandle(process.getRunner());
+    }
+    private void simulationStop() {
+        process.reset();
+        setRunnerHandle(null);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                showEditedMap();
+            }
+        });
+    }
 
     public void showEndAlert() {
         JOptionPane.showMessageDialog(null, "Złapano Uciekiniera! Koniec symulacji...");
     }
-
     private class MainWindow extends JPanel implements ActionListener {
         static final private String PLAY = "play";
         static final private String PAUSE = "pause";
@@ -151,9 +169,12 @@ public class SimulationGUI {
 
             // Handle each button.
             if (PLAY.equals(cmd)) {
+                if(!process.isRunning())
+                    simulationStart();
                 process.simulationStart();
             } else if (STOP.equals(cmd)) {
                 process.simulationStop();
+                simulationStop();
             } else if (PAUSE.equals(cmd)) {
                 process.simulationStop();
             }

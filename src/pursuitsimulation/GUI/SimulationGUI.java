@@ -90,7 +90,7 @@ public class SimulationGUI {
         mapPanel.repaint();
     }
     private void simulationStart() {
-        for(int i=0; i<10; i++) {
+        for(int i=0; i<SimulationProcess.catchersNumber; i++) {
             process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
         }
         process.setRunner(new StandardRunningStrategy(process), "Runner");
@@ -117,6 +117,8 @@ public class SimulationGUI {
         static final int INTERVAL_MIN = 0;
         static final int INTERVAL_MAX = 2000;
         static final int INTERVAL_INIT = 500;
+        static final int SPINNER_STEP = 1;
+
         JScrollPane scrollPane;
         MapPanel mapPanel=null;
         public MainWindow() {
@@ -164,6 +166,24 @@ public class SimulationGUI {
             intervalSlider.setPaintLabels(true);
 
             toolBar.add(intervalSlider);
+
+            Integer value = new Integer(50);
+            Integer min = new Integer(0);
+            Integer max = new Integer(100);
+            Integer step = new Integer(1);
+            SpinnerNumberModel model = new SpinnerNumberModel( new Integer(SimulationProcess.INIT_CATCHERS),
+                    new Integer(SimulationProcess.MIN_CATCHERS),
+                    new Integer(SimulationProcess.MAX_CATCHERS),
+                    new Integer(SPINNER_STEP));
+
+            JLabel label = new JLabel();
+            label.setText(" Liczba poszukujących: ");
+            toolBar.add(label);
+            JSpinner spinner = new JSpinner(model);
+            spinner.setMaximumSize(new Dimension(40,30));
+            spinner.addChangeListener(this);
+            toolBar.add(spinner);
+
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
@@ -185,14 +205,21 @@ public class SimulationGUI {
             }
         }
         public void stateChanged(ChangeEvent e) {
-            JSlider source = (JSlider)e.getSource();
-            if (!source.getValueIsAdjusting()) {
-                int interval = (int)source.getValue();
-                if(interval<Time.minInterval) {
-                    interval = Time.minInterval;
+            if(e.getSource().getClass()==JSlider.class) {
+                JSlider source = (JSlider)e.getSource();
+                if (!source.getValueIsAdjusting()) {
+                    int interval = (int)source.getValue();
+                    if(interval<Time.minInterval) {
+                        interval = Time.minInterval;
+                    }
+                    Time.changeInterval(interval);
+                    process.updateTimer();
                 }
-                Time.changeInterval(interval);
-                process.updateTimer();
+            }
+            else if(e.getSource().getClass()==JSpinner.class) {
+                JSpinner source = (JSpinner)e.getSource();
+                int val = (Integer) source.getValue();
+                process.changeCatchersNumber(val);
             }
         }
     }

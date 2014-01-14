@@ -26,6 +26,10 @@ import java.util.HashMap;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationProcess {
+    public static final int MIN_CATCHERS = 1;
+    public static final int MAX_CATCHERS = 50;
+    public static final int INIT_CATCHERS = 10;
+    public static int catchersNumber = INIT_CATCHERS;
     private SimulationProgram main;
     private Time time = new Time();
     private long startTime;
@@ -158,5 +162,10 @@ public class SimulationProcess {
     }
     public void updateTimer() {
         timer.setDelay(Time.timeInterval);
+    }
+    public void changeCatchersNumber(int num) {   //for next simulation
+        if((num<=SimulationProcess.MAX_CATCHERS) && (num>=SimulationProcess.MIN_CATCHERS)) {
+            SimulationProcess.catchersNumber = num;
+        }
     }
 }

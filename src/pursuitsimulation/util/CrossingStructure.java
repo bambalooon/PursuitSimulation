@@ -10,6 +10,7 @@ public class CrossingStructure implements Comparable<CrossingStructure> {
     private Crossing parent;
     private double gScore;
     private double hScore;
+    private int parentStep;
 
     public CrossingStructure(Crossing crossing) {
         this.crossing = crossing;
@@ -37,6 +38,16 @@ public class CrossingStructure implements Comparable<CrossingStructure> {
     public CrossingStructure sethScore(double hScore) { this.hScore = hScore; return this; }
 
     public double getfScore() { return getgScore() + gethScore(); }
+
+    public int getParentStep() {
+        return parentStep;
+    }
+
+    public CrossingStructure setParentStep(int parentStep) {
+        this.parentStep = parentStep;
+
+        return this;
+    }
 
     public int compareTo(CrossingStructure C) {
         if(getfScore() < C.getfScore())

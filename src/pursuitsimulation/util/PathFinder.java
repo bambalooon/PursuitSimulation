@@ -23,19 +23,20 @@ public class PathFinder {
     }
 
     public LinkedList<Crossing> getPath(Crossing start, Crossing end) {
-        return reconstructPath( findPath(start, end) );
+        return reconstructPath( findPath(start, end, -1) );
     }
 
     public int getDistance(Crossing start, Crossing end) throws Exception {
-        return pathLength( findPath(start, end) );
+        return pathLength( findPath(start, end, -1) );
     }
 
-    public CrossingStructure findPath(Crossing start, Crossing end) {
+    public CrossingStructure findPath(Crossing start, Crossing end, int pathLenght) {
 //        System.out.println("Searching for path!!");
 
         closedList = new ArrayList<CrossingStructure>();
         openList = new ArrayList<CrossingStructure>();
         CrossingStructure current = new CrossingStructure(start, null);
+        current.setParentStep(-1);
 
         current.setgScore(0).sethScore( heuristic.calculateHScore(start, end) );
         addToOpen(current);
@@ -65,11 +66,13 @@ public class PathFinder {
                     neighbour.setgScore( gScore );
                     neighbour.sethScore( neighbour.getCrossing().calcualteDistance(end) );
                     neighbour.setParent( current.getCrossing() );
+                    neighbour.setParentStep( current.getParentStep() + 1 );
 
                     addToOpen( neighbour );
                 } else if( gScore < found.getgScore() ) {
                     found.setParent( current.getCrossing() );
                     found.setgScore( gScore );
+                    found.setParentStep( current.getParentStep() + 1 );
 
                     Collections.sort(openList);
                 }

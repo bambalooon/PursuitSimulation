@@ -364,8 +364,8 @@ public class SimulationGUI {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(editedImage, 0, 0, )
-//            g.drawImage(editedImage, 0, 0, null);
+//            g.drawImage(editedImage, 0, 0, )
+            g.drawImage(editedImage, 0, 0, null);
         }
     }
 }

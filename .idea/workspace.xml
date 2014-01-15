@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PursuitSimulation.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1389786542540" ignored="false" />
+    <file path="/Dummy.txt" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1389787812438" ignored="false" />
     <file path="/SimulationGUI.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1389787758216" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -153,7 +152,7 @@
       <file leaf-file-name="SimulationGUI.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="366" column="43" selection-start="14288" selection-end="14288" vertical-scroll-proportion="0.69552237">
+            <state line="367" column="12" selection-start="14304" selection-end="14304" vertical-scroll-proportion="0.74626863">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -747,7 +746,11 @@
       <created>1389786547544</created>
       <updated>1389786547544</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="gitignore">
+      <created>1389787819903</created>
+      <updated>1389787819903</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -974,7 +977,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="366" column="43" selection-start="14288" selection-end="14288" vertical-scroll-proportion="0.69552237">
+        <state line="367" column="12" selection-start="14304" selection-end="14304" vertical-scroll-proportion="0.74626863">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

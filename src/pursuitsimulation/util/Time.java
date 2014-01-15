@@ -11,7 +11,8 @@ public class Time {
     private static final int sec2Min = 60;
     private static final int min2Hour = 60;
     private static final int hour2Day = 24;
-    public static final int timeInterval = 5;
+    public static final int minInterval = 10;
+    public static int timeInterval = 500;
     private int day;
     private int hour;
     private int minute;
@@ -49,5 +50,8 @@ public class Time {
     }
     public Time getCurrentTime() {
         return new Time(day, hour, minute, second);
+    }
+    public static void changeInterval(int time) {
+        Time.timeInterval = time;
     }
 }

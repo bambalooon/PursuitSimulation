@@ -10,6 +10,7 @@ import pursuitsimulation.Simulation.SimulationProcess;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class CatchingStrategy extends Strategy {
+    public static Class[] catchingStrategies = {StandardCatchingStrategy.class};
     public CatchingStrategy(SimulationProcess process) {
         super(process);
     }

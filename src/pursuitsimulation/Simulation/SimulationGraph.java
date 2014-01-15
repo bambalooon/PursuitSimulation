@@ -46,5 +46,6 @@ public class SimulationGraph implements Graph {
         }
         if(size!=0)
             cleanGraph();
+        //System.out.println(vertexes.size());
     }
 }

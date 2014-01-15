@@ -36,7 +36,7 @@ public class PathFinder {
         closedList = new ArrayList<CrossingStructure>();
         openList = new ArrayList<CrossingStructure>();
         CrossingStructure current = new CrossingStructure(start, null);
-        current.setParentStep(-1);
+//        current.setParentStep(-1);
 
         current.setgScore(0).sethScore( heuristic.calculateHScore(start, end) );
         addToOpen(current);

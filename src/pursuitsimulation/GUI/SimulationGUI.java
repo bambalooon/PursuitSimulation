@@ -113,7 +113,7 @@ public class SimulationGUI {
             RunningStrategy s = (RunningStrategy)
                     RunningStrategy.runningStrategies[SimulationGUI.selectedRunningStrategyIndex]
                             .getConstructor(SimulationProcess.class).newInstance(process);
-            process.setRunner(new StandardRunningStrategy(process), "Runner");
+            process.setRunner(s, "Runner");
         } catch(Exception e) { System.out.println("Error while creating new object from class"); }
 //        process.setRunner(new StandardRunningStrategy(process), "Runner");
         setCatchersHandle(process.getCatchers());

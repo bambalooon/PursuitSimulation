@@ -25,7 +25,7 @@ public class DistanceRunningStrategy extends RunningStrategy {
         long startTime = System.nanoTime();
         findEscapeNode(r);
         long elapsedTime = System.nanoTime() - startTime;
-        System.out.println("Vector computed in " + (elapsedTime/1000000000.0) + "s");
+//        System.out.println("Vector computed in " + (elapsedTime/1000000000.0) + "s");
 
         Crossing v = r.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();

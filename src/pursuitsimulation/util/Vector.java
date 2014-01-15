@@ -42,7 +42,7 @@ public class Vector {
 
     public Vector negate() {
         x = -x;
-        y = -x;
+        y = -y;
 
         return this;
     }

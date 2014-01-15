@@ -20,6 +20,7 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationProgram {
+    private static final String mainPath = "./src/files/";
     public static Random randomGenerator = new Random();
     private SimulationGUI gui = null;
     private SimulationProcess process;
@@ -54,7 +55,7 @@ public class SimulationProgram {
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;
-        setMapFile("./PursuitSimulation/src/files/ny.png"); //map.png normalnie wywolywane przez GUI
+        setMapFile(mainPath + "ny.png"); //map.png normalnie wywolywane przez GUI
 //        gui.setULpos(new Position(19.8988, 50.0684));
 //        gui.setDRpos(new Position(19.9307, 50.0524));
         gui.setULpos(new Position(-73.9828, 40.7913));
@@ -64,7 +65,7 @@ public class SimulationProgram {
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, IOException  {
         final SimulationProgram program = new SimulationProgram();
-        program.setXmlFile("./PursuitSimulation/src/files/ny.osm"); //map.osm
+        program.setXmlFile(mainPath + "ny.osm"); //map.osm
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

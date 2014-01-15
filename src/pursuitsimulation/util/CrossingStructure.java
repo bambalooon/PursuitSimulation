@@ -42,7 +42,6 @@ public class CrossingStructure implements Comparable<CrossingStructure> {
     public int getParentStep() {
         return parentStep;
     }
-
     public CrossingStructure setParentStep(int parentStep) {
         this.parentStep = parentStep;
 

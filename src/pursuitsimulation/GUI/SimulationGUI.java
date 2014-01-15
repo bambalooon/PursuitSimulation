@@ -38,6 +38,9 @@ public class SimulationGUI {
     private static Color runnerCol = Color.RED;
     private static Color catcherCol = Color.BLUE;
     private static Color outerCol = Color.BLACK;
+    private static Color clueCol = Color.GRAY;
+    private static int globalClueAlpha = 50;
+    private static int localClueAlpha = 20;
 
     private static Position pos;
     private static double mapWidth;  //can be negative!
@@ -138,6 +141,8 @@ public class SimulationGUI {
         static final private String STOP = "stop";
         static final private String CATCHING_STRATEGY = "CatchingStrategy";
         static final private String RUNNING_STRATEGY = "RunningStrategy";
+        static final private String ZOOMIN = "zoomin";
+        static final private String ZOOMOUT = "zoomout";
         static final int INTERVAL_MIN = 0;
         static final int INTERVAL_MAX = 2000;
         static final int INTERVAL_INIT = 500;
@@ -230,6 +235,20 @@ public class SimulationGUI {
             rStrategiesCombo.setActionCommand(RUNNING_STRATEGY);
             toolBar.add(rStrategiesCombo);
 
+            button = new JButton();
+            button.addActionListener(this);
+            button.setActionCommand(ZOOMIN);
+            button.setText("+");
+            toolBar.add(button);
+
+            button = new JButton();
+            button.addActionListener(this);
+            button.setActionCommand(ZOOMOUT);
+            button.setText("-");
+            toolBar.add(button);
+
+
+
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
@@ -254,7 +273,12 @@ public class SimulationGUI {
             } else if (RUNNING_STRATEGY.equals(cmd)) {
                 JComboBox box = (JComboBox) e.getSource();
                 SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
+            } else if (ZOOMIN.equals(cmd)) {
+
+            } else if (ZOOMOUT.equals(cmd)) {
+
             }
+
 
         }
         public void stateChanged(ChangeEvent e) {
@@ -340,7 +364,8 @@ public class SimulationGUI {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-            g.drawImage(editedImage, 0, 0, null);
+            g.drawImage(editedImage, 0, 0, )
+//            g.drawImage(editedImage, 0, 0, null);
         }
     }
 }

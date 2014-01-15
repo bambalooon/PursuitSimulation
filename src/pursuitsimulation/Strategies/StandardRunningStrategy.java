@@ -8,9 +8,6 @@ import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.Simulation.SimulationProgram;
 import pursuitsimulation.Strategies.RunningStrategy;
 import pursuitsimulation.Vertex;
-import pursuitsimulation.util.Heuristic.DistanceHeuristic;
-import pursuitsimulation.util.PathFinder;
-import pursuitsimulation.util.Position;
 import pursuitsimulation.util.Vector;
 
 import java.util.LinkedList;
@@ -28,12 +25,10 @@ public class StandardRunningStrategy extends RunningStrategy {
     public StandardRunningStrategy(SimulationProcess process) {
         super(process);
     }
-
     public Crossing getDestination(Person p) {
         Runner r = (Runner) p;
 
-        PathFinder pf = new PathFinder(new DistanceHeuristic());
-        //r.setPath( pf.getPath( r.getCurr(), findEscapeNode(r), 100 ) );
+        findEscapeNode(r);
 
         Crossing v = r.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();
@@ -49,7 +44,7 @@ public class StandardRunningStrategy extends RunningStrategy {
         return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
     }
 
-    public Crossing findEscapeNode(Runner r) {
+    public void findEscapeNode(Runner r) {
         Vector shortest, v = new Vector();
         ListIterator<Catcher> it = process.getCatchers().listIterator();
 
@@ -61,7 +56,7 @@ public class StandardRunningStrategy extends RunningStrategy {
 
         v.negate().add( shortest.negate() );
 
-        return new Crossing(0, new Position(v.getX(), v.getY()));
+        System.out.println("Escape vector: " + v);
     }
 
     public Vector findVectorToClosestCatcher(Runner r) {

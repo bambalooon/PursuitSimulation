@@ -22,8 +22,8 @@ public class PathFinder {
         this.heuristic = heuristic;
     }
 
-    public LinkedList<Crossing> getPath(Crossing start, Crossing end, int pathLength) {
-        return reconstructPath( findPath(start, end, pathLength) );
+    public LinkedList<Crossing> getPath(Crossing start, Crossing end) {
+        return reconstructPath( findPath(start, end, -1) );
     }
 
     public int getDistance(Crossing start, Crossing end) throws Exception {

@@ -2,53 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\files\map.osm" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\files\map.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\files\ny.osm" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\files\ny.png" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Clue.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Crossing.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\GUI\SimulationGUI$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\GUI\SimulationGUI$MainWindow.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\GUI\SimulationGUI$MapPanel.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\GUI\SimulationGUI.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\People\Catcher.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\People\Person.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\People\Runner.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationGraph.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationProcess$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationProcess$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationProcess$2.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationProcess.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationProgram$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\SimulationProgram.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Simulation\XmlParser.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Strategies\CatchingStrategy.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Strategies\DistanceRunningStrategy.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Strategies\RunningStrategy.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Strategies\StandardCatchingStrategy.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Strategies\StandardRunningStrategy.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Strategies\Strategy.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\Vertex.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Astar.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\ClueList.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\CrossingStructure.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Graph.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Heuristic\BlankHeuristic.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Heuristic\CrowsDistanceHeuristic.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Heuristic\DistanceHeuristic.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Heuristic\Heuristic.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\PathFinder.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Position.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Time.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\BamBalooon\IdeaProjects\PursuitSimulation\out\production\PursuitSimulation\pursuitsimulation\util\Vector.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationGraph.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationGraph.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PursuitSimulation.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1389786156085" ignored="false" />
+    <file path="/Dummy.txt" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1389786473997" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -781,7 +739,11 @@
       <created>1389728340139</created>
       <updated>1389728340139</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="gitignore">
+      <created>1389786480995</created>
+      <updated>1389786480995</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -865,7 +827,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Play/Stop/Pause" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -888,6 +850,7 @@
     <MESSAGE value="Inna mapka :)" />
     <MESSAGE value="ToolBar..." />
     <MESSAGE value="Play/Stop/Pause" />
+    <MESSAGE value="gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />

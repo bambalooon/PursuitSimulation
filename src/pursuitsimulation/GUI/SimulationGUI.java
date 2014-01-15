@@ -148,17 +148,19 @@ public class SimulationGUI {
         static final int INTERVAL_INIT = 500;
         static final int SPINNER_STEP = 1;
 
-        JScrollPane scrollPane;
+//        JScrollPane scrollPane;
+        JPanel mainPanel;
         MapPanel mapPanel=null;
         public MainWindow() {
             super(new BorderLayout());
             JToolBar toolBar = new JToolBar("Simulation Options Panel");
             addButtons(toolBar);
-            this.scrollPane = new JScrollPane();
+//            this.scrollPane = new JScrollPane();
+            this.mainPanel = new JPanel();
 
             add(toolBar, BorderLayout.PAGE_START);
-            add(scrollPane, BorderLayout.CENTER);
-
+//            add(scrollPane, BorderLayout.CENTER);
+            add(mainPanel, BorderLayout.CENTER);
         }
         protected void addButtons(JToolBar toolBar) {
             JButton button;
@@ -252,7 +254,8 @@ public class SimulationGUI {
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
-            scrollPane.setViewportView(mapPanel);
+//            scrollPane.setViewportView(mapPanel);
+            mainPanel.add(mapPanel);
         }
         public void actionPerformed(ActionEvent e) {
             String cmd = e.getActionCommand();
@@ -364,7 +367,7 @@ public class SimulationGUI {
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-//            g.drawImage(editedImage, 0, 0, )
+//            g.drawImage(editedImage, 0, 0, window.scrollPane.getWidth(), window.scrollPane.getHeight(), null);
             g.drawImage(editedImage, 0, 0, null);
         }
     }

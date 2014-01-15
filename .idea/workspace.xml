@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/DistanceHeuristic.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/DistanceHeuristic.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PursuitSimulation.iws" />
@@ -130,10 +132,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DistanceRunningStrategy.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="DistanceRunningStrategy.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="930" selection-end="930" vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="1512">
+            <state line="32" column="14" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.7949791" vertical-offset="196" max-vertical-offset="1746">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,10 +143,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Vector.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Runner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/People/Runner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="13" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0" vertical-offset="677" max-vertical-offset="1314">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Crossing.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Crossing.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="1224">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Vector.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="15" selection-start="751" selection-end="751" vertical-scroll-proportion="0.88631576" vertical-offset="281" max-vertical-offset="1188">
+            <state line="43" column="15" selection-start="751" selection-end="751" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="1188">
               <folding />
             </state>
           </provider>
@@ -171,7 +191,16 @@
       <file leaf-file-name="PathFinder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="0" selection-start="2439" selection-end="2439" vertical-scroll-proportion="0.0" vertical-offset="526" max-vertical-offset="2430">
+            <state line="53" column="0" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.0" vertical-offset="1019" max-vertical-offset="2502">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DistanceHeuristic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/DistanceHeuristic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="45" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
               <folding />
             </state>
           </provider>
@@ -189,37 +218,10 @@
       <file leaf-file-name="StandardCatchingStrategy.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="85" selection-start="1791" selection-end="1817" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1476">
+            <state line="48" column="80" selection-start="1669" selection-end="1669" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1476">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CrossingStructure.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/CrossingStructure.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="5" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.0" vertical-offset="239" max-vertical-offset="972">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Time.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Time.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="41" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1134">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Vertex.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Vertex.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="5" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1170">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -256,18 +258,19 @@
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProcess.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/CrossingStructure.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" />
-        <option value="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java" />
-        <option value="$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardRunningStrategy.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Strategies/RunningStrategy.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
-        <option value="$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java" />
+        <option value="$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java" />
+        <option value="$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java" />
+        <option value="$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/DistanceHeuristic.java" />
+        <option value="$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1599" />
+    <option name="x" value="-1" />
     <option name="y" value="-4" />
     <option name="width" value="1602" />
     <option name="height" value="905" />
@@ -356,6 +359,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PursuitSimulation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PursuitSimulation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pursuitsimulation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Heuristic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -753,14 +782,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1599" y="-4" width="1602" height="905" extended-state="6" />
-    <editor active="false" />
+    <frame x="-1" y="-4" width="1602" height="905" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31794873" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32992327" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32992327" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
@@ -773,7 +802,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2425" sideWeight="0.6735043" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32608697" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32608697" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -878,13 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Vertex.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="5" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1170">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/People/Catcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="13" selection-start="347" selection-end="347" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -927,13 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="0" selection-start="2439" selection-end="2439" vertical-scroll-proportion="0.0" vertical-offset="526" max-vertical-offset="2430">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardRunningStrategy.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="30" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0" vertical-offset="188" max-vertical-offset="684">
@@ -952,15 +967,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="107" selection-start="416" selection-end="416" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="85" selection-start="1791" selection-end="1817" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1476">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -983,16 +989,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="115" column="43" selection-start="3982" selection-end="3982" vertical-scroll-proportion="0.0" vertical-offset="1609" max-vertical-offset="6156">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="930" selection-end="930" vertical-scroll-proportion="0.0" vertical-offset="710" max-vertical-offset="1512">
+        <state line="115" column="43" selection-start="3951" selection-end="3982" vertical-scroll-proportion="0.0" vertical-offset="1609" max-vertical-offset="6156">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1001,8 +998,61 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="15" selection-start="751" selection-end="751" vertical-scroll-proportion="0.88631576" vertical-offset="281" max-vertical-offset="1188">
+        <state line="43" column="15" selection-start="751" selection-end="751" vertical-scroll-proportion="0.0" vertical-offset="281" max-vertical-offset="1188">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Crossing.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="1224">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Vertex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="5" selection-start="1180" selection-end="1180" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/People/Runner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0" vertical-offset="677" max-vertical-offset="1314">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="80" selection-start="1669" selection-end="1669" vertical-scroll-proportion="0.0" vertical-offset="738" max-vertical-offset="1476">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Heuristic/DistanceHeuristic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="45" selection-start="421" selection-end="421" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="378">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.0" vertical-offset="1019" max-vertical-offset="2502">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/DistanceRunningStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="14" selection-start="1059" selection-end="1059" vertical-scroll-proportion="0.7949791" vertical-offset="196" max-vertical-offset="1746">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

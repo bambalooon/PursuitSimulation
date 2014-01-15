@@ -11,6 +11,6 @@ public class DistanceHeuristic implements Heuristic {
     public double calculateHScore(Crossing from, Crossing to) {
         double distance = new Vector(from).add( new Vector(to).negate() ).getLength();
 
-        return distance * distance;
+        return distance * distance * distance;
     }
 }

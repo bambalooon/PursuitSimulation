@@ -26,6 +26,10 @@ public class PathFinder {
         return reconstructPath( findPath(start, end, -1) );
     }
 
+    public LinkedList<Crossing> getPath(Crossing start, Crossing end, int pathLength) {
+        return reconstructPath( findPath(start, end, pathLength) );
+    }
+
     public int getDistance(Crossing start, Crossing end) throws Exception {
         return pathLength( findPath(start, end, -1) );
     }
@@ -36,14 +40,14 @@ public class PathFinder {
         closedList = new ArrayList<CrossingStructure>();
         openList = new ArrayList<CrossingStructure>();
         CrossingStructure current = new CrossingStructure(start, null);
-//        current.setParentStep(-1);
+        current.setParentStep(-1);
 
         current.setgScore(0).sethScore( heuristic.calculateHScore(start, end) );
         addToOpen(current);
 
         while(!openList.isEmpty()) {
             current = openList.get(0);
-            //System.out.println("Checking node: " + current.getCrossing());
+//            System.out.println("Checking node: " + current.getCrossing());
 
             openList.remove(current);
             closedList.add(current);
@@ -79,7 +83,7 @@ public class PathFinder {
             }
         }
 
-//        System.out.println("Path not found!!!!!");
+        System.out.println("Path not found!!!!!");
         return null;
     }
 

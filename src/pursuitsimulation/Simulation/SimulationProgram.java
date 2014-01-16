@@ -20,7 +20,7 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationProgram {
-    private static final String mainPath = "./src/files/";
+    private static final String mainPath = "./PursuitSimulation/src/files/";
     public static Random randomGenerator = new Random();
     private SimulationGUI gui = null;
     private SimulationProcess process;

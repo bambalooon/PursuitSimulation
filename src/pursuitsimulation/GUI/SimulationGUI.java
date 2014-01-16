@@ -15,8 +15,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -41,6 +40,9 @@ public class SimulationGUI {
     private static Color clueCol = Color.GRAY;
     private static int globalClueAlpha = 50;
     private static int localClueAlpha = 20;
+    private static double ZOOM_MAX = 1.6;
+    private static double ZOOM_MIN = 1.0;
+    private static double ZOOM_STEP = 0.1;
 
     private static Position pos;
     private static double mapWidth;  //can be negative!
@@ -66,6 +68,7 @@ public class SimulationGUI {
 
         frame = new JFrame("Pursuit Simulation");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
 
         window = new MainWindow();
         frame.add(window);
@@ -141,8 +144,6 @@ public class SimulationGUI {
         static final private String STOP = "stop";
         static final private String CATCHING_STRATEGY = "CatchingStrategy";
         static final private String RUNNING_STRATEGY = "RunningStrategy";
-        static final private String ZOOMIN = "zoomin";
-        static final private String ZOOMOUT = "zoomout";
         static final int INTERVAL_MIN = 0;
         static final int INTERVAL_MAX = 2000;
         static final int INTERVAL_INIT = 500;
@@ -156,7 +157,12 @@ public class SimulationGUI {
             JToolBar toolBar = new JToolBar("Simulation Options Panel");
             addButtons(toolBar);
 //            this.scrollPane = new JScrollPane();
-            this.mainPanel = new JPanel();
+            mainPanel = new JPanel();
+            mainPanel.setLayout(new BorderLayout());
+            MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
+            mainPanel.addMouseMotionListener(myMouseAdapter);
+            mainPanel.addMouseListener(myMouseAdapter);
+            mainPanel.addMouseWheelListener(myMouseAdapter);
 
             add(toolBar, BorderLayout.PAGE_START);
 //            add(scrollPane, BorderLayout.CENTER);
@@ -236,21 +242,6 @@ public class SimulationGUI {
             rStrategiesCombo.addActionListener(this); //to do
             rStrategiesCombo.setActionCommand(RUNNING_STRATEGY);
             toolBar.add(rStrategiesCombo);
-
-            button = new JButton();
-            button.addActionListener(this);
-            button.setActionCommand(ZOOMIN);
-            button.setText("+");
-            toolBar.add(button);
-
-            button = new JButton();
-            button.addActionListener(this);
-            button.setActionCommand(ZOOMOUT);
-            button.setText("-");
-            toolBar.add(button);
-
-
-
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
@@ -276,13 +267,7 @@ public class SimulationGUI {
             } else if (RUNNING_STRATEGY.equals(cmd)) {
                 JComboBox box = (JComboBox) e.getSource();
                 SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
-            } else if (ZOOMIN.equals(cmd)) {
-
-            } else if (ZOOMOUT.equals(cmd)) {
-
             }
-
-
         }
         public void stateChanged(ChangeEvent e) {
             if(e.getSource().getClass()==JSlider.class) {
@@ -302,11 +287,64 @@ public class SimulationGUI {
                 process.changeCatchersNumber(val);
             }
         }
+
+        private class MyMouseAdapter extends MouseAdapter {
+            boolean pressed = false;
+            boolean inPanel = false;
+            int prevX=0, prevY=0;
+            @Override
+            public void mousePressed(MouseEvent e) {
+                prevX = e.getX();
+                prevY = e.getY();
+                pressed = true;
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                if(pressed) {
+                    updateMapPosition(e);
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                pressed = false;
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                inPanel = true;
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                pressed = false;
+                inPanel = false;
+            }
+
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                if(inPanel) {
+                    mapPanel.zoomImage(e.getWheelRotation()*ZOOM_STEP);
+                }
+            }
+
+            public void updateMapPosition(MouseEvent e) {
+                int moveX = prevX-e.getX();
+                int moveY = prevY-e.getY();
+                prevX = e.getX();
+                prevY = e.getY();
+                mapPanel.moveImage(moveX, moveY);
+            }
+        }
     }
 
     private class MapPanel extends JPanel {
         private BufferedImage image;
         private BufferedImage editedImage;
+        private int imgX = 0;
+        private int imgY = 0;
+        private double zoom = SimulationGUI.ZOOM_MAX;
 
         public MapPanel(BufferedImage img) {
             image = img;
@@ -363,12 +401,48 @@ public class SimulationGUI {
             g2d.dispose();
             return img;
         }
+        public void moveImage(int moveX, int moveY) {
+            imgX += moveX;
+            imgY += moveY;
+            int pw = (int) Math.round(window.mainPanel.getWidth()*zoom);
+            int ph = (int) Math.round(window.mainPanel.getHeight()*zoom);
+            int iw = editedImage.getWidth();
+            int ih = editedImage.getHeight();
+            if( (imgX+pw) > iw) {
+                imgX = iw-pw;
+            } else if(imgX<0) {
+                imgX = 0;
+            }
+            if( (imgY+ph) > ih) {
+                imgY = ih-ph;
+            } else if(imgY<0) {
+                imgY = 0;
+            }
+            repaint();
+        }
+        public void zoomImage(double z) {
+            zoom+=z;
+            if(zoom>ZOOM_MAX) {
+                zoom = ZOOM_MAX;
+            } else if(zoom<ZOOM_MIN) {
+                zoom = ZOOM_MIN;
+            }
+            moveImage(0,0);
+            repaint();
+        }
 
         @Override
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
-//            g.drawImage(editedImage, 0, 0, window.scrollPane.getWidth(), window.scrollPane.getHeight(), null);
-            g.drawImage(editedImage, 0, 0, null);
+
+            int pw = window.mainPanel.getWidth();
+            int ph = window.mainPanel.getHeight();
+            int iw = (int) Math.round(pw*zoom);
+            int ih = (int) Math.round(ph*zoom);
+
+            g.drawImage(editedImage, 0, 0, pw, ph,
+                    imgX, imgY, iw+imgX, ih+imgY, null);
+
         }
     }
 }

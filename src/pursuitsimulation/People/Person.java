@@ -6,6 +6,8 @@ import pursuitsimulation.util.Position;
 import pursuitsimulation.Strategies.Strategy;
 import pursuitsimulation.util.Vector;
 
+import java.util.LinkedList;
+
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon
@@ -16,6 +18,7 @@ import pursuitsimulation.util.Vector;
 public class Person {
     protected SimulationProcess process;
     protected Crossing prev, curr, next;
+    protected LinkedList<Crossing> route;
     protected Position pos;
     protected int waiting = 0; //0 = not, else num of iteration
     protected String name;
@@ -27,6 +30,7 @@ public class Person {
         curr = current;
         next = null;
         pos = current.getPos();
+        route.add(curr);
     }
     public void getDestination(Strategy s) {
         next = s.getDestination(this);
@@ -36,6 +40,7 @@ public class Person {
         curr = next;
         next = null;
         pos = curr.getPos();
+        route.add(curr);
     }
     protected void wait(int timestamp) {}
     public Vector getVector() { return new Vector(pos.getX(), pos.getY()); }

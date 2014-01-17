@@ -87,7 +87,6 @@ public class SimulationProcess {
                 runner.getDestination(rStrategy);
                 for(Catcher c : catchers)
                     c.getDestination(cStrategies.get(c));
-
                 runner.move();
                 for(Catcher c : catchers) {
                     endCheck(c);

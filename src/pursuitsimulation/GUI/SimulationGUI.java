@@ -1,7 +1,9 @@
 package pursuitsimulation.GUI;
 
+import pursuitsimulation.Exceptions.NoGuiException;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.Simulation.SimulationProcess;
+import pursuitsimulation.Simulation.SimulationProgram;
 import pursuitsimulation.Strategies.CatchingStrategy;
 import pursuitsimulation.Strategies.RunningStrategy;
 import pursuitsimulation.Strategies.StandardCatchingStrategy;
@@ -102,10 +104,9 @@ public class SimulationGUI {
         mapPanel.reload();
         mapPanel.repaint();
     }
-    private void simulationStart() {
-        System.out.println(CatchingStrategy.catchingStrategies[0].getSimpleName());
-
-
+    private void simulationStart() throws NoGuiException {
+        process = new SimulationProcess(process);
+        SimulationProgram.process = process;
         for(int i=0; i<SimulationProcess.catchersNumber; i++) {
             try {
                 CatchingStrategy s = (CatchingStrategy)
@@ -113,7 +114,6 @@ public class SimulationGUI {
                                         .getConstructor(SimulationProcess.class).newInstance(process);
                 process.addCatcher(s, "Catcher #"+(i+1));
             } catch(Exception e) { System.out.println("Error while creating new object from class"); }
-//            process.addCatcher(new StandardCatchingStrategy(process), "Catcher #"+(i+1));
         }
         try {
             RunningStrategy s = (RunningStrategy)
@@ -121,42 +121,46 @@ public class SimulationGUI {
                             .getConstructor(SimulationProcess.class).newInstance(process);
             process.setRunner(s, "Runner");
         } catch(Exception e) { System.out.println("Error while creating new object from class"); }
-//        process.setRunner(new StandardRunningStrategy(process), "Runner");
+
+//      To chyba niepotrzebne! Ale dopiero jak bedzie Player!
         setCatchersHandle(process.getCatchers());
         setRunnerHandle(process.getRunner());
+
+//        process.attachPlayer()
+        process.simulationStart();
+        process.start();
     }
     private void simulationStop() {
-        process.reset();
-        setRunnerHandle(null);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                showEditedMap();
-            }
-        });
+        process.simulationStop();
     }
-
+    public void simulationEnd() {
+        window.simStart.setVisible(true);
+        window.simStop.setVisible(false);
+    }
     public void showEndAlert() {
         JOptionPane.showMessageDialog(null, "Złapano Uciekiniera! Koniec symulacji...");
     }
     private class MainWindow extends JPanel implements ActionListener, ChangeListener {
+        static final private String SIM_START = "sim_start";
+        static final private String SIM_STOP = "sim_stop";
         static final private String PLAY = "play";
         static final private String PAUSE = "pause";
         static final private String STOP = "stop";
         static final private String CATCHING_STRATEGY = "CatchingStrategy";
         static final private String RUNNING_STRATEGY = "RunningStrategy";
-        static final int INTERVAL_MIN = 0;
-        static final int INTERVAL_MAX = 2000;
-        static final int INTERVAL_INIT = 500;
-        static final int SPINNER_STEP = 1;
+        static final private int INTERVAL_MIN = 0;
+        static final private int INTERVAL_MAX = 2000;
+        static final private int INTERVAL_INIT = 500;
+        static final private int SPINNER_STEP = 1;
 
-//        JScrollPane scrollPane;
-        JPanel mainPanel;
-        MapPanel mapPanel=null;
+        private JPanel mainPanel;
+        private MapPanel mapPanel=null;
+        private JButton simStart;
+        private JButton simStop;
         public MainWindow() {
             super(new BorderLayout());
             JToolBar toolBar = new JToolBar("Simulation Options Panel");
             addButtons(toolBar);
-//            this.scrollPane = new JScrollPane();
             mainPanel = new JPanel();
             mainPanel.setLayout(new BorderLayout());
             MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
@@ -165,11 +169,23 @@ public class SimulationGUI {
             mainPanel.addMouseWheelListener(myMouseAdapter);
 
             add(toolBar, BorderLayout.PAGE_START);
-//            add(scrollPane, BorderLayout.CENTER);
             add(mainPanel, BorderLayout.CENTER);
         }
         protected void addButtons(JToolBar toolBar) {
             JButton button;
+
+            simStart = new JButton();
+            simStart.addActionListener(this);
+            simStart.setActionCommand(SIM_START);
+            simStart.setText("START");
+            toolBar.add(simStart);
+
+            simStop = new JButton();
+            simStop.addActionListener(this);
+            simStop.setActionCommand(SIM_STOP);
+            simStop.setText("STOP");
+            simStop.setVisible(false);
+            toolBar.add(simStop);
 
             button = new JButton();
             button.addActionListener(this);
@@ -252,15 +268,24 @@ public class SimulationGUI {
             String cmd = e.getActionCommand();
 
             // Handle each button.
-            if (PLAY.equals(cmd)) {
-                if(!process.isRunning())
+            if (SIM_START.equals(cmd)) {
+                try {
                     simulationStart();
-                process.simulationStart();
-            } else if (STOP.equals(cmd)) {
-                process.simulationStop();
+                    simStart.setVisible(false);
+                    simStop.setVisible(true);
+                } catch(NoGuiException ex) {
+                    System.out.println("Proces nie ma podpietego GUI");
+                }
+            } else if (SIM_STOP.equals(cmd)) {
                 simulationStop();
+                simStart.setVisible(true);
+                simStop.setVisible(false);
+            } else if (PLAY.equals(cmd)) {
+
+            } else if (STOP.equals(cmd)) {
+
             } else if (PAUSE.equals(cmd)) {
-                process.simulationStop();
+
             } else if (CATCHING_STRATEGY.equals(cmd)) {
                 JComboBox box = (JComboBox) e.getSource();
                 SimulationGUI.selectedCatchingStrategyIndex = box.getSelectedIndex();
@@ -278,7 +303,7 @@ public class SimulationGUI {
                         interval = Time.minInterval;
                     }
                     Time.changeInterval(interval);
-                    process.updateTimer();
+//                    process.updateTimer();
                 }
             }
             else if(e.getSource().getClass()==JSpinner.class) {

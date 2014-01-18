@@ -2,6 +2,8 @@ package pursuitsimulation.Simulation;
 
 import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
+import pursuitsimulation.Exceptions.NoGuiException;
+import pursuitsimulation.GUI.SimulationGUI;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.People.Runner;
 import pursuitsimulation.Strategies.CatchingStrategy;
@@ -30,38 +32,37 @@ public class SimulationProcess extends Thread {
     public static final int MAX_CATCHERS = 50;
     public static final int INIT_CATCHERS = 10;
     public static int catchersNumber = INIT_CATCHERS;
-    private SimulationProgram main;
-    private Time time = new Time();
-    private long startTime;
-    private SimulationGraph graph = new SimulationGraph();
+
+    private SimulationGUI simulationGUI=null;
+    private SimulationGraph graph;
+
     private LinkedList<Catcher> catchers = new LinkedList<Catcher>();
-    private Runner runner;
-    private ClueList clueList = new ClueList();
+    private Runner runner=null;
     private Map<Catcher, CatchingStrategy> cStrategies = new HashMap<Catcher, CatchingStrategy>();
-    private RunningStrategy rStrategy;
-    private boolean running = false;
-    private int iterationCount;
-    //private Timer timer;
+    private RunningStrategy rStrategy=null;
+    private ClueList clueList = new ClueList();
+
     private PathFinder pathFinder = new PathFinder(new CrowsDistanceHeuristic());
 
-    SimulationProcess(SimulationProgram program) {
-        main = program;
+    private boolean running = false;
+    private int iterationCount;
+    //util
+    private Time time = new Time();
+    private long startTime;
+
+    SimulationProcess() {
+        graph = new SimulationGraph();
+    }
+    public SimulationProcess(SimulationProcess proc) {
+        simulationGUI = proc.simulationGUI;
+        graph = proc.graph;
+    }
+    public void attachGUI(SimulationGUI gui) {
+        simulationGUI = gui;
     }
     void setGraph(Map<Long, Crossing> graph) {
         this.graph.setGraph(graph);
         this.graph.cleanGraph();
-    }
-    public synchronized void reset() {
-        running = false;
-        catchers.clear();
-        runner = null;
-        cStrategies.clear();
-        rStrategy = null;
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                main.getGui().setRunnerHandle(null);
-            }
-        });
     }
     public SimulationGraph getGraph() { return graph; }
     public void addCatcher(CatchingStrategy s, String name) {
@@ -102,49 +103,17 @@ public class SimulationProcess extends Thread {
             iterationCount++;
         }
     }
-    /*
-    public void setSimulationTimer() { //5s miedzy iteeracjami - przeskok z wezla do wezla
-        if(timer!=null) {
-            timer.stop();
-        }
-        timer = new Timer(Time.timeInterval, new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                time.move();
-
-                runner.getDestination(rStrategy);
-                for(Catcher c : catchers)
-                    c.getDestination(cStrategies.get(c));
-                runner.move();
-                for(Catcher c : catchers) {
-                    endCheck(c);
-                    eyesOnTargetCheck(c);
-                    c.move();
-                    endCheck(c);
-                }
-
-
-                SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        main.updateGuiMap();
-                    }
-                });
-            }
-        });
-    }  */
-    public void simulationStart() {
+    public void simulationStart() throws NoGuiException {
+        if(simulationGUI==null) throw new NoGuiException();
         running = true;
-        startTime = System.nanoTime();
-//        timer.start();
+//        startTime = System.nanoTime();
     }
     public void simulationStop() {
-//        timer.stop();
         running = false;
     }
 
     private void pursuitEnd() {
-//        long timeElapsed = System.nanoTime() - startTime;
-//        System.out.println("Pościg zakończył się po upływie " + (int)(timeElapsed/1000000000.0) + " sekund");
-        System.out.println("Pościg trwał "+iterationCount+" iteracji.")
+        System.out.println("Pościg trwał "+iterationCount+" iteracji.");
     }
 
     public void eyesOnTargetCheck(Catcher c) {
@@ -168,13 +137,11 @@ public class SimulationProcess extends Thread {
         if(caughtRunner(c)) {
             pursuitEnd();
             simulationStop();
-//            SwingUtilities.invokeLater(new Runnable() {
-//                public void run() {
-//                    reset();
-//                    main.getGui().setRunnerHandle(null);
-//                    main.showEndAlert();
-//                }
-//            });
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    simulationGUI.simulationEnd();
+                }
+            });
         }
     }
 
@@ -187,9 +154,6 @@ public class SimulationProcess extends Thread {
     }
     public boolean isRunning() {
         return running;
-    }
-    public void updateTimer() {
-//        timer.setDelay(Time.timeInterval);
     }
     public void changeCatchersNumber(int num) {   //for next simulation
         if((num<=SimulationProcess.MAX_CATCHERS) && (num>=SimulationProcess.MIN_CATCHERS)) {

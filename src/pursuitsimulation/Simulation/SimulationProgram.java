@@ -21,15 +21,18 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationProgram {
-    private static final String mainPath = "./PursuitSimulation/src/files/";
+    public static SimulationProcess process = null;
     public static Random randomGenerator = new Random();
+    private static final String mainPath = "./PursuitSimulation/src/files/";
+
     private SimulationGUI gui = null;
-    private SimulationProcess process;
     private XmlParser parser;
+
     private String xmlFile;
     private String mapFile;
+
     public SimulationProgram() {
-        process = new SimulationProcess(this);
+        process = new SimulationProcess();
         parser = new XmlParser(this);
     }
     public void setXmlFile(String filename) throws FileNotFoundException, XMLStreamException {
@@ -40,9 +43,6 @@ public class SimulationProgram {
         try {
             gui.chooseMapFile(filename);
         } catch(IOException e) {} //Handle Ex
-    }
-    public SimulationGUI getGui() {
-        return gui;
     }
     void updateGuiMap() {
         gui.showEditedMap();
@@ -61,6 +61,7 @@ public class SimulationProgram {
 //        gui.setDRpos(new Position(19.9307, 50.0524));
         gui.setULpos(new Position(-73.9828, 40.7913));
         gui.setDRpos(new Position(-73.8522, 40.7147));
+        process.attachGUI(gui);
     }
 
 
@@ -70,8 +71,7 @@ public class SimulationProgram {
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                program.setGUI(new SimulationGUI(program.process));
-                program.process.setSimulationTimer();
+            program.setGUI(new SimulationGUI(program.process));
             }
         });
 

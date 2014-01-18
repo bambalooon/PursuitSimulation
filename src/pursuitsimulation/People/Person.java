@@ -30,6 +30,7 @@ public class Person {
         curr = current;
         next = null;
         pos = current.getPos();
+        route = new LinkedList<Crossing>();
         route.add(curr);
     }
     public void getDestination(Strategy s) {

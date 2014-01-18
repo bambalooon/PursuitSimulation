@@ -58,4 +58,7 @@ public class Person {
         return next;
     }
     public String toString() { return name; }
+    public LinkedList<Crossing> getRoute() {
+        return route;
+    }
 }

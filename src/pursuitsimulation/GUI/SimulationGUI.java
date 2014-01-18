@@ -1,5 +1,6 @@
 package pursuitsimulation.GUI;
 
+import pursuitsimulation.Crossing;
 import pursuitsimulation.Exceptions.NoGuiException;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.Simulation.SimulationProcess;
@@ -58,13 +59,13 @@ public class SimulationGUI {
 
     private SimulationProcess process;
     private MainWindow window;
+    private SimulationPlayer player;
 
     private BufferedImage mapImage;
     private MapPanel mapPanel;
     private int width = 800;
     private int height = 600;
-    private LinkedList<Catcher> catchers;
-    private Runner runner;
+
     public SimulationGUI(SimulationProcess process) {
         this.process = process;
 
@@ -87,11 +88,11 @@ public class SimulationGUI {
         frame.pack();
         frame.setVisible(true);
     }
-    public void setCatchersHandle(LinkedList<Catcher> c) {
-        catchers = c;
+    public void setCatchersCrossings(LinkedList<Crossing> c) {
+        mapPanel.catchersCrossings = c;
     }
-    public void setRunnerHandle(Runner r) {
-        runner = r;
+    public void setRunnerCrossing(Crossing c) {
+        mapPanel.runnerCrossing = c;
     }
     public void setULpos(Position pos) {
         SimulationGUI.pos = pos;
@@ -121,12 +122,8 @@ public class SimulationGUI {
                             .getConstructor(SimulationProcess.class).newInstance(process);
             process.setRunner(s, "Runner");
         } catch(Exception e) { System.out.println("Error while creating new object from class"); }
-
-//      To chyba niepotrzebne! Ale dopiero jak bedzie Player!
-        setCatchersHandle(process.getCatchers());
-        setRunnerHandle(process.getRunner());
-
-//        process.attachPlayer()
+        player = new SimulationPlayer(this);
+        player.attachProcess(process);
         process.simulationStart();
         process.start();
     }
@@ -261,7 +258,6 @@ public class SimulationGUI {
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
-//            scrollPane.setViewportView(mapPanel);
             mainPanel.add(mapPanel);
         }
         public void actionPerformed(ActionEvent e) {
@@ -281,11 +277,17 @@ public class SimulationGUI {
                 simStart.setVisible(true);
                 simStop.setVisible(false);
             } else if (PLAY.equals(cmd)) {
-
+                if(player!=null) {
+                    player.play();
+                }
             } else if (STOP.equals(cmd)) {
-
+                if(player!=null) {
+                    player.stop();
+                }
             } else if (PAUSE.equals(cmd)) {
-
+                if(player!=null) {
+                    player.pause();
+                }
             } else if (CATCHING_STRATEGY.equals(cmd)) {
                 JComboBox box = (JComboBox) e.getSource();
                 SimulationGUI.selectedCatchingStrategyIndex = box.getSelectedIndex();
@@ -303,7 +305,9 @@ public class SimulationGUI {
                         interval = Time.minInterval;
                     }
                     Time.changeInterval(interval);
-//                    process.updateTimer();
+                    if(player!=null) {
+                        player.updateTimer();
+                    }
                 }
             }
             else if(e.getSource().getClass()==JSpinner.class) {
@@ -371,6 +375,9 @@ public class SimulationGUI {
         private int imgY = 0;
         private double zoom = SimulationGUI.ZOOM_MAX;
 
+        private LinkedList<Crossing> catchersCrossings;
+        private Crossing runnerCrossing;
+
         public MapPanel(BufferedImage img) {
             image = img;
             this.setPreferredSize(new Dimension(
@@ -396,8 +403,8 @@ public class SimulationGUI {
                     w, h, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2d = img.createGraphics();
             g2d.drawImage(old, 0, 0, null);
-            if(catchers!=null) {
-                for(Catcher c : catchers) {
+            if(catchersCrossings!=null) {
+                for(Crossing c : catchersCrossings) {
                     Position p = c.getPos();
                     p = convert(p);
                     int x = (int) p.getX();
@@ -410,8 +417,8 @@ public class SimulationGUI {
                     g2d.drawOval(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
                 }
             }
-            if(runner!=null) {
-                Position p = runner.getPos();
+            if(runnerCrossing!=null) {
+                Position p = runnerCrossing.getPos();
                 p = convert(p);
                 int x = (int) p.getX();
                 int y = (int) p.getY();

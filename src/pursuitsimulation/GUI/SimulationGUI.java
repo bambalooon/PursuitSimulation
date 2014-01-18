@@ -2,6 +2,7 @@ package pursuitsimulation.GUI;
 
 import pursuitsimulation.Crossing;
 import pursuitsimulation.Exceptions.NoGuiException;
+import pursuitsimulation.Exceptions.NoPlayerException;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.Simulation.SimulationProgram;
@@ -131,8 +132,12 @@ public class SimulationGUI {
         process.simulationStop();
     }
     public void simulationEnd() {
-        window.simStart.setVisible(true);
-        window.simStop.setVisible(false);
+        window.simStartBtn.setVisible(true);
+        window.simStopBtn.setVisible(false);
+    }
+    public void playingEnd() {
+        window.playBtn.setVisible(true);
+        window.pauseBtn.setVisible(false);
     }
     public void showEndAlert() {
         JOptionPane.showMessageDialog(null, "Złapano Uciekiniera! Koniec symulacji...");
@@ -152,8 +157,10 @@ public class SimulationGUI {
 
         private JPanel mainPanel;
         private MapPanel mapPanel=null;
-        private JButton simStart;
-        private JButton simStop;
+        private JButton simStartBtn;
+        private JButton simStopBtn;
+        private JButton playBtn;
+        private JButton pauseBtn;
         public MainWindow() {
             super(new BorderLayout());
             JToolBar toolBar = new JToolBar("Simulation Options Panel");
@@ -171,35 +178,36 @@ public class SimulationGUI {
         protected void addButtons(JToolBar toolBar) {
             JButton button;
 
-            simStart = new JButton();
-            simStart.addActionListener(this);
-            simStart.setActionCommand(SIM_START);
-            simStart.setText("START");
-            toolBar.add(simStart);
+            simStartBtn = new JButton();
+            simStartBtn.addActionListener(this);
+            simStartBtn.setActionCommand(SIM_START);
+            simStartBtn.setText("START");
+            toolBar.add(simStartBtn);
 
-            simStop = new JButton();
-            simStop.addActionListener(this);
-            simStop.setActionCommand(SIM_STOP);
-            simStop.setText("STOP");
-            simStop.setVisible(false);
-            toolBar.add(simStop);
+            simStopBtn = new JButton();
+            simStopBtn.addActionListener(this);
+            simStopBtn.setActionCommand(SIM_STOP);
+            simStopBtn.setText("STOP");
+            simStopBtn.setVisible(false);
+            toolBar.add(simStopBtn);
 
-            button = new JButton();
-            button.addActionListener(this);
-            button.setActionCommand(PLAY);
-            button.setText("play");
-            toolBar.add(button);
+            playBtn = new JButton();
+            playBtn.addActionListener(this);
+            playBtn.setActionCommand(PLAY);
+            playBtn.setText("PLAY");
+            toolBar.add(playBtn);
 
-            button = new JButton();
-            button.addActionListener(this);
-            button.setActionCommand(PAUSE);
-            button.setText("pause");
-            toolBar.add(button);
+            pauseBtn = new JButton();
+            pauseBtn.addActionListener(this);
+            pauseBtn.setActionCommand(PAUSE);
+            pauseBtn.setText("PAUSE");
+            pauseBtn.setVisible(false);
+            toolBar.add(pauseBtn);
 
             button = new JButton();
             button.addActionListener(this);
             button.setActionCommand(STOP);
-            button.setText("stop");
+            button.setText("STOP");
             toolBar.add(button);
 
             JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL,INTERVAL_MIN, INTERVAL_MAX, INTERVAL_INIT);
@@ -264,37 +272,47 @@ public class SimulationGUI {
             String cmd = e.getActionCommand();
 
             // Handle each button.
-            if (SIM_START.equals(cmd)) {
-                try {
+            try {
+                if (SIM_START.equals(cmd)) {
                     simulationStart();
-                    simStart.setVisible(false);
-                    simStop.setVisible(true);
-                } catch(NoGuiException ex) {
-                    System.out.println("Proces nie ma podpietego GUI");
-                }
-            } else if (SIM_STOP.equals(cmd)) {
-                simulationStop();
-                simStart.setVisible(true);
-                simStop.setVisible(false);
-            } else if (PLAY.equals(cmd)) {
-                if(player!=null) {
+                    simStartBtn.setVisible(false);
+                    simStopBtn.setVisible(true);
+                } else if (SIM_STOP.equals(cmd)) {
+                    simulationStop();
+                    simStartBtn.setVisible(true);
+                    simStopBtn.setVisible(false);
+                } else if (PLAY.equals(cmd)) {
+                    if(player==null) {
+                        throw new NoPlayerException();
+                    }
                     player.play();
-                }
-            } else if (STOP.equals(cmd)) {
-                if(player!=null) {
+                    playBtn.setVisible(false);
+                    pauseBtn.setVisible(true);
+                } else if (STOP.equals(cmd)) {
+                    if(player==null) {
+                        throw new NoPlayerException();
+                    }
                     player.stop();
-                }
-            } else if (PAUSE.equals(cmd)) {
-                if(player!=null) {
+                } else if (PAUSE.equals(cmd)) {
+                    if(player==null) {
+                        throw new NoPlayerException();
+                    }
                     player.pause();
+                    playBtn.setVisible(true);
+                    pauseBtn.setVisible(false);
+                } else if (CATCHING_STRATEGY.equals(cmd)) {
+                    JComboBox box = (JComboBox) e.getSource();
+                    SimulationGUI.selectedCatchingStrategyIndex = box.getSelectedIndex();
+                } else if (RUNNING_STRATEGY.equals(cmd)) {
+                    JComboBox box = (JComboBox) e.getSource();
+                    SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
                 }
-            } else if (CATCHING_STRATEGY.equals(cmd)) {
-                JComboBox box = (JComboBox) e.getSource();
-                SimulationGUI.selectedCatchingStrategyIndex = box.getSelectedIndex();
-            } else if (RUNNING_STRATEGY.equals(cmd)) {
-                JComboBox box = (JComboBox) e.getSource();
-                SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
+            } catch(NoGuiException ex) {
+                JOptionPane.showMessageDialog(null, "Brak podpiętego GUI! (Do procesu)");
+            } catch(NoPlayerException ex) {
+                JOptionPane.showMessageDialog(null, "Brak podpiętego Playera - prawdopodobnie symulacja nie została uruchomiona.");
             }
+
         }
         public void stateChanged(ChangeEvent e) {
             if(e.getSource().getClass()==JSlider.class) {

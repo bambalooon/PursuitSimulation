@@ -53,11 +53,9 @@ public class SimulationPlayer implements ActionListener {
             cIterators.add(c.getRoute().iterator());
         }
         timer = new Timer(Time.timeInterval, this);
-        System.out.println("setting timer finish");
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.print("a");
         if(!rIterator.hasNext()) {
             if(!process.isRunning()) {
                 stop();
@@ -90,8 +88,11 @@ public class SimulationPlayer implements ActionListener {
     public void stop() {
         initialized = false;
         playing = false;
-        timer.stop();
-        timer=null;
+        if(timer!=null) {
+            timer.stop();
+            timer=null;
+        }
+        gui.playingEnd();
     }
     public void pause() {
         if(initialized && playing) {
@@ -100,6 +101,8 @@ public class SimulationPlayer implements ActionListener {
         }
     }
     public void updateTimer() {
-        timer.setDelay(Time.timeInterval);
+        if(timer!=null) {
+            timer.setDelay(Time.timeInterval);
+        }
     }
 }

@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/People/Person.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/People/Person.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationPlayer.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PursuitSimulation.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390046090387" ignored="false" />
-    <file path="/SimulationGUI.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390056127705" ignored="false" />
-    <file path="/SimulationPlayer.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390057432587" ignored="false" />
+    <file path="/Dummy.txt" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390070425602" ignored="false" />
+    <file path="/SimulationGUI.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390073256258" ignored="false" />
+    <file path="/SimulationPlayer.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390076595961" ignored="false" />
     <file path="/Person.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390050493041" ignored="false" />
+    <file path="/NoPlayerException.java" changelist="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" time="1390071312761" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +27,43 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationGraph.java" line="31" class="pursuitsimulation.Simulation.SimulationGraph" package="pursuitsimulation.Simulation">
         <option name="ENABLED" value="true" />
@@ -90,43 +126,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -139,11 +138,24 @@
       <file leaf-file-name="SimulationGUI.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="308" column="45" selection-start="12420" selection-end="12420" vertical-scroll-proportion="0.0">
+            <state line="139" column="40" selection-start="4958" selection-end="4958" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="method#addButtons#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
                 <element signature="method#attachMapPanel#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+                <element signature="method#actionPerformed#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+                <element signature="method#stateChanged#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+                <element signature="class#MyMouseAdapter#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+                <element signature="class#MapPanel#0;class#SimulationGUI#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NoPlayerException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Exceptions/NoPlayerException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="48" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -160,10 +172,10 @@
       <file leaf-file-name="SimulationPlayer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="85" column="26" selection-start="2456" selection-end="2456" vertical-scroll-proportion="0.3089431">
+            <state line="105" column="9" selection-start="2859" selection-end="2859" vertical-scroll-proportion="0.65804595">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2040#2050#0" expanded="true" />
+                <element signature="e#1957#1967#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -223,7 +235,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/XmlParser.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationGraph.java" />
         <option value="$PROJECT_DIR$/src/Catcher.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/Time.java" />
@@ -237,6 +248,7 @@
         <option value="$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/People/Person.java" />
+        <option value="$PROJECT_DIR$/src/pursuitsimulation/Exceptions/NoPlayerException.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
         <option value="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationPlayer.java" />
       </list>
@@ -436,6 +448,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="pursuitsimulation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Exceptions" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PursuitSimulation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PursuitSimulation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="files" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -456,8 +490,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -476,12 +510,12 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
     <property name="FullScreen" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -549,6 +583,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -575,19 +622,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -736,7 +770,11 @@
       <created>1389787846301</created>
       <updated>1389787846301</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Rozdzielenie symulacji od wizualizacji">
+      <created>1390057871673</created>
+      <updated>1390057871673</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -820,7 +858,7 @@
     <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rozdzielenie symulacji od wizualizacji" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -844,6 +882,7 @@
     <MESSAGE value="ToolBar..." />
     <MESSAGE value="Play/Stop/Pause" />
     <MESSAGE value="gitignore" />
+    <MESSAGE value="Rozdzielenie symulacji od wizualizacji" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -853,13 +892,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/XmlParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1503" selection-end="1503" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="68" column="0" selection-start="2355" selection-end="2355" vertical-scroll-proportion="0.0">
@@ -951,22 +983,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Exceptions/NoPlayerException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="48" selection-start="244" selection-end="244" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="308" column="45" selection-start="12420" selection-end="12420" vertical-scroll-proportion="0.0">
+        <state line="139" column="40" selection-start="4958" selection-end="4958" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="method#addButtons#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
             <element signature="method#attachMapPanel#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+            <element signature="method#actionPerformed#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+            <element signature="method#stateChanged#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+            <element signature="class#MyMouseAdapter#0;class#MainWindow#0;class#SimulationGUI#0" expanded="false" />
+            <element signature="class#MapPanel#0;class#SimulationGUI#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="85" column="26" selection-start="2456" selection-end="2456" vertical-scroll-proportion="0.3089431">
+        <state line="105" column="9" selection-start="2859" selection-end="2859" vertical-scroll-proportion="0.65804595">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2040#2050#0" expanded="true" />
+            <element signature="e#1957#1967#0" expanded="true" />
           </folding>
         </state>
       </provider>

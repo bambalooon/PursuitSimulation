@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aabb7e96-15a2-4c74-bf13-243f4dde3ae8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" afterPath="$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="PursuitSimulation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +70,7 @@
       <file leaf-file-name="XmlParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/XmlParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="0" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.0" vertical-offset="236" max-vertical-offset="2070">
+            <state line="37" column="0" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.0" vertical-offset="666" max-vertical-offset="2340">
               <folding />
             </state>
           </provider>
@@ -79,7 +79,7 @@
       <file leaf-file-name="SimulationProgram.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="32" selection-start="629" selection-end="629" vertical-scroll-proportion="0.25263157" vertical-offset="78" max-vertical-offset="1296">
+            <state line="21" column="32" selection-start="629" selection-end="629" vertical-scroll-proportion="-0.37894738" vertical-offset="378" max-vertical-offset="1296">
               <folding />
             </state>
           </provider>
@@ -88,7 +88,7 @@
       <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="5" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="144">
+            <state line="1" column="5" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="144">
               <folding />
             </state>
           </provider>
@@ -97,7 +97,7 @@
       <file leaf-file-name="workspace.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="11" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="21168">
+            <state line="6" column="11" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="22374">
               <folding />
             </state>
           </provider>
@@ -106,7 +106,7 @@
       <file leaf-file-name="FileInputStream.java" pinned="false" current="false" current-in-tab="false">
         <entry file="jar:///usr/lib/jvm/jdk1.7.0/src.zip!/java/io/FileInputStream.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="145" column="0" selection-start="4823" selection-end="4823" vertical-scroll-proportion="0.0" vertical-offset="2000" max-vertical-offset="7614">
+            <state line="145" column="0" selection-start="4823" selection-end="4823" vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="8064">
               <folding />
             </state>
           </provider>
@@ -230,6 +230,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files" />
+      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -458,9 +461,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files" />
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -546,6 +546,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -572,19 +585,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -753,7 +753,6 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736573" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -770,6 +769,7 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32991454" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32736573" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -805,6 +805,76 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/XmlParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="0" selection-start="1283" selection-end="1283" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2340">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="32" selection-start="629" selection-end="629" vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1296">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="5" selection-start="26" selection-end="26" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="144">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="11" selection-start="515" selection-end="515" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="21186">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/jdk1.7.0/src.zip!/java/io/FileInputStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="145" column="0" selection-start="4823" selection-end="4823" vertical-scroll-proportion="0.0" vertical-offset="2610" max-vertical-offset="8064">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/PathFinder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="0" selection-start="2355" selection-end="2355" vertical-scroll-proportion="0.0" vertical-offset="1224" max-vertical-offset="2610">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardRunningStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="30" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Strategies/StandardCatchingStrategy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="85" selection-start="1791" selection-end="1817" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/CrossingStructure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="5" selection-start="1305" selection-end="1305" vertical-scroll-proportion="0.0" vertical-offset="774" max-vertical-offset="1152">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Time.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="41" selection-start="428" selection-end="428" vertical-scroll-proportion="0.0" vertical-offset="252" max-vertical-offset="1134">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/util/Vector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1476">
@@ -1024,16 +1094,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PursuitSimulation.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="475" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/GUI/SimulationGUI.java">
@@ -1075,7 +1141,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/pursuitsimulation/Simulation/SimulationProgram.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="32" selection-start="629" selection-end="629" vertical-scroll-proportion="0.25263157" vertical-offset="78" max-vertical-offset="1296">
+        <state line="21" column="32" selection-start="629" selection-end="629" vertical-scroll-proportion="-0.37894738" vertical-offset="378" max-vertical-offset="1296">
           <folding />
         </state>
       </provider>

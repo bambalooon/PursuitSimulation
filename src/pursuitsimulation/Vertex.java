@@ -1,6 +1,7 @@
 package pursuitsimulation;
 
 import pursuitsimulation.util.Position;
+import pursuitsimulation.util.Vector;
 
 import java.util.LinkedList;
 
@@ -51,7 +52,7 @@ public class Vertex {
     public LinkedList<Vertex> getInNeighbours() {
         return inNeighbours;
     }
-
+    public Vector getVector() { return new Vector(this); }
     @Override
     public String toString() {
         return ID + "(" + pos.getX() + "," + pos.getY() + ")";

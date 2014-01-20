@@ -164,7 +164,9 @@ public class SimulationGUI {
         public MainWindow() {
             super(new BorderLayout());
             JToolBar toolBar = new JToolBar("Simulation Options Panel");
-            addButtons(toolBar);
+            addSimButtons(toolBar);
+            JToolBar playBar = new JToolBar("Play Options Panel");
+            addPlayButtons(playBar);
             mainPanel = new JPanel();
             mainPanel.setLayout(new BorderLayout());
             MyMouseAdapter myMouseAdapter = new MyMouseAdapter();
@@ -174,8 +176,9 @@ public class SimulationGUI {
 
             add(toolBar, BorderLayout.PAGE_START);
             add(mainPanel, BorderLayout.CENTER);
+            add(playBar, BorderLayout.PAGE_END);
         }
-        protected void addButtons(JToolBar toolBar) {
+        protected void addSimButtons(JToolBar toolBar) {
             JButton button;
 
             simStartBtn = new JButton();
@@ -190,40 +193,6 @@ public class SimulationGUI {
             simStopBtn.setText("STOP");
             simStopBtn.setVisible(false);
             toolBar.add(simStopBtn);
-
-            playBtn = new JButton();
-            playBtn.addActionListener(this);
-            playBtn.setActionCommand(PLAY);
-            playBtn.setText("PLAY");
-            toolBar.add(playBtn);
-
-            pauseBtn = new JButton();
-            pauseBtn.addActionListener(this);
-            pauseBtn.setActionCommand(PAUSE);
-            pauseBtn.setText("PAUSE");
-            pauseBtn.setVisible(false);
-            toolBar.add(pauseBtn);
-
-            button = new JButton();
-            button.addActionListener(this);
-            button.setActionCommand(STOP);
-            button.setText("STOP");
-            toolBar.add(button);
-
-            JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL,INTERVAL_MIN, INTERVAL_MAX, INTERVAL_INIT);
-            intervalSlider.addChangeListener(this);
-            intervalSlider.setMajorTickSpacing(100);
-            intervalSlider.setPaintTicks(true);
-            intervalSlider.setMaximumSize(new Dimension(200, 50));
-
-            Hashtable labelTable = new Hashtable();
-            labelTable.put( new Integer( Time.minInterval ), new JLabel(Integer.toString(Time.minInterval)) );
-            labelTable.put( new Integer( INTERVAL_INIT ), new JLabel(Integer.toString(INTERVAL_INIT)) );
-            labelTable.put( new Integer( INTERVAL_MAX ), new JLabel(Integer.toString(INTERVAL_MAX)) );
-            intervalSlider.setLabelTable( labelTable );
-            intervalSlider.setPaintLabels(true);
-
-            toolBar.add(intervalSlider);
 
             Integer value = new Integer(50);
             Integer min = new Integer(0);
@@ -263,6 +232,43 @@ public class SimulationGUI {
             rStrategiesCombo.addActionListener(this); //to do
             rStrategiesCombo.setActionCommand(RUNNING_STRATEGY);
             toolBar.add(rStrategiesCombo);
+        }
+        protected void addPlayButtons(JToolBar toolBar) {
+            JButton button;
+
+            playBtn = new JButton();
+            playBtn.addActionListener(this);
+            playBtn.setActionCommand(PLAY);
+            playBtn.setText("PLAY");
+            toolBar.add(playBtn);
+
+            pauseBtn = new JButton();
+            pauseBtn.addActionListener(this);
+            pauseBtn.setActionCommand(PAUSE);
+            pauseBtn.setText("PAUSE");
+            pauseBtn.setVisible(false);
+            toolBar.add(pauseBtn);
+
+            button = new JButton();
+            button.addActionListener(this);
+            button.setActionCommand(STOP);
+            button.setText("STOP");
+            toolBar.add(button);
+
+            JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL,INTERVAL_MIN, INTERVAL_MAX, INTERVAL_INIT);
+            intervalSlider.addChangeListener(this);
+            intervalSlider.setMajorTickSpacing(100);
+            intervalSlider.setPaintTicks(true);
+            intervalSlider.setMaximumSize(new Dimension(200, 50));
+
+            Hashtable labelTable = new Hashtable();
+            labelTable.put( new Integer( Time.minInterval ), new JLabel(Integer.toString(Time.minInterval)) );
+            labelTable.put( new Integer( INTERVAL_INIT ), new JLabel(Integer.toString(INTERVAL_INIT)) );
+            labelTable.put( new Integer( INTERVAL_MAX ), new JLabel(Integer.toString(INTERVAL_MAX)) );
+            intervalSlider.setLabelTable( labelTable );
+            intervalSlider.setPaintLabels(true);
+
+            toolBar.add(intervalSlider);
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;

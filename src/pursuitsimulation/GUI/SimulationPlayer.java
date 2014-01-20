@@ -20,6 +20,10 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationPlayer implements ActionListener {
+    public static final int INTERVAL_MIN = 0;
+    public static final int INTERVAL_MAX = 2000;
+    public static final int INTERVAL_INIT = 500;
+
     private SimulationGUI gui;
     private SimulationProcess process;
 

@@ -150,10 +150,8 @@ public class SimulationGUI {
         static final private String STOP = "stop";
         static final private String CATCHING_STRATEGY = "CatchingStrategy";
         static final private String RUNNING_STRATEGY = "RunningStrategy";
-        static final private int INTERVAL_MIN = 0;
-        static final private int INTERVAL_MAX = 2000;
-        static final private int INTERVAL_INIT = 500;
-        static final private int SPINNER_STEP = 1;
+        static final private String TIME_INTERVAL = "time_interval";
+        static final private String LCP = "LCP";
 
         private JPanel mainPanel;
         private MapPanel mapPanel=null;
@@ -180,6 +178,8 @@ public class SimulationGUI {
         }
         protected void addSimButtons(JToolBar toolBar) {
             JButton button;
+            JLabel label;
+            JSpinner spinner;
 
             simStartBtn = new JButton();
             simStartBtn.addActionListener(this);
@@ -194,21 +194,18 @@ public class SimulationGUI {
             simStopBtn.setVisible(false);
             toolBar.add(simStopBtn);
 
-            Integer value = new Integer(50);
-            Integer min = new Integer(0);
-            Integer max = new Integer(100);
-            Integer step = new Integer(1);
-            SpinnerNumberModel model = new SpinnerNumberModel( new Integer(SimulationProcess.INIT_CATCHERS),
-                    new Integer(SimulationProcess.MIN_CATCHERS),
-                    new Integer(SimulationProcess.MAX_CATCHERS),
-                    new Integer(SPINNER_STEP));
+            SpinnerNumberModel model = new SpinnerNumberModel( SimulationProcess.INIT_CATCHERS,
+                    SimulationProcess.MIN_CATCHERS,
+                    SimulationProcess.MAX_CATCHERS,
+                    SimulationProcess.STEP_CATCHERS);
 
-            JLabel label = new JLabel();
+            label = new JLabel();
             label.setText(" Liczba poszukujących: ");
             toolBar.add(label);
-            JSpinner spinner = new JSpinner(model);
+            spinner = new JSpinner(model);
             spinner.setMaximumSize(new Dimension(40,30));
             spinner.addChangeListener(this);
+            spinner.setName(TIME_INTERVAL);
             toolBar.add(spinner);
 
             Vector<String> cStrategies = new Vector<String>();
@@ -232,6 +229,22 @@ public class SimulationGUI {
             rStrategiesCombo.addActionListener(this); //to do
             rStrategiesCombo.setActionCommand(RUNNING_STRATEGY);
             toolBar.add(rStrategiesCombo);
+
+
+            SpinnerNumberModel probModel = new SpinnerNumberModel( SimulationProcess.LCP_INIT,
+                    SimulationProcess.LCP_MIN,
+                    SimulationProcess.LCP_MAX,
+                    SimulationProcess.LCP_STEP);
+
+            label = new JLabel();
+            label.setText(" Wskazówka lokalna: ");
+            toolBar.add(label);
+
+            spinner = new JSpinner(probModel);
+            spinner.setMaximumSize(new Dimension(45,30));
+            spinner.addChangeListener(this);
+            spinner.setName(LCP);
+            toolBar.add(spinner);
         }
         protected void addPlayButtons(JToolBar toolBar) {
             JButton button;
@@ -255,16 +268,16 @@ public class SimulationGUI {
             button.setText("STOP");
             toolBar.add(button);
 
-            JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL,INTERVAL_MIN, INTERVAL_MAX, INTERVAL_INIT);
+            JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL, SimulationPlayer.INTERVAL_MIN, SimulationPlayer.INTERVAL_MAX, SimulationPlayer.INTERVAL_INIT);
             intervalSlider.addChangeListener(this);
             intervalSlider.setMajorTickSpacing(100);
             intervalSlider.setPaintTicks(true);
             intervalSlider.setMaximumSize(new Dimension(200, 50));
 
             Hashtable labelTable = new Hashtable();
-            labelTable.put( new Integer( Time.minInterval ), new JLabel(Integer.toString(Time.minInterval)) );
-            labelTable.put( new Integer( INTERVAL_INIT ), new JLabel(Integer.toString(INTERVAL_INIT)) );
-            labelTable.put( new Integer( INTERVAL_MAX ), new JLabel(Integer.toString(INTERVAL_MAX)) );
+            labelTable.put( new Integer( SimulationPlayer.INTERVAL_MIN ), new JLabel(Integer.toString(SimulationPlayer.INTERVAL_MIN)) );
+            labelTable.put( new Integer( SimulationPlayer.INTERVAL_INIT ), new JLabel(Integer.toString(SimulationPlayer.INTERVAL_INIT)) );
+            labelTable.put( new Integer( SimulationPlayer.INTERVAL_MAX ), new JLabel(Integer.toString(SimulationPlayer.INTERVAL_MAX)) );
             intervalSlider.setLabelTable( labelTable );
             intervalSlider.setPaintLabels(true);
 
@@ -325,8 +338,8 @@ public class SimulationGUI {
                 JSlider source = (JSlider)e.getSource();
                 if (!source.getValueIsAdjusting()) {
                     int interval = (int)source.getValue();
-                    if(interval<Time.minInterval) {
-                        interval = Time.minInterval;
+                    if(interval<SimulationPlayer.INTERVAL_MIN) {
+                        interval = SimulationPlayer.INTERVAL_MIN;
                     }
                     Time.changeInterval(interval);
                     if(player!=null) {
@@ -336,8 +349,15 @@ public class SimulationGUI {
             }
             else if(e.getSource().getClass()==JSpinner.class) {
                 JSpinner source = (JSpinner)e.getSource();
-                int val = (Integer) source.getValue();
-                process.changeCatchersNumber(val);
+                if(TIME_INTERVAL.equals(source.getName())) {
+                    int val = (Integer) source.getValue();
+                    process.changeCatchersNumber(val);
+                }
+                else if(LCP.equals(source.getName())) {
+                    double val = (Double) source.getValue();
+                    //process.changeCatchersNumber(val);
+                }
+
             }
         }
 

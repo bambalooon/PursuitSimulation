@@ -11,7 +11,6 @@ public class Time {
     private static final int sec2Min = 60;
     private static final int min2Hour = 60;
     private static final int hour2Day = 24;
-    public static final int minInterval = 10;
     public static int timeInterval = 500;
     private int day;
     private int hour;

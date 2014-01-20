@@ -355,7 +355,7 @@ public class SimulationGUI {
                 }
                 else if(LCP.equals(source.getName())) {
                     double val = (Double) source.getValue();
-                    //process.changeCatchersNumber(val);
+                    Runner.changeLCP(val);
                 }
 
             }

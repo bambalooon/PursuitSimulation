@@ -15,9 +15,14 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class Runner extends Person {
+    public static double leavingClueProbability = SimulationProcess.LCP_INIT;
     private LinkedList<Runner> team;
     private LinkedList<Crossing> path = null;
     private Random rand = new Random();
+
+    public static void changeLCP(double nLCP) {
+        Runner.leavingClueProbability = nLCP;
+    }
 
     public Runner(Crossing current, SimulationProcess process, String name) {
         super(current, process, name);
@@ -32,7 +37,7 @@ public class Runner extends Person {
         team.add(r);
     }
     public void leaveClue() {
-        if(rand.nextDouble() <= 0.1) { //an arbitrary chance to leave clue (testing purposes)
+        if(rand.nextDouble() <= Runner.leavingClueProbability) { //an arbitrary chance to leave clue (testing purposes)
             Clue clue = new Clue(
                     process.getTime(),
                     this.getCurr(),

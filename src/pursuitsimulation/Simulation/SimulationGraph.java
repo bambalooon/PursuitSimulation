@@ -3,6 +3,8 @@ package pursuitsimulation.Simulation;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.util.Graph;
 import pursuitsimulation.Vertex;
+import pursuitsimulation.util.Heuristic.BlankHeuristic;
+import pursuitsimulation.util.PathFinder;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -21,8 +23,11 @@ public class SimulationGraph implements Graph {
         Crossing c = (Crossing) v; //jesli to nie jest Crossing to error bo spodziewamy sie crossinga!
         vertexes.put(c.getID(), c);
     }
-    public void setGraph(Map<Long,Crossing> graph) {
-        vertexes = graph;
+    public Map<Long, Crossing> getVertexes() {return vertexes; }
+    public void setGraph(Map<Long,Crossing> graph){
+
+
+        vertexes = eliminateIslands(graph);
     }
     public Crossing getRandomVertex() {
         return (Crossing) (vertexes.values().toArray()[SimulationProgram.randomGenerator.nextInt(vertexes.size()-1)]);
@@ -47,5 +52,18 @@ public class SimulationGraph implements Graph {
         if(size!=0)
             cleanGraph();
         //System.out.println(vertexes.size());
+    }
+
+    public Map<Long,Crossing> eliminateIslands(Map<Long,Crossing> graph) {
+        PathFinder pf = new PathFinder( new BlankHeuristic() );
+        Crossing c = null;
+
+        for(Map.Entry<Long, Crossing> entry : graph.entrySet()) {
+            if(entry.getKey() == 42876815) {
+                return pf.getGraphComponentAroundCrossing( entry.getValue() );
+            }
+        }
+
+        return null;
     }
 }

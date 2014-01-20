@@ -12,8 +12,10 @@ import pursuitsimulation.util.PathFinder;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.util.Vector;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.util.Map;
 
 /**
  * Created by mike on 1/15/14.
@@ -29,15 +31,15 @@ public class DistanceRunningStrategy extends RunningStrategy {
         Runner r = (Runner) p;
 
         long startTime = System.nanoTime();
-        Crossing escapeNode = findEscapeNode(r);
+        r.setPath( findEscapePath( r ) );
         long elapsedTime = System.nanoTime() - startTime;
-        System.out.println("Vector computed in " + (elapsedTime/1000000000.0) + "s");
-
-        r.setPath( pathFinder.getPath( r.getCurr(), escapeNode, 100 ) );
+        System.out.println("Path computed in " + (elapsedTime/1000000000.0) + "s");
 
         if(r.peekNextPathStep() != null) {
             return r.getNextPathStep();
         }
+
+        System.out.println("Moving randomly...");
 
         Crossing v = r.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();
@@ -53,39 +55,48 @@ public class DistanceRunningStrategy extends RunningStrategy {
         return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
     }
 
-    public Crossing findEscapeNode(Runner r) {
-        Vector shortest, v = new Vector();
-        ListIterator<Catcher> it = process.getCatchers().listIterator();
-
-        while(it.hasNext()) {
-            v.add( computeVectorToCatcher( it.next(), r ) );
-        }
-
-        shortest = findVectorToClosestCatcher(r);
-
-        v.negate().add( shortest.negate() );
-
-        return new Crossing(-1, new Position(v.getX(), v.getY()));
+    private LinkedList<Crossing> findEscapePath(Runner r) {
+        return pathFinder.getPath( r.getCurr(), getLowestPresenceNode( r ) );
     }
 
-    public Vector findVectorToClosestCatcher(Runner r) {
-        ListIterator<Catcher> it = process.getCatchers().listIterator();
+    private Crossing getLowestPresenceNode(Runner r) {
+        Iterator< Map.Entry<Long, Crossing> > it = process.getGraph().getVertexes().entrySet().iterator();
+        Crossing c, best;
+        double presence, bestPresence;
 
-        Vector v, shortest = computeVectorToCatcher( it.next(), r );
+        best = it.next().getValue();
+        bestPresence = calculatePresence( best );
 
         while(it.hasNext()) {
-            v = computeVectorToCatcher( it.next(), r );
+            c = it.next().getValue();
+            presence = calculatePresence( c );
 
-            if(v.getLength() < shortest.getLength())
-                shortest = v;
+            if( presence > bestPresence ) {
+                best = c;
+                bestPresence = presence;
+            }
         }
 
-        return shortest;
+        return best;
     }
 
-    public Vector computeVectorToCatcher(Catcher c, Runner r) {
-        /* Person::getVector returns coordinates of a person packed in Vector class for convinience */
-        Vector v = c.getVector().add( r.getVector().negate() );
-        return v;
+    private double calculatePresence(Crossing c) {
+        ListIterator<Catcher> it = process.getCatchers().listIterator();
+        double sum = 0;
+
+        while(it.hasNext())
+            sum += getPresence(c, it.next().getCurr());
+
+        return sum;
+    }
+
+    private double getPresence(Crossing c1, Crossing c2) {
+        double pres = c2.getVector().add( c1.getVector().negate() ).getLength();
+
+        return pres * pres;
+    }
+
+    private double getDistance(Runner r, Crossing c) {
+        return c.getVector().add( r.getVector().negate() ).getLength();
     }
 }

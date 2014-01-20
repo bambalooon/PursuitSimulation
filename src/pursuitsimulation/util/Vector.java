@@ -1,6 +1,7 @@
 package pursuitsimulation.util;
 
 import pursuitsimulation.Crossing;
+import pursuitsimulation.Vertex;
 import sun.management.resources.agent_pt_BR;
 
 import static java.lang.Math.pow;
@@ -28,9 +29,9 @@ public class Vector {
         y = v.y;
     }
 
-    public Vector(Crossing c) {
-        x = c.getPos().getX();
-        y = c.getPos().getY();
+    public Vector(Vertex v) {
+        x = v.getPos().getX();
+        y = v.getPos().getY();
     }
 
     public Vector add(Vector v) {

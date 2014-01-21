@@ -16,6 +16,9 @@ import pursuitsimulation.util.Time;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
@@ -46,6 +49,8 @@ public class SimulationProcess extends Thread {
     public static final double GCP_MAX=1.0;
     public static final double GCP_INIT=0.01;
     public static final double GCP_STEP=0.001;
+    //Simulation Limits
+    public static int iterationsMax = 1000;
 
     private SimulationGUI simulationGUI=null;
     private SimulationGraph graph;
@@ -110,9 +115,10 @@ public class SimulationProcess extends Thread {
     public void clearClue() { clue = null; }
 
     public void run() {
-        iterationCount=0;
+        iterationCount=1;
         while(running) {
             System.out.println("Iteracja #" + iterationCount);
+            simulationGUI.changeIterationCount(iterationCount);
             time.move();
 
             runner.getDestination(rStrategy);
@@ -132,7 +138,44 @@ public class SimulationProcess extends Thread {
             }
             
             iterationCount++;
+            if(iterationCount > iterationsMax)
+            {
+               endOnDemand();
+            }
         }
+        simulationGUI.iterationEnd(iterationCount);
+    }
+    public void saveResult()
+    {
+        FileWriter pursuitResult = null;
+        try {
+            pursuitResult = new FileWriter("result.txt", true);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Date data = new Date();
+        try {
+            String tmp =   tmp = cStrategies.get(catchers.getFirst()).toString();
+            pursuitResult.write(data.toString() + ";" + rStrategy.toString() + ";" + tmp  + ";" + iterationCount + ";" + iterationsMax + ";" + catchers.size() + ";" +  LCP_INIT + ";" + LCP_INIT  + "\r\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            pursuitResult.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void endOnDemand() {
+        pursuitEnd();
+        simulationStop();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                simulationGUI.simulationEnd();
+            }
+        });
+
     }
     public void simulationStart() throws NoGuiException {
         if(simulationGUI==null) throw new NoGuiException();
@@ -144,6 +187,7 @@ public class SimulationProcess extends Thread {
 
     private void pursuitEnd() {
         System.out.println("Pościg trwał " + iterationCount + " iteracji.");
+        saveResult();
     }
 
     public void eyesOnTargetCheck(Catcher c) {
@@ -175,6 +219,7 @@ public class SimulationProcess extends Thread {
         }
         return false;
     }
+
 
     public Boolean caughtRunner(Catcher c) {
         return c.getCurr().equals(runner.getCurr());

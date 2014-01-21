@@ -1,5 +1,8 @@
 package pursuitsimulation.util;
 
+import pursuitsimulation.GUI.SimulationPlayer;
+import pursuitsimulation.Simulation.SimulationProcess;
+
 /**
  * Created with IntelliJ IDEA.
  * User: BamBalooon
@@ -11,7 +14,7 @@ public class Time {
     private static final int sec2Min = 60;
     private static final int min2Hour = 60;
     private static final int hour2Day = 24;
-    public static int timeInterval = 500;
+    public static int timeInterval = SimulationPlayer.INTERVAL_INIT;
     private int day;
     private int hour;
     private int minute;

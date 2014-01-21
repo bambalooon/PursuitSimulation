@@ -45,6 +45,9 @@ public class SimulationGUI {
     private static Color localClueCol = new Color(70, 70, 70, 90);
     private static Color globalClueCol = new Color(255, 0, 0, 90);
     private static Color destCol = Color.ORANGE;
+    //Multi-simulation parameters.
+    public static int simulationsCounter = 0;
+    public static int simulationsMax = 0;
 
     private static double ZOOM_MAX = 1.6;
     private static double ZOOM_MIN = 1.0;
@@ -65,8 +68,6 @@ public class SimulationGUI {
 
     private BufferedImage mapImage;
     private MapPanel mapPanel;
-    private int width = 800;
-    private int height = 600;
 
     private LinkedList<Clue> localClues=new LinkedList<Clue>();
 
@@ -123,6 +124,9 @@ public class SimulationGUI {
         mapPanel.repaint();
     }
     private void simulationStart() throws NoGuiException {
+        window.playBtn.setEnabled(false);
+        window.pauseBtn.setEnabled(false);
+        window.stopBtn.setEnabled(false);
         process = new SimulationProcess(process);
         SimulationProgram.process = process;
         for(int i=0; i<SimulationProcess.catchersNumber; i++) {
@@ -146,10 +150,26 @@ public class SimulationGUI {
     }
     private void simulationStop() {
         process.simulationStop();
+        window.playBtn.setEnabled(true);
+        window.pauseBtn.setEnabled(true);
+        window.stopBtn.setEnabled(true);
     }
     public void simulationEnd() {
         window.simStartBtn.setVisible(true);
         window.simStopBtn.setVisible(false);
+        if(simulationsCounter < simulationsMax)
+        {
+            simulationsCounter++;
+            System.out.println("Symulacja nr: " + simulationsCounter);
+            try {
+                simulationStart();
+            } catch (NoGuiException e) {
+                e.printStackTrace();
+            }
+        }
+        window.playBtn.setEnabled(true);
+        window.pauseBtn.setEnabled(true);
+        window.stopBtn.setEnabled(true);
     }
     public void playingEnd() {
         window.playBtn.setVisible(true);
@@ -157,6 +177,12 @@ public class SimulationGUI {
     }
     public void showEndAlert() {
         JOptionPane.showMessageDialog(null, "Złapano Uciekiniera! Koniec symulacji...");
+    }
+    public void changeIterationCount(int iter) {
+        window.iterCounter.setText("Iteracja: "+iter);
+    }
+    public void iterationEnd(int iter) {
+        window.iterCounter.setText("Symulacja zakończona w "+iter+" iteracji.");
     }
     private class MainWindow extends JPanel implements ActionListener, ChangeListener {
         static final private String SIM_START = "sim_start";
@@ -176,6 +202,8 @@ public class SimulationGUI {
         private JButton simStopBtn;
         private JButton playBtn;
         private JButton pauseBtn;
+        private JButton stopBtn;
+        private JLabel iterCounter;
         public MainWindow() {
             super(new BorderLayout());
             JToolBar toolBar = new JToolBar("Simulation Options Panel");
@@ -277,6 +305,12 @@ public class SimulationGUI {
             spinner.addChangeListener(this);
             spinner.setName(LCP);
             toolBar.add(spinner);
+
+            toolBar.add(Box.createHorizontalGlue());
+
+            iterCounter = new JLabel();
+            iterCounter.setText("");
+            toolBar.add(iterCounter);
         }
         protected void addPlayButtons(JToolBar toolBar) {
             JButton button;
@@ -294,11 +328,11 @@ public class SimulationGUI {
             pauseBtn.setVisible(false);
             toolBar.add(pauseBtn);
 
-            button = new JButton();
-            button.addActionListener(this);
-            button.setActionCommand(STOP);
-            button.setText("STOP");
-            toolBar.add(button);
+            stopBtn = new JButton();
+            stopBtn.addActionListener(this);
+            stopBtn.setActionCommand(STOP);
+            stopBtn.setText("STOP");
+            toolBar.add(stopBtn);
 
             JSlider intervalSlider = new JSlider(JSlider.HORIZONTAL, SimulationPlayer.INTERVAL_MIN, SimulationPlayer.INTERVAL_MAX, SimulationPlayer.INTERVAL_INIT);
             intervalSlider.addChangeListener(this);

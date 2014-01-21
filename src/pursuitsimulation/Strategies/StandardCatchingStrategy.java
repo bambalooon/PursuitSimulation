@@ -41,32 +41,33 @@ public class StandardCatchingStrategy extends CatchingStrategy {
             c.setPath( pathFinder.getPath(c.getCurr(), clue.getCrossing()) );
         }
 
-        if(c.peekNextPathStep() == null) {
-            findCrossingInGraph(clue.getCrossing());
-            System.out.println(c + " next step: NULL");
-            System.out.println("curr: " + c.getCurr());
-            System.out.println("clue: " + clue.getCrossing());
+//        if(c.peekNextPathStep() == null) {
+//            findCrossingInGraph(clue.getCrossing());
+//            System.out.println(c + " next step: NULL");
+//            System.out.println("curr: " + c.getCurr());
+//            System.out.println("clue: " + clue.getCrossing());
+//        }
+
+        if(c.peekNextPathStep() == null)
+            return c.getNextPathStep();
+
+        /* if there's no particular Crossing we want to get to - choose way at random */
+        System.out.println(c + " is moving randomly...");
+
+        Crossing v = c.getCurr();
+        LinkedList<Vertex> nhood = v.getNeighbours();
+
+
+        if(nhood.size() < 2) {
+            return (Crossing) nhood.get(0);
         }
 
-        return c.getNextPathStep();
-
-//        /* if there's no particular Crossing we want to get to - choose way at random */
-//        System.out.println(c + " is moving randomly...");
-//
-//        Crossing v = c.getCurr();
-//        LinkedList<Vertex> nhood = v.getNeighbours();
-//
-//
-//        if(nhood.size() < 2) {
-//            return (Crossing) nhood.get(0);
-//        }
-//
-//        if(nhood.size() == 2 && c.getPrev() != null) {
-//            nhood.remove(c.getPrev());
-//            return (Crossing) nhood.get(0);
-//        }
-//        //return (Crossing) (nhood.get(nhood.size()>1?1:0));
-//        return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
+        if(nhood.size() == 2 && c.getPrev() != null) {
+            nhood.remove(c.getPrev());
+            return (Crossing) nhood.get(0);
+        }
+        //return (Crossing) (nhood.get(nhood.size()>1?1:0));
+        return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
     }
 
     private void findCrossingInGraph(Crossing c) {

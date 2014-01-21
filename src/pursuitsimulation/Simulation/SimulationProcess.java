@@ -200,7 +200,7 @@ public class SimulationProcess extends Thread {
 
     public void eyesOnTargetCheck(Catcher c) {
         try {
-            if(distanceToRunner(c) <= 5 && rand.nextDouble() < 0.1) {
+            if(distanceToRunner(c) <= 5 && rand.nextDouble() < 0.9) {
                 System.out.println(c + " has eyes on target!");
                 setClue( new Clue(
                         getTime(),

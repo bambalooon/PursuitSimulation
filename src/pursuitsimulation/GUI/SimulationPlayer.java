@@ -16,6 +16,8 @@ import java.util.*;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created with IntelliJ IDEA.
@@ -29,6 +31,8 @@ public class SimulationPlayer implements ActionListener {
     public static final int INTERVAL_MAX = 2000;
     public static final int INTERVAL_INIT = 500;
 
+    public static Lock lock = new ReentrantLock();
+
     private SimulationGUI gui;
     private SimulationProcess process;
 
@@ -38,9 +42,6 @@ public class SimulationPlayer implements ActionListener {
     private Iterator<Pair<Crossing,Crossing>> rIterator;
     private LinkedList< Iterator< Pair<Crossing,Crossing> > > cIterators;
     private Iterator<Clue> gcIterator; //globalClues
-
-    private Map<Catcher,BlockingQueue<Pair<Crossing,Crossing>>> cQueues = new HashMap<Catcher, BlockingQueue<Pair<Crossing, Crossing>>>();
-    private BlockingQueue<Pair<Crossing,Crossing>> rQueue=null;
 
     private Timer timer=null;
     private boolean initialized=false;
@@ -53,11 +54,6 @@ public class SimulationPlayer implements ActionListener {
         process = proc;
         runner = process.getRunner();
         catchers = process.getCatchers();
-        rQueue = new LinkedBlockingQueue<Pair<Crossing,Crossing>>();
-        for(Catcher c : catchers) {
-            BlockingQueue<Pair<Crossing, Crossing>> queue = new LinkedBlockingQueue<Pair<Crossing,Crossing>>();
-            cQueues.put(c, queue);
-        }
     }
 
     private void setSimulationTimer() {
@@ -78,6 +74,7 @@ public class SimulationPlayer implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
+        SimulationPlayer.lock.lock();
         if(!rIterator.hasNext()) {
             if(!process.isRunning()) {
                 stop();
@@ -89,16 +86,22 @@ public class SimulationPlayer implements ActionListener {
             gui.setRunnerCrossing(pair.getKey());
             gui.setRunnerDestination(pair.getValue());
         }
+        SimulationPlayer.lock.unlock();
+
         LinkedList<Crossing> c = new LinkedList<Crossing>();
         for(Iterator<Pair<Crossing,Crossing>> iter : cIterators) {
+            SimulationPlayer.lock.lock();
             if(iter.hasNext()) {
                 c.add(iter.next().getKey());
             }
+            SimulationPlayer.lock.unlock();
         }
+        SimulationPlayer.lock.lock();
         if(gcIterator.hasNext()) {
             Clue clue = gcIterator.next();
             gui.setGlobalClue(clue);
         }
+        SimulationPlayer.lock.unlock();
         gui.setCatchersCrossings(c);
         gui.showEditedMap();
     }

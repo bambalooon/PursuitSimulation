@@ -31,8 +31,6 @@ public class SimulationPlayer implements ActionListener {
     public static final int INTERVAL_MAX = 2000;
     public static final int INTERVAL_INIT = 500;
 
-    public static Lock lock = new ReentrantLock();
-
     private SimulationGUI gui;
     private SimulationProcess process;
 
@@ -74,7 +72,6 @@ public class SimulationPlayer implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        SimulationPlayer.lock.lock();
         if(!rIterator.hasNext()) {
             if(!process.isRunning()) {
                 stop();
@@ -86,22 +83,17 @@ public class SimulationPlayer implements ActionListener {
             gui.setRunnerCrossing(pair.getKey());
             gui.setRunnerDestination(pair.getValue());
         }
-        SimulationPlayer.lock.unlock();
 
         LinkedList<Crossing> c = new LinkedList<Crossing>();
         for(Iterator<Pair<Crossing,Crossing>> iter : cIterators) {
-            SimulationPlayer.lock.lock();
             if(iter.hasNext()) {
                 c.add(iter.next().getKey());
             }
-            SimulationPlayer.lock.unlock();
         }
-        SimulationPlayer.lock.lock();
         if(gcIterator.hasNext()) {
             Clue clue = gcIterator.next();
             gui.setGlobalClue(clue);
         }
-        SimulationPlayer.lock.unlock();
         gui.setCatchersCrossings(c);
         gui.showEditedMap();
     }

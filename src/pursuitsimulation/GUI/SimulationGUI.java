@@ -38,7 +38,7 @@ import java.util.Vector;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationGUI {
-    private static int runnerCircleDiameter = 18;
+    private static int runnerCircleDiameter = 15;
     private static int circleDiameter = 20;
     private static Color runnerCol = Color.RED;
     private static Color catcherCol = Color.BLUE;
@@ -525,7 +525,7 @@ public class SimulationGUI {
                     int y = (int) p.getY();
 
                     g2d.setPaint(SimulationGUI.catcherCol);
-                    Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.runnerCircleDiameter, SimulationGUI.runnerCircleDiameter);
+                    Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
                     g2d.fill(circle);
                 }
             }
@@ -536,7 +536,7 @@ public class SimulationGUI {
                 int y = (int) p.getY();
 
                 g2d.setPaint(SimulationGUI.runnerCol);
-                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.runnerCircleDiameter, SimulationGUI.runnerCircleDiameter);
                 g2d.fill(circle);
 
             }

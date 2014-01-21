@@ -141,11 +141,11 @@ public class SimulationProcess extends Thread {
                 }
             }
 
-            if(iterationCount > iterationsMax)
+            iterationCount++;
+            if(iterationCount >= iterationsMax)
             {
                endOnDemand();
             }
-            iterationCount++;
         }
     }
     public void saveResult()

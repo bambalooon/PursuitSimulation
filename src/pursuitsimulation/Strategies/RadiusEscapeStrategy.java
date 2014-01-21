@@ -122,6 +122,6 @@ public class RadiusEscapeStrategy extends RunningStrategy {
     private double getPresence(Crossing c1, Crossing c2) {
         double pres = c2.getVector().add( c1.getVector().negate() ).getLength();
 
-        return pres;
+        return pres * pres;
     }
 }

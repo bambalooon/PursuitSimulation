@@ -12,7 +12,6 @@ import java.util.ListIterator;
  */
 public class Catcher extends Person {
     private LinkedList<Catcher> team;
-    private LinkedList<Crossing> path = null;
 
     public Catcher(Crossing current, SimulationProcess process, String name) {
         super(current, process, name);
@@ -34,30 +33,5 @@ public class Catcher extends Person {
 
         while(it.hasNext())
             process.setClue(it.next());
-    }
-
-    public void setPath(LinkedList<Crossing> path) {
-        this.path = path;
-    }
-
-    public Crossing getNextPathStep() {
-        if(path == null)
-            return null;
-
-        return path.poll();
-    }
-
-    public Crossing peekNextPathStep() {
-        if(path == null)
-            return null;
-
-        return path.peekFirst();
-    }
-
-    public Crossing getDestination() {
-        if(path == null)
-            return null;
-
-        return path.peekLast();
     }
 }

@@ -39,7 +39,7 @@ public class PathFinder {
         CrossingStructure current = new CrossingStructure(start, null);
 
         current.setgScore(0).sethScore( heuristic.calculateHScore(start, end) );
-        current.setParentStep(0);
+        current.setParentStep(-1);
         addToOpen(current);
 
         while(!openList.isEmpty()) {
@@ -48,7 +48,7 @@ public class PathFinder {
             openList.remove(current);
             closedList.add(current);
 
-            if( current.getCrossing().equals( end ) || (limit > 0 && current.getParentStep() > limit) ) {
+            if( current.getCrossing().equals( end ) || (limit > 0 && current.getParentStep() == limit) ) {
                 return current;
             }
 

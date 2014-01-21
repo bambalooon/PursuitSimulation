@@ -1,5 +1,6 @@
 package pursuitsimulation.GUI;
 
+import javafx.util.Pair;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.People.Runner;
@@ -30,8 +31,8 @@ public class SimulationPlayer implements ActionListener {
     private Runner runner;
     private LinkedList<Catcher> catchers;
 
-    private Iterator<Crossing> rIterator;
-    private LinkedList<Iterator<Crossing>> cIterators;
+    private Iterator<Pair<Crossing,Crossing>> rIterator;
+    private LinkedList< Iterator< Pair<Crossing,Crossing> > > cIterators;
 
     private Timer timer=null;
     private boolean initialized=false;
@@ -52,7 +53,7 @@ public class SimulationPlayer implements ActionListener {
             timer.stop();
         }
         rIterator = runner.getRoute().iterator();
-        cIterators = new LinkedList<Iterator<Crossing>>();
+        cIterators = new LinkedList< Iterator< Pair<Crossing,Crossing> > >();
         for(Catcher c : catchers) {
             cIterators.add(c.getRoute().iterator());
         }
@@ -67,13 +68,13 @@ public class SimulationPlayer implements ActionListener {
             return;
         }
         if(rIterator.hasNext()) {
-            Crossing c = rIterator.next();
+            Crossing c = rIterator.next().getKey();
             gui.setRunnerCrossing(c);
         }
         LinkedList<Crossing> c = new LinkedList<Crossing>();
-        for(Iterator<Crossing> iter : cIterators) {
+        for(Iterator<Pair<Crossing,Crossing>> iter : cIterators) {
             if(iter.hasNext()) {
-                c.add(iter.next());
+                c.add(iter.next().getKey());
             }
         }
         gui.setCatchersCrossings(c);

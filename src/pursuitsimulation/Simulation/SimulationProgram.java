@@ -24,6 +24,7 @@ public class SimulationProgram {
     public static Random randomGenerator = new Random();
     private static final String mainPath = "C:\\end\\PursuitSimulation\\src\\files\\";
 
+
     private SimulationGUI gui = null;
     private XmlParser parser;
 
@@ -66,7 +67,7 @@ public class SimulationProgram {
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, IOException  {
         final SimulationProgram program = new SimulationProgram();
-        program.setXmlFile(mainPath + "ny.osm"); //map.osm
+        program.setXmlFile(mainPath + "ny2.osm"); //map.osm
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

@@ -27,7 +27,6 @@ public class Person {
     private LinkedList<Crossing> path = null;
     protected Crossing prev, curr, next;
     protected LinkedList< Pair<Crossing, Crossing> > route;
-    protected Lock lock = new ReentrantLock();
     protected Position pos;
     protected int waiting = 0; //0 = not, else num of iteration
     protected String name;
@@ -39,12 +38,9 @@ public class Person {
         curr = current;
         next = null;
         pos = current.getPos();
-//        route = new LinkedList<Crossing>();
         //Key = Current, Value = Destination
         route = new LinkedList< Pair<Crossing, Crossing> >();
-        SimulationPlayer.lock.lock();
         route.add( new Pair(curr, getDestination()) );
-        SimulationPlayer.lock.unlock();
     }
     public void getDestination(Strategy s) {
         next = s.getDestination(this);
@@ -54,9 +50,7 @@ public class Person {
         curr = next;
         next = null;
         pos = curr.getPos();
-        SimulationPlayer.lock.lock();
         route.add( new Pair(curr, getDestination()) );
-        SimulationPlayer.lock.unlock();
     }
     protected void wait(int timestamp) {}
     public Vector getVector() { return new Vector(pos.getX(), pos.getY()); }

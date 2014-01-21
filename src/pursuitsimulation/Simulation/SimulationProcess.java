@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Created with IntelliJ IDEA.
@@ -68,6 +69,7 @@ public class SimulationProcess extends Thread {
     //util
     private Time time = new Time();
     private long startTime;
+    private Random rand = new Random();
 
     SimulationProcess() {
         graph = new SimulationGraph();
@@ -160,6 +162,16 @@ public class SimulationProcess extends Thread {
         }
 
     }
+    public void endOnDemand() {
+        pursuitEnd();
+        simulationStop();
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                simulationGUI.simulationEnd();
+            }
+        });
+
+    }
     public void simulationStart() throws NoGuiException {
         if(simulationGUI==null) throw new NoGuiException();
             running = true;
@@ -175,7 +187,7 @@ public class SimulationProcess extends Thread {
 
     public void eyesOnTargetCheck(Catcher c) {
         try {
-            if(distanceToRunner(c) <= 5) {
+            if(distanceToRunner(c) <= 5 && rand.nextDouble() < 0.1) {
                 System.out.println(c + " has eyes on target!");
                 setClue( new Clue(
                         getTime(),
@@ -200,16 +212,7 @@ public class SimulationProcess extends Thread {
             });
         }
     }
-    public void endOnDemand() {
-            pursuitEnd();
-            simulationStop();
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    simulationGUI.simulationEnd();
-                }
-            });
 
-    }
 
     public Boolean caughtRunner(Catcher c) {
         return c.getCurr().equals(runner.getCurr());

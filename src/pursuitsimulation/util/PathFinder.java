@@ -4,6 +4,9 @@ import pursuitsimulation.Crossing;
 import pursuitsimulation.Vertex;
 import pursuitsimulation.util.Heuristic.Heuristic;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.*;
 
 /**
@@ -23,21 +26,20 @@ public class PathFinder {
     }
 
     public LinkedList<Crossing> getPath(Crossing start, Crossing end) {
-        return reconstructPath( findPath(start, end) );
+        return reconstructPath( findPath(start, end, -1) );
     }
 
     public int getDistance(Crossing start, Crossing end) throws Exception {
-        return pathLength( findPath(start, end) );
+        return pathLength( findPath(start, end, -1) );
     }
 
-    public CrossingStructure findPath(Crossing start, Crossing end) {
-//        System.out.println("Searching for path!!");
-
+    public CrossingStructure findPath(Crossing start, Crossing end, int limit) {
         closedList = new ArrayList<CrossingStructure>();
         openList = new ArrayList<CrossingStructure>();
         CrossingStructure current = new CrossingStructure(start, null);
 
         current.setgScore(0).sethScore( heuristic.calculateHScore(start, end) );
+        current.setParentStep(0);
         addToOpen(current);
 
         while(!openList.isEmpty()) {
@@ -46,7 +48,7 @@ public class PathFinder {
             openList.remove(current);
             closedList.add(current);
 
-            if( current.getCrossing().equals( end ) ) {
+            if( current.getCrossing().equals( end ) || (limit > 0 && current.getParentStep() > limit) ) {
                 return current;
             }
 
@@ -64,18 +66,19 @@ public class PathFinder {
                     neighbour.setgScore( gScore );
                     neighbour.sethScore( neighbour.getCrossing().calcualteDistance(end) );
                     neighbour.setParent( current.getCrossing() );
+                    neighbour.setParentStep( current.getParentStep() + 1 );
 
-                    addToOpen( neighbour );
+                    addToOpen(neighbour);
                 } else if( gScore < found.getgScore() ) {
                     found.setParent( current.getCrossing() );
                     found.setgScore( gScore );
+                    found.setParentStep( current.getParentStep() + 1 );
 
                     Collections.sort(openList);
                 }
             }
         }
 
-//        System.out.println("Path not found!!!!!");
         return null;
     }
 
@@ -83,7 +86,7 @@ public class PathFinder {
         Map<Long, Crossing> component = new HashMap<Long, Crossing>();
         Crossing tmp;
 
-        findPath(c, new Crossing(0, new Position(0,0)));
+        findPath(c, new Crossing(0, new Position(0,0)), -1);
 
         for(CrossingStructure cs : closedList) {
             tmp = cs.getCrossing();
@@ -91,6 +94,18 @@ public class PathFinder {
         }
 
         return component;
+    }
+
+    public LinkedList<Crossing> getSurrounding(Crossing c, int limit) {
+        LinkedList<Crossing> surrounding = new LinkedList<Crossing>();
+
+        findPath(c, new Crossing(0, new Position(0,0)), limit);
+
+        for(CrossingStructure cs : closedList) {
+            surrounding.add(cs.getCrossing());
+        }
+
+        return surrounding;
     }
 
     public int pathLength(CrossingStructure crossing) throws Exception { //when path has not been found

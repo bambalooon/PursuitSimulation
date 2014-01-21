@@ -493,7 +493,7 @@ public class SimulationGUI {
                     int y = (int) p.getY();
 
                     g2d.setPaint(SimulationGUI.localClueCol);
-                    Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
+                    Ellipse2D.Double circle = new Ellipse2D.Double(x-circleDiameter/2, y-circleDiameter/2, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
                     g2d.fill(circle);
                 }
             }
@@ -504,7 +504,7 @@ public class SimulationGUI {
                 int y = (int) p.getY();
 
                 g2d.setPaint(SimulationGUI.destCol);
-                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x-circleDiameter/2, y-circleDiameter/2, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
                 g2d.fill(circle);
             }
             if(globalClue!=null) {
@@ -514,7 +514,7 @@ public class SimulationGUI {
                 int y = (int) p.getY();
 
                 g2d.setPaint(SimulationGUI.globalClueCol);
-                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x-circleDiameter/2, y-circleDiameter/2, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
                 g2d.fill(circle);
             }
             if(catchersCrossings!=null) {
@@ -525,7 +525,7 @@ public class SimulationGUI {
                     int y = (int) p.getY();
 
                     g2d.setPaint(SimulationGUI.catcherCol);
-                    Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
+                    Ellipse2D.Double circle = new Ellipse2D.Double(x-circleDiameter/2, y-circleDiameter/2, SimulationGUI.circleDiameter, SimulationGUI.circleDiameter);
                     g2d.fill(circle);
                 }
             }
@@ -536,7 +536,7 @@ public class SimulationGUI {
                 int y = (int) p.getY();
 
                 g2d.setPaint(SimulationGUI.runnerCol);
-                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.runnerCircleDiameter, SimulationGUI.runnerCircleDiameter);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x-runnerCircleDiameter/2, y-runnerCircleDiameter/2, SimulationGUI.runnerCircleDiameter, SimulationGUI.runnerCircleDiameter);
                 g2d.fill(circle);
 
             }

@@ -92,7 +92,8 @@ public class RadiusEscapeStrategy extends RunningStrategy {
 
     public LinkedList<Catcher> getCatchersInRadius(Runner r) {
         LinkedList<Catcher> catchers = new LinkedList<Catcher>();
-        double radius = avgDistance;
+        double radiusStep = 25*avgDistance;
+        double radius = 2*radiusStep;
 
         while( catchers.isEmpty() ) {
             for(Catcher c : process.getCatchers()) {
@@ -100,7 +101,7 @@ public class RadiusEscapeStrategy extends RunningStrategy {
                     catchers.add(c);
             }
 
-            radius += avgDistance/2;
+            radius += radiusStep;
         }
 
         return catchers;

@@ -45,6 +45,9 @@ public class SimulationGUI {
     private static Color localClueCol = new Color(70, 70, 70, 90);
     private static Color globalClueCol = new Color(255, 0, 0, 90);
     private static Color destCol = Color.ORANGE;
+    //Multi-simulation parameters.
+    public static int simulationsCounter = 0;
+    public static int simulationsMax = 0;
 
     private static double ZOOM_MAX = 1.6;
     private static double ZOOM_MIN = 1.0;
@@ -150,6 +153,16 @@ public class SimulationGUI {
     public void simulationEnd() {
         window.simStartBtn.setVisible(true);
         window.simStopBtn.setVisible(false);
+        if(simulationsCounter < simulationsMax)
+        {
+            simulationsCounter++;
+            System.out.println("Symulacja nr: " + simulationsCounter);
+            try {
+                simulationStart();
+            } catch (NoGuiException e) {
+                e.printStackTrace();
+            }
+        }
     }
     public void playingEnd() {
         window.playBtn.setVisible(true);

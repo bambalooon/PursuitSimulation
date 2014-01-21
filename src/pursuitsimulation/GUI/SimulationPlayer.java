@@ -68,8 +68,9 @@ public class SimulationPlayer implements ActionListener {
             return;
         }
         if(rIterator.hasNext()) {
-            Crossing c = rIterator.next().getKey();
-            gui.setRunnerCrossing(c);
+            Pair<Crossing, Crossing> pair = rIterator.next();
+            gui.setRunnerCrossing(pair.getKey());
+            gui.setRunnerDestination(pair.getValue());
         }
         LinkedList<Crossing> c = new LinkedList<Crossing>();
         for(Iterator<Pair<Crossing,Crossing>> iter : cIterators) {

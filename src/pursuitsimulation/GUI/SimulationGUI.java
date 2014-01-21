@@ -38,11 +38,12 @@ import java.util.Vector;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationGUI {
-    private static int personCircleDiameter = 15;
+    private static int personCircleDiameter = 20;
     private static Color runnerCol = Color.RED;
     private static Color catcherCol = Color.BLUE;
     private static Color outerCol = Color.BLACK;
-    private static Color clueCol = new Color(70, 70, 70, 80);
+    private static Color clueCol = new Color(70, 70, 70, 90);
+    private static Color destCol = Color.YELLOW;
 
     private static int globalClueAlpha = 50;
     private static int localClueAlpha = 20;
@@ -100,8 +101,11 @@ public class SimulationGUI {
         Clue cl = c.look().getFreshClue();
         if((cl!=null) && !localClues.contains(cl)) {
             localClues.add(cl);
-            System.out.println("Clue added "+cl+" Crossing:"+cl.getDestination());
         }
+    }
+    public void setRunnerDestination(Crossing c) {
+        mapPanel.runnerDestination = c;
+        System.out.println("Runner dest: "+c);
     }
     public void setULpos(Position pos) {
         SimulationGUI.pos = pos;
@@ -449,6 +453,7 @@ public class SimulationGUI {
 
         private LinkedList<Crossing> catchersCrossings;
         private Crossing runnerCrossing;
+        private Crossing runnerDestination;
 
         public MapPanel(BufferedImage img) {
             image = img;
@@ -499,6 +504,16 @@ public class SimulationGUI {
                 Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
                 g2d.fill(circle);
 
+            }
+            if(runnerDestination!=null) {
+                Position p = runnerDestination.getPos();
+                p = convert(p);
+                int x = (int) p.getX();
+                int y = (int) p.getY();
+
+                g2d.setPaint(SimulationGUI.destCol);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
+                g2d.fill(circle);
             }
             if(process.getClue()!=null) {
                 Position p = process.getClue().getDestination().getPos();

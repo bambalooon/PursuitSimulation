@@ -26,6 +26,7 @@ public class SimulationGraph implements Graph {
     public Map<Long, Crossing> getVertexes() {return vertexes; }
     public void setGraph(Map<Long,Crossing> graph){
         vertexes = eliminateIslands(graph);
+        System.out.println("Graph size: " + vertexes.size());
         double minX=-70.0, minY=42.0, maxX=-75.0, maxY=38.0;
 
         for(Crossing c : vertexes.values()) {

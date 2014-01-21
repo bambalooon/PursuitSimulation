@@ -8,6 +8,8 @@ import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.Simulation.SimulationProgram;
 import pursuitsimulation.Strategies.RunningStrategy;
 import pursuitsimulation.Vertex;
+import pursuitsimulation.util.Heuristic.CrowsDistanceHeuristic;
+import pursuitsimulation.util.PathFinder;
 import pursuitsimulation.util.Vector;
 
 import java.util.LinkedList;
@@ -22,11 +24,21 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class StandardRunningStrategy extends RunningStrategy {
+    PathFinder pathFinder;
+
     public StandardRunningStrategy(SimulationProcess process) {
         super(process);
+        pathFinder = new PathFinder( new CrowsDistanceHeuristic());
     }
     public Crossing getDestination(Person p) {
         Runner r = (Runner) p;
+
+        if( r.peekNextPathStep() == null ) {
+            r.setPath( pathFinder.getPath(r.getCurr(), process.getGraph().getRandomVertex()) );
+        }
+
+        if(r.peekNextPathStep() != null)
+            return r.getNextPathStep();
 
         Crossing v = r.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();

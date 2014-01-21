@@ -22,6 +22,7 @@ import java.util.Map;
  */
 public class DistanceRunningStrategy extends RunningStrategy {
     private PathFinder pathFinder;
+    private int stepCounter = 0;
 
     public DistanceRunningStrategy(SimulationProcess process) {
         super(process);
@@ -30,7 +31,8 @@ public class DistanceRunningStrategy extends RunningStrategy {
     public Crossing getDestination(Person p) {
         Runner r = (Runner) p;
 
-        r.setPath( findEscapePath( r ) );
+        if(stepCounter++ % 5 == 0)
+            r.setPath( findEscapePath( r ) );
 
         if(r.peekNextPathStep() != null) {
             return r.getNextPathStep();

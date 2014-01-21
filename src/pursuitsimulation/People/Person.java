@@ -1,5 +1,6 @@
 package pursuitsimulation.People;
 
+import javafx.util.Pair;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Position;
@@ -17,8 +18,10 @@ import java.util.LinkedList;
  */
 public class Person {
     protected SimulationProcess process;
+    private LinkedList<Crossing> path = null;
     protected Crossing prev, curr, next;
-    protected LinkedList<Crossing> route;
+//    protected LinkedList<Crossing> route;
+    protected LinkedList< Pair<Crossing, Crossing> > route;
     protected Position pos;
     protected int waiting = 0; //0 = not, else num of iteration
     protected String name;
@@ -30,8 +33,10 @@ public class Person {
         curr = current;
         next = null;
         pos = current.getPos();
-        route = new LinkedList<Crossing>();
-        route.add(curr);
+//        route = new LinkedList<Crossing>();
+        //Key = Current, Value = Destination
+        route = new LinkedList< Pair<Crossing, Crossing> >();
+        route.add( new Pair(curr, getDestination()) );
     }
     public void getDestination(Strategy s) {
         next = s.getDestination(this);
@@ -41,7 +46,7 @@ public class Person {
         curr = next;
         next = null;
         pos = curr.getPos();
-        route.add(curr);
+        route.add( new Pair(curr, getDestination()) );
     }
     protected void wait(int timestamp) {}
     public Vector getVector() { return new Vector(pos.getX(), pos.getY()); }
@@ -58,7 +63,32 @@ public class Person {
         return next;
     }
     public String toString() { return name; }
-    public LinkedList<Crossing> getRoute() {
+    public LinkedList<Pair<Crossing,Crossing>> getRoute() {
         return route;
+    }
+
+    public void setPath(LinkedList<Crossing> path) {
+        this.path = path;
+    }
+
+    public Crossing getNextPathStep() {
+        if(path == null)
+            return null;
+
+        return path.poll();
+    }
+
+    public Crossing peekNextPathStep() {
+        if(path == null)
+            return null;
+
+        return path.peekFirst();
+    }
+
+    public Crossing getDestination() {
+        if(path == null)
+            return null;
+
+        return path.peekLast();
     }
 }

@@ -18,7 +18,6 @@ public class Runner extends Person {
     public static double lcp = SimulationProcess.LCP_INIT;
     public static double gcp = SimulationProcess.GCP_INIT;
     private LinkedList<Runner> team;
-    private LinkedList<Crossing> path = null;
     private Random rand = new Random();
 
     public static void changeLCP(double nLCP) {
@@ -50,30 +49,5 @@ public class Runner extends Person {
                     this
             ));
         }
-    }
-
-    public void setPath(LinkedList<Crossing> path) {
-        this.path = path;
-    }
-
-    public Crossing getNextPathStep() {
-        if(path == null)
-            return null;
-
-        return path.poll();
-    }
-
-    public Crossing peekNextPathStep() {
-        if(path == null)
-            return null;
-
-        return path.peekFirst();
-    }
-
-    public Crossing getDestination() {
-        if(path == null)
-            return null;
-
-        return path.peekLast();
     }
 }

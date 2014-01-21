@@ -41,12 +41,12 @@ public class StandardCatchingStrategy extends CatchingStrategy {
             c.setPath( pathFinder.getPath(c.getCurr(), clue.getCrossing()) );
         }
 
-        if(c.peekNextPathStep() == null) {
-            findCrossingInGraph(clue.getCrossing());
-            System.out.println(c + " next step: NULL");
-            System.out.println("curr: " + c.getCurr());
-            System.out.println("clue: " + clue.getCrossing());
-        }
+//        if(c.peekNextPathStep() == null) {
+//            findCrossingInGraph(clue.getCrossing());
+//            System.out.println(c + " next step: NULL");
+//            System.out.println("curr: " + c.getCurr());
+//            System.out.println("clue: " + clue.getCrossing());
+//        }
 
         if(c.peekNextPathStep() != null)
             return c.getNextPathStep();

@@ -18,7 +18,7 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class Crossing extends Vertex {
-    private ClueList clues = new ClueList();
+    private Clue clue = null;
     private Random rand = new Random();
     //-------------------------------------------------------------------------------
     public Crossing(long ID, Position pos) {
@@ -36,9 +36,9 @@ public class Crossing extends Vertex {
     }
 
     //get
-    public ClueList look() { return clues; }
+    public Clue getClue() { return clue; }
     //set
-    public void leaveTrace(Clue c) { clues.add(c); }
+    public void leaveTrace(Clue c) { clue = c; }
 
     public long getId() { return ID; }
 
@@ -47,10 +47,6 @@ public class Crossing extends Vertex {
             return false;
 
         return ID == crossing.getId();
-    }
-
-    public Crossing cloneForClue() {
-        return new Crossing(ID, pos);
     }
 }
 

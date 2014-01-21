@@ -97,7 +97,7 @@ public class SimulationGUI {
     }
     public void setRunnerCrossing(Crossing c) {
         mapPanel.runnerCrossing = c;
-        Clue cl = c.look().getFreshClue();
+        Clue cl = c.getClue();
         if((cl!=null) && !localClues.contains(cl)) {
             localClues.add(cl);
         }

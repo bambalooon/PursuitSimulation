@@ -12,6 +12,7 @@ import pursuitsimulation.util.Heuristic.CrowsDistanceHeuristic;
 import pursuitsimulation.util.PathFinder;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,11 +33,19 @@ public class StandardCatchingStrategy extends CatchingStrategy {
         Catcher c = (Catcher) p;
         Clue clue = process.getClue();
 
-        if( clue == null || c.peekNextPathStep() == null ) {
+        if( clue == null && c.peekNextPathStep() == null ) {
             System.out.println(c + " is going to random Crossing...");
             c.setPath( pathFinder.getPath(c.getCurr(), process.getGraph().getRandomVertex()) );
-        } else if( !clue.getCrossing().equals( c.getDestination() ) ) {
+        } else if( clue != null && !clue.getCrossing().equals( c.getDestination() ) ) {
+            System.out.println(c + " is going to clue");
             c.setPath( pathFinder.getPath(c.getCurr(), clue.getCrossing()) );
+        }
+
+        if(c.peekNextPathStep() == null) {
+            findCrossingInGraph(clue.getCrossing());
+            System.out.println(c + " next step: NULL");
+            System.out.println("curr: " + c.getCurr());
+            System.out.println("clue: " + clue.getCrossing());
         }
 
         return c.getNextPathStep();
@@ -58,5 +67,16 @@ public class StandardCatchingStrategy extends CatchingStrategy {
 //        }
 //        //return (Crossing) (nhood.get(nhood.size()>1?1:0));
 //        return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
+    }
+
+    private void findCrossingInGraph(Crossing c) {
+        for(Map.Entry<Long, Crossing> e : process.getGraph().getVertexes().entrySet()) {
+            if(e.getValue().equals( c )) {
+                System.out.println("Found Crossing in graph");
+                return;
+            }
+        }
+
+        System.out.println("Crossing not found in graph");
     }
 }

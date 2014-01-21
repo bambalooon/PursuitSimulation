@@ -131,10 +131,11 @@ public class PathFinder {
         LinkedList<Crossing> path = new LinkedList<Crossing>();
 
         CrossingStructure current = crossing;
+        path.add(0, current.getCrossing());
 
         while( current.getParent() != null ) {
-            path.add(0, current.getCrossing());
             current = findInList(closedList, current.getParent());
+            path.add(0, current.getCrossing());
         }
 
         return path;

@@ -20,19 +20,20 @@ public class Catcher extends Person {
 
     synchronized public void move() {
         super.move();
+        gatherClues();
 
         Clue clue = process.getClue();
+
         if( clue != null && getCurr().equals( clue.getCrossing() ) ) {
             process.clearClue();
         }
-
-        gatherClues();
     }
 
     public void gatherClues() {
-        ListIterator<Clue> it = curr.look().listIterator();
+        Clue clue = curr.getClue();
 
-        while(it.hasNext())
-            process.setClue(it.next());
+        if( clue != null ) {
+            process.setClue( clue );
+        }
     }
 }

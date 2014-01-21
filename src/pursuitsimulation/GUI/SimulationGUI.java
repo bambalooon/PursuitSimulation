@@ -551,17 +551,19 @@ public class SimulationGUI {
             imgY += moveY;
             int pw = (int) Math.round(window.mainPanel.getWidth()*zoom);
             int ph = (int) Math.round(window.mainPanel.getHeight()*zoom);
-            int iw = editedImage.getWidth();
-            int ih = editedImage.getHeight();
+            int iw = editedImage.getWidth()+50;
+            int ih = editedImage.getHeight()+50;
+            int leftOffset = -50;
+            int topOffset = -50;
             if( (imgX+pw) > iw) {
                 imgX = iw-pw;
-            } else if(imgX<0) {
-                imgX = 0;
+            } else if(imgX<leftOffset) {
+                imgX = leftOffset;
             }
             if( (imgY+ph) > ih) {
                 imgY = ih-ph;
-            } else if(imgY<0) {
-                imgY = 0;
+            } else if(imgY<topOffset) {
+                imgY = topOffset;
             }
             repaint();
         }

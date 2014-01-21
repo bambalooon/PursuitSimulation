@@ -2,6 +2,7 @@ package pursuitsimulation.People;
 
 import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
+import pursuitsimulation.GUI.SimulationPlayer;
 import pursuitsimulation.Simulation.SimulationProcess;
 
 import java.util.LinkedList;
@@ -49,7 +50,9 @@ public class Runner extends Person {
                     this.getCurr()
             ));
         }
+        SimulationPlayer.lock.lock();
         globalClues.add(process.getClue());
+        SimulationPlayer.lock.unlock();
     }
     public LinkedList<Clue> getGlobalClues() {
         return globalClues;

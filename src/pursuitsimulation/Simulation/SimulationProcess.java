@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class SimulationProcess extends Thread {
     public static final int MIN_CATCHERS = 1;
     public static final int MAX_CATCHERS = 50;
-    public static final int INIT_CATCHERS = 10;
+    public static final int INIT_CATCHERS = 3;
     public static final int STEP_CATCHERS = 1;
     public static int catchersNumber = INIT_CATCHERS;
 
@@ -41,10 +41,10 @@ public class SimulationProcess extends Thread {
     public static final double LCP_STEP=0.01;
 
     //Global Clue Probability
-    public static final double GCP_MIN=0.01;
+    public static final double GCP_MIN=0.001;
     public static final double GCP_MAX=1.0;
-    public static final double GCP_INIT=0.1;
-    public static final double GCP_STEP=0.01;
+    public static final double GCP_INIT=0.01;
+    public static final double GCP_STEP=0.001;
 
 
 

@@ -143,7 +143,6 @@ public class SimulationProcess extends Thread {
                endOnDemand();
             }
         }
-        simulationGUI.iterationEnd(iterationCount);
     }
     public void saveResult()
     {
@@ -187,6 +186,7 @@ public class SimulationProcess extends Thread {
 
     private void pursuitEnd() {
         System.out.println("Pościg trwał " + iterationCount + " iteracji.");
+        simulationGUI.iterationEnd(iterationCount);
         saveResult();
     }
 

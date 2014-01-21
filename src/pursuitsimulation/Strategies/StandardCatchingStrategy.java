@@ -46,6 +46,7 @@ public class StandardCatchingStrategy extends CatchingStrategy {
         }
 
         /* if there's no particular Crossing we want to get to - choose way at random */
+        System.out.println(c + " is moving randomly...");
 
         Crossing v = c.getCurr();
         LinkedList<Vertex> nhood = v.getNeighbours();

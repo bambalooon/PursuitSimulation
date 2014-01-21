@@ -115,9 +115,10 @@ public class SimulationProcess extends Thread {
     public void clearClue() { clue = null; }
 
     public void run() {
-        iterationCount=0;
+        iterationCount=1;
         while(running) {
             System.out.println("Iteracja #" + iterationCount);
+            simulationGUI.changeIterationCount(iterationCount);
             time.move();
 
             runner.getDestination(rStrategy);
@@ -139,6 +140,7 @@ public class SimulationProcess extends Thread {
                endOnDemand();
             }
         }
+        simulationGUI.iterationEnd(iterationCount);
     }
     public void saveResult()
     {

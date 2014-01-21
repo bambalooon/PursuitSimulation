@@ -21,7 +21,9 @@ import java.util.Map;
  */
 public class RadiusEscapeStrategy extends RunningStrategy {
     private final static double avgDistance = 0.000868727; //averade distance between 2 Crossings
+    private final static double radiusStep = 10*avgDistance;
 
+    private int stepCounter = 0;
     private PathFinder pathFinder;
 
     public RadiusEscapeStrategy(SimulationProcess process) {
@@ -33,7 +35,8 @@ public class RadiusEscapeStrategy extends RunningStrategy {
     public Crossing getDestination(Person p) {
         Runner r = (Runner) p;
 
-        r.setPath( findEscapePath( r ) );
+        if(stepCounter++ % 5 == 0)
+            r.setPath( findEscapePath( r ) );
 
         if(r.peekNextPathStep() != null) {
             return r.getNextPathStep();
@@ -92,8 +95,7 @@ public class RadiusEscapeStrategy extends RunningStrategy {
 
     public LinkedList<Catcher> getCatchersInRadius(Runner r) {
         LinkedList<Catcher> catchers = new LinkedList<Catcher>();
-        double radiusStep = 25*avgDistance;
-        double radius = 2*radiusStep;
+        double radius = radiusStep;
 
         while( catchers.isEmpty() ) {
             for(Catcher c : process.getCatchers()) {
@@ -103,7 +105,7 @@ public class RadiusEscapeStrategy extends RunningStrategy {
 
             radius += radiusStep;
         }
-
+        System.out.println("Found " + catchers.size() + " catchers in radius");
         return catchers;
     }
 

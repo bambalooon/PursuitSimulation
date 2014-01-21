@@ -78,8 +78,10 @@ public class PathFinder {
                 }
             }
         }
-        if(limit==-1)
-            System.out.println("path not found");
+
+        if(limit == -1)
+            System.out.println("Path not found!");
+
         return null;
     }
 

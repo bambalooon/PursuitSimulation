@@ -32,35 +32,31 @@ public class StandardCatchingStrategy extends CatchingStrategy {
         Catcher c = (Catcher) p;
         Clue clue = process.getClue();
 
-        if( clue == null ) {
-            if(c.peekNextPathStep() == null) {
-                System.out.println(c + " is going to random Crossing...");
-                c.setPath( pathFinder.getPath(c.getCurr(), process.getGraph().getRandomVertex()) );
-            }
+        if( clue == null || c.peekNextPathStep() == null ) {
+            System.out.println(c + " is going to random Crossing...");
+            c.setPath( pathFinder.getPath(c.getCurr(), process.getGraph().getRandomVertex()) );
         } else if( !clue.getCrossing().equals( c.getDestination() ) ) {
             c.setPath( pathFinder.getPath(c.getCurr(), clue.getCrossing()) );
         }
 
-        if(c.peekNextPathStep() != null) {
-            return c.getNextPathStep();
-        }
+        return c.getNextPathStep();
 
-        /* if there's no particular Crossing we want to get to - choose way at random */
-        System.out.println(c + " is moving randomly...");
-
-        Crossing v = c.getCurr();
-        LinkedList<Vertex> nhood = v.getNeighbours();
-
-
-        if(nhood.size() < 2) {
-            return (Crossing) nhood.get(0);
-        }
-
-        if(nhood.size() == 2 && c.getPrev() != null) {
-            nhood.remove(c.getPrev());
-            return (Crossing) nhood.get(0);
-        }
-        //return (Crossing) (nhood.get(nhood.size()>1?1:0));
-        return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
+//        /* if there's no particular Crossing we want to get to - choose way at random */
+//        System.out.println(c + " is moving randomly...");
+//
+//        Crossing v = c.getCurr();
+//        LinkedList<Vertex> nhood = v.getNeighbours();
+//
+//
+//        if(nhood.size() < 2) {
+//            return (Crossing) nhood.get(0);
+//        }
+//
+//        if(nhood.size() == 2 && c.getPrev() != null) {
+//            nhood.remove(c.getPrev());
+//            return (Crossing) nhood.get(0);
+//        }
+//        //return (Crossing) (nhood.get(nhood.size()>1?1:0));
+//        return (Crossing) (nhood.get(SimulationProgram.randomGenerator.nextInt(nhood.size() - 1)));
     }
 }

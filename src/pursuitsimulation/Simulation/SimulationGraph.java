@@ -25,8 +25,6 @@ public class SimulationGraph implements Graph {
     }
     public Map<Long, Crossing> getVertexes() {return vertexes; }
     public void setGraph(Map<Long,Crossing> graph){
-
-
         vertexes = eliminateIslands(graph);
     }
     public Crossing getRandomVertex() {

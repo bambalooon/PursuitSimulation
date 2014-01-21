@@ -54,6 +54,7 @@ public class SimulationProcess extends Thread {
     private Map<Catcher, CatchingStrategy> cStrategies = new HashMap<Catcher, CatchingStrategy>();
     private RunningStrategy rStrategy=null;
     private Clue clue = null;
+    private int clueTimestamp = 0;
 
     private PathFinder pathFinder = new PathFinder(new CrowsDistanceHeuristic());
 
@@ -96,8 +97,9 @@ public class SimulationProcess extends Thread {
     }
     public Clue getClue() { return clue; }
     public Boolean setClue(Clue clue) {
-        if( this.clue == null || clue.getTime().getTimeStamp() > this.clue.getTime().getTimeStamp() ) {
+        if( this.clue == null || clue.getTime().getTimeStamp() > this.clueTimestamp ) {
             this.clue = clue;
+            clueTimestamp = clue.getTime().getTimeStamp();
             return true;
         }
 
@@ -130,14 +132,13 @@ public class SimulationProcess extends Thread {
     public void simulationStart() throws NoGuiException {
         if(simulationGUI==null) throw new NoGuiException();
             running = true;
-//        startTime = System.nanoTime();
     }
     public void simulationStop() {
         running = false;
     }
 
     private void pursuitEnd() {
-        System.out.println("Pościg trwał "+iterationCount+" iteracji.");
+        System.out.println("Pościg trwał " + iterationCount + " iteracji.");
     }
 
     public void eyesOnTargetCheck(Catcher c) {

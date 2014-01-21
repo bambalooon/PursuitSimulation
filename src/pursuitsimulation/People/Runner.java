@@ -46,7 +46,7 @@ public class Runner extends Person {
             System.out.println(this + " has been reported");
             process.setClue(new Clue(
                     process.getTime(),
-                    this.getCurr().cloneForClue()
+                    this.getCurr()
             ));
         }
         globalClues.add(process.getClue());

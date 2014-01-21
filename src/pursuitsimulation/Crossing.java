@@ -30,7 +30,7 @@ public class Crossing extends Vertex {
             System.out.println("Left clue on Crossing");
             leaveTrace(new Clue(
                 time,
-                person.getCurr().cloneForClue()
+                person.getCurr()
             ));
         }
     }

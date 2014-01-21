@@ -13,35 +13,26 @@ import pursuitsimulation.util.Time;
 public class
         Clue implements Comparable<Clue> {
     Time time;
-    Crossing currentLocation;
-    Crossing destination;
-    Person person;
+    Crossing crossing;
 
 
-    public Clue(Time t, Crossing current, Crossing next, Person p) {
+    public Clue(Time t, Crossing crossing) {
         time = t;
-        currentLocation = current;
-        destination = next;
-        person = p;
+        this.crossing = crossing;
     }
 
-    public Person getPerson() {
-        return person;
-    }
-
-    public Crossing getDestination() { return destination; }
-    public Crossing getCurrent() { return currentLocation; }
+    public Crossing getCrossing() { return crossing; }
 
     public Time getTime() {
         return time;
     }
 
     public String toString() {
-        return new String("Jest w:" + currentLocation.getID() + "; Idzie do: " + destination.getID());
+        return new String("Runner is going to: " + crossing);
     }
 
     public Boolean equals(Clue c) {
-        if(c.time == time && c.currentLocation == currentLocation && c.destination == destination && c.person == person)
+        if(c.time == time && c.crossing == crossing)
             return true;
 
         return false;

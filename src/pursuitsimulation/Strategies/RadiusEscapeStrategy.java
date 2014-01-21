@@ -1,5 +1,6 @@
 package pursuitsimulation.Strategies;
 
+import javafx.util.Pair;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.People.Person;
@@ -11,17 +12,14 @@ import pursuitsimulation.util.Heuristic.BlankHeuristic;
 import pursuitsimulation.util.Heuristic.DistanceHeuristic;
 import pursuitsimulation.util.PathFinder;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ListIterator;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by mike on 1/21/14.
  */
 public class RadiusEscapeStrategy extends RunningStrategy {
     private final static double avgDistance = 0.000868727; //averade distance between 2 Crossings
-    private final static double radiusStep = 10*avgDistance;
+    private final static double radius = 10*avgDistance;
 
     private int stepCounter = 0;
     private PathFinder pathFinder;
@@ -95,16 +93,23 @@ public class RadiusEscapeStrategy extends RunningStrategy {
 
     public LinkedList<Catcher> getCatchersInRadius(Runner r) {
         LinkedList<Catcher> catchers = new LinkedList<Catcher>();
-        double radius = radiusStep;
+        Map<Catcher, Integer> area = new HashMap<Catcher, Integer>();
+        int tmp, lowest = -1;
 
-        while( catchers.isEmpty() ) {
-            for(Catcher c : process.getCatchers()) {
-                if( r.getVector().add( c.getVector().negate() ).getLength() <= radius )
-                    catchers.add(c);
-            }
+        for(Catcher c : process.getCatchers()) {
+            tmp = (int) (r.getVector().add( c.getVector().negate() ).getLength()/radius);
 
-            radius += radiusStep;
+            if(lowest == -1 || tmp < lowest)
+                lowest = tmp;
+
+            area.put( c, tmp );
         }
+
+        for(Map.Entry<Catcher, Integer> e : area.entrySet()) {
+            if(e.getValue() == lowest)
+                catchers.add(e.getKey());
+        }
+
         System.out.println("Found " + catchers.size() + " catchers in radius");
         return catchers;
     }

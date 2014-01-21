@@ -30,9 +30,7 @@ public class Crossing extends Vertex {
 
             leaveTrace(new Clue(
                 time,
-                this,
-                person.getNext(),
-                person
+                person.getCurr().cloneForClue()
             ));
         }
     }
@@ -41,9 +39,6 @@ public class Crossing extends Vertex {
     public ClueList look() { return clues; }
     //set
     public void leaveTrace(Clue c) { clues.add(c); }
-    //clear
-    public void clearClues() { clues.clear(); }
-
 
     public long getId() { return ID; }
 
@@ -52,6 +47,10 @@ public class Crossing extends Vertex {
             return false;
 
         return ID == crossing.getId();
+    }
+
+    public Crossing cloneForClue() {
+        return new Crossing(ID, pos);
     }
 }
 

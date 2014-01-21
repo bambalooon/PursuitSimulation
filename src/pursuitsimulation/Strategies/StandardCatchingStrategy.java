@@ -37,8 +37,8 @@ public class StandardCatchingStrategy extends CatchingStrategy {
                 System.out.println(c + " is going to random Crossing...");
                 c.setPath( pathFinder.getPath(c.getCurr(), process.getGraph().getRandomVertex()) );
             }
-        } else if( !clue.getDestination().equals( c.getDestination() ) ) {
-            c.setPath( pathFinder.getPath(c.getCurr(), clue.getDestination()) );
+        } else if( !clue.getCrossing().equals( c.getDestination() ) ) {
+            c.setPath( pathFinder.getPath(c.getCurr(), clue.getCrossing()) );
         }
 
         if(c.peekNextPathStep() != null) {

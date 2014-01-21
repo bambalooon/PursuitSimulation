@@ -524,7 +524,7 @@ public class SimulationGUI {
             }
             if(!localClues.isEmpty()) {
                 for(Clue clue : localClues) {
-                    Position p = clue.getCurrent().getPos();
+                    Position p = clue.getCrossing().getPos();
                     p = convert(p);
                     int x = (int) p.getX();
                     int y = (int) p.getY();
@@ -535,7 +535,7 @@ public class SimulationGUI {
                 }
             }
             if(globalClue!=null) {
-                Position p = globalClue.getCurrent().getPos();
+                Position p = globalClue.getCrossing().getPos();
                 p = convert(p);
                 int x = (int) p.getX();
                 int y = (int) p.getY();

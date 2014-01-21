@@ -146,9 +146,7 @@ public class SimulationProcess extends Thread {
                 System.out.println(c + " has eyes on target!");
                 setClue( new Clue(
                         getTime(),
-                        runner.getPrev(),
-                        runner.getCurr(),
-                        runner
+                        runner.getCurr().cloneForClue()
                 ));
         } catch(Exception e) {} //Exception is thrown when there's no path to the Runner -> no distance -> we do nothing
     }

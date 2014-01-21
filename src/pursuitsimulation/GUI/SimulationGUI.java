@@ -152,6 +152,7 @@ public class SimulationGUI {
         static final private String RUNNING_STRATEGY = "RunningStrategy";
         static final private String TIME_INTERVAL = "time_interval";
         static final private String LCP = "LCP";
+        static final private String GCP = "GCP";
 
         private JPanel mainPanel;
         private MapPanel mapPanel=null;
@@ -231,7 +232,22 @@ public class SimulationGUI {
             toolBar.add(rStrategiesCombo);
 
 
-            SpinnerNumberModel probModel = new SpinnerNumberModel( SimulationProcess.LCP_INIT,
+            SpinnerNumberModel gcpModel = new SpinnerNumberModel( SimulationProcess.GCP_INIT,
+                    SimulationProcess.GCP_MIN,
+                    SimulationProcess.GCP_MAX,
+                    SimulationProcess.GCP_STEP);
+
+            label = new JLabel();
+            label.setText(" Wskazówka globalna: ");
+            toolBar.add(label);
+
+            spinner = new JSpinner(gcpModel);
+            spinner.setMaximumSize(new Dimension(45,30));
+            spinner.addChangeListener(this);
+            spinner.setName(GCP);
+            toolBar.add(spinner);
+
+            SpinnerNumberModel lcpModel = new SpinnerNumberModel( SimulationProcess.LCP_INIT,
                     SimulationProcess.LCP_MIN,
                     SimulationProcess.LCP_MAX,
                     SimulationProcess.LCP_STEP);
@@ -240,7 +256,7 @@ public class SimulationGUI {
             label.setText(" Wskazówka lokalna: ");
             toolBar.add(label);
 
-            spinner = new JSpinner(probModel);
+            spinner = new JSpinner(lcpModel);
             spinner.setMaximumSize(new Dimension(45,30));
             spinner.addChangeListener(this);
             spinner.setName(LCP);
@@ -356,6 +372,10 @@ public class SimulationGUI {
                 else if(LCP.equals(source.getName())) {
                     double val = (Double) source.getValue();
                     Runner.changeLCP(val);
+                }
+                else if(GCP.equals(source.getName())) {
+                    double val = (Double) source.getValue();
+                    Runner.changeGCP(val);
                 }
 
             }

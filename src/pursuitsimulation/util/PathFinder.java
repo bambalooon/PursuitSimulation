@@ -42,7 +42,6 @@ public class PathFinder {
 
         while(!openList.isEmpty()) {
             current = openList.get(0);
-//            System.out.println("Checking node: " + current.getCrossing());
 
             openList.remove(current);
             closedList.add(current);
@@ -76,7 +75,7 @@ public class PathFinder {
             }
         }
 
-        System.out.println("Path not found!!!!!");
+//        System.out.println("Path not found!!!!!");
         return null;
     }
 
@@ -119,8 +118,6 @@ public class PathFinder {
             path.add(0, current.getCrossing());
             current = findInList(closedList, current.getParent());
         }
-
-//        printPath(path);
 
         return path;
     }

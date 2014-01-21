@@ -34,11 +34,19 @@ public class SimulationProcess extends Thread {
     public static final int STEP_CATCHERS = 1;
     public static int catchersNumber = INIT_CATCHERS;
 
-    //Leaving Clue Probability
+    //Local Clue Probability
     public static final double LCP_MIN=0.01;
     public static final double LCP_MAX=1.0;
-    public static final double LCP_INIT=0.1;
+    public static final double LCP_INIT=0.3;
     public static final double LCP_STEP=0.01;
+
+    //Global Clue Probability
+    public static final double GCP_MIN=0.01;
+    public static final double GCP_MAX=1.0;
+    public static final double GCP_INIT=0.1;
+    public static final double GCP_STEP=0.01;
+
+
 
     private SimulationGUI simulationGUI=null;
     private SimulationGraph graph;

@@ -1,6 +1,8 @@
 package pursuitsimulation;
 
 import pursuitsimulation.People.Person;
+import pursuitsimulation.People.Runner;
+import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.ClueList;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.util.Time;
@@ -17,22 +19,14 @@ import java.util.Random;
  */
 public class Crossing extends Vertex {
     private ClueList clues = new ClueList();
-    private double traceProbability;
-    private double callProbability;
-    private double spottingProbability;
     private Random rand = new Random();
     //-------------------------------------------------------------------------------
     public Crossing(long ID, Position pos) {
         super(ID, pos);    //Position=lat+lon
-        traceProbability = 0.2;
-        callProbability = 0.2;
-        spottingProbability = 0.2;
     }
 
-    /* calculates chance of leaving clue and, if leaving, adds it to the list */
     public void calcualteClue(Person person, Time time) {
-        if(rand.nextDouble() <= getSpottingProbability() ||    // person has been spotted and reported
-          (rand.nextDouble() <= getCallProbability() && rand.nextDouble() <= getTraceProbability())) { // person has called and been traced
+        if(rand.nextDouble() <= Runner.lcp) {
 
             leaveTrace(new Clue(
                 time,
@@ -50,17 +44,6 @@ public class Crossing extends Vertex {
     //clear
     public void clearClues() { clues.clear(); }
 
-    public double getTraceProbability() {
-        return traceProbability;
-    }
-
-    public double getCallProbability() {
-        return callProbability;
-    }
-
-    public double getSpottingProbability() {
-        return spottingProbability;
-    }
 
     public long getId() { return ID; }
 

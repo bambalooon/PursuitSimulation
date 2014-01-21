@@ -15,13 +15,18 @@ import java.util.Random;
  * To change this template use File | Settings | File Templates.
  */
 public class Runner extends Person {
-    public static double leavingClueProbability = SimulationProcess.LCP_INIT;
+    public static double lcp = SimulationProcess.LCP_INIT;
+    public static double gcp = SimulationProcess.GCP_INIT;
     private LinkedList<Runner> team;
     private LinkedList<Crossing> path = null;
     private Random rand = new Random();
 
     public static void changeLCP(double nLCP) {
-        Runner.leavingClueProbability = nLCP;
+        Runner.lcp = nLCP;
+    }
+
+    public static void changeGCP(double nGCP) {
+        Runner.gcp = nGCP;
     }
 
     public Runner(Crossing current, SimulationProcess process, String name) {
@@ -37,7 +42,7 @@ public class Runner extends Person {
         team.add(r);
     }
     public void leaveClue() {
-        if(rand.nextDouble() <= Runner.leavingClueProbability) { //an arbitrary chance to leave clue (testing purposes)
+        if(rand.nextDouble() <= Runner.gcp) {
             Clue clue = new Clue(
                     process.getTime(),
                     this.getCurr(),
@@ -45,10 +50,6 @@ public class Runner extends Person {
                     this
             );
             process.getClueList().add(clue);
-
-//            System.out.println(this + " has left a clue with timestamp " + clue.getTime().getTimeStamp());
-//            if(process.getClueList().getFreshClue().equals(clue))
-//                System.out.println("It's the best clue!");
         }
     }
 

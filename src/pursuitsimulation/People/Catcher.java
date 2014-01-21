@@ -21,7 +21,7 @@ public class Catcher extends Person {
     synchronized public void move() {
         super.move();
 
-        if( getCurr().equals( process.getClue().getCrossing() ) ) {
+        if( process.getClue()!=null && getCurr().equals( process.getClue().getCrossing() ) ) {
             process.clearClue();
         }
 

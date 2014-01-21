@@ -10,8 +10,7 @@ import pursuitsimulation.util.Time;
  * Time: 22:50
  * To change this template use File | Settings | File Templates.
  */
-public class
-        Clue implements Comparable<Clue> {
+public class Clue implements Comparable<Clue> {
     Time time;
     Crossing crossing;
 

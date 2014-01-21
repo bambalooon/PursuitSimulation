@@ -8,6 +8,8 @@ import pursuitsimulation.Strategies.Strategy;
 import pursuitsimulation.util.Vector;
 
 import java.util.LinkedList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -22,6 +24,7 @@ public class Person {
     protected Crossing prev, curr, next;
 //    protected LinkedList<Crossing> route;
     protected LinkedList< Pair<Crossing, Crossing> > route;
+    public BlockingQueue<Pair<Crossing,Crossing>> rt = new LinkedBlockingQueue<Pair<Crossing,Crossing>>();
     protected Position pos;
     protected int waiting = 0; //0 = not, else num of iteration
     protected String name;
@@ -36,17 +39,27 @@ public class Person {
 //        route = new LinkedList<Crossing>();
         //Key = Current, Value = Destination
         route = new LinkedList< Pair<Crossing, Crossing> >();
+        try {
+            rt.put(new Pair(curr, getDestination()));
+        } catch(InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
         route.add( new Pair(curr, getDestination()) );
     }
     public void getDestination(Strategy s) {
         next = s.getDestination(this);
     }
-    synchronized public void move() {
+    public void move() {
         prev = curr;
         curr = next;
         next = null;
         pos = curr.getPos();
         route.add( new Pair(curr, getDestination()) );
+        try {
+            rt.put(new Pair(curr, getDestination()));
+        } catch(InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
     }
     protected void wait(int timestamp) {}
     public Vector getVector() { return new Vector(pos.getX(), pos.getY()); }

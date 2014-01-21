@@ -9,10 +9,13 @@ import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Time;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,6 +39,9 @@ public class SimulationPlayer implements ActionListener {
     private LinkedList< Iterator< Pair<Crossing,Crossing> > > cIterators;
     private Iterator<Clue> gcIterator; //globalClues
 
+    private Map<Catcher,BlockingQueue<Pair<Crossing,Crossing>>> cQueues = new HashMap<Catcher, BlockingQueue<Pair<Crossing, Crossing>>>();
+    private BlockingQueue<Pair<Crossing,Crossing>> rQueue=null;
+
     private Timer timer=null;
     private boolean initialized=false;
     private boolean playing=false;
@@ -47,6 +53,11 @@ public class SimulationPlayer implements ActionListener {
         process = proc;
         runner = process.getRunner();
         catchers = process.getCatchers();
+        rQueue = new LinkedBlockingQueue<Pair<Crossing,Crossing>>();
+        for(Catcher c : catchers) {
+            BlockingQueue<Pair<Crossing, Crossing>> queue = new LinkedBlockingQueue<Pair<Crossing,Crossing>>();
+            cQueues.put(c, queue);
+        }
     }
 
     private void setSimulationTimer() {

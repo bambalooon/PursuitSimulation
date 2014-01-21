@@ -11,13 +11,16 @@ import pursuitsimulation.util.Time;
  * To change this template use File | Settings | File Templates.
  */
 public class Clue implements Comparable<Clue> {
+    private static int clueCounter;
+    private int id;
     Time time;
     Crossing crossing;
-
 
     public Clue(Time t, Crossing crossing) {
         time = t;
         this.crossing = crossing;
+        id = clueCounter++;
+        System.out.println(this);
     }
 
     public Crossing getCrossing() { return crossing; }
@@ -27,7 +30,7 @@ public class Clue implements Comparable<Clue> {
     }
 
     public String toString() {
-        return new String("Runner is going to: " + crossing);
+        return new String("Clue #"+id +": Runner is going to: " + crossing);
     }
 
     public Boolean equals(Clue c) {

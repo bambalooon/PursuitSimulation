@@ -27,7 +27,7 @@ public class Crossing extends Vertex {
 
     public void calcualteClue(Person person, Time time) {
         if(rand.nextDouble() <= Runner.lcp) {
-
+            System.out.println("Left clue on Crossing");
             leaveTrace(new Clue(
                 time,
                 person.getCurr().cloneForClue()

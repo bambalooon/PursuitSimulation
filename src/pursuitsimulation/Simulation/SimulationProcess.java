@@ -46,8 +46,6 @@ public class SimulationProcess extends Thread {
     public static final double GCP_INIT=0.01;
     public static final double GCP_STEP=0.001;
 
-
-
     private SimulationGUI simulationGUI=null;
     private SimulationGraph graph;
 
@@ -97,7 +95,7 @@ public class SimulationProcess extends Thread {
         return runner;
     }
     public Clue getClue() { return clue; }
-    public boolean setClue(Clue clue) {
+    public Boolean setClue(Clue clue) {
         if( this.clue == null || clue.getTime().getTimeStamp() > this.clue.getTime().getTimeStamp() ) {
             this.clue = clue;
             return true;
@@ -108,16 +106,15 @@ public class SimulationProcess extends Thread {
     public void clearClue() { clue = null; }
 
     public void run() {
-        time = new Time();
         iterationCount=0;
         while(running) {
-            System.out.println("Iteracja: "+iterationCount);
+            System.out.println("Iteracja #" + iterationCount);
             time.move();
-            System.out.println("Global clue: "+clue);
 
             runner.getDestination(rStrategy);
             for(Catcher c : catchers)
                 c.getDestination(cStrategies.get(c));
+
             synchronized(this) {
                 runner.move();
                 for(Catcher c : catchers) {
@@ -132,7 +129,7 @@ public class SimulationProcess extends Thread {
     }
     public void simulationStart() throws NoGuiException {
         if(simulationGUI==null) throw new NoGuiException();
-        running = true;
+            running = true;
 //        startTime = System.nanoTime();
     }
     public void simulationStop() {
@@ -147,10 +144,10 @@ public class SimulationProcess extends Thread {
         try {
             if(distanceToRunner(c) <= 5) {
                 System.out.println(c + " has eyes on target!");
-//                setClue( new Clue(
-//                        getTime(),
-//                        runner.getCurr().cloneForClue()
-//                ));
+                setClue( new Clue(
+                        getTime(),
+                        runner.getCurr().cloneForClue()
+                ));
             }
         } catch(Exception e) {} //Exception is thrown when there's no path to the Runner -> no distance -> we do nothing
     }

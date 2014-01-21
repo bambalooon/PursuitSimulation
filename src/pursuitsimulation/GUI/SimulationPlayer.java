@@ -1,6 +1,7 @@
 package pursuitsimulation.GUI;
 
 import javafx.util.Pair;
+import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.People.Runner;
@@ -33,6 +34,7 @@ public class SimulationPlayer implements ActionListener {
 
     private Iterator<Pair<Crossing,Crossing>> rIterator;
     private LinkedList< Iterator< Pair<Crossing,Crossing> > > cIterators;
+    private Iterator<Clue> gcIterator; //globalClues
 
     private Timer timer=null;
     private boolean initialized=false;
@@ -49,14 +51,18 @@ public class SimulationPlayer implements ActionListener {
 
     private void setSimulationTimer() {
         initialized = true;
+        gui.resetLocalClues();
         if(timer!=null) {
             timer.stop();
         }
         rIterator = runner.getRoute().iterator();
+
         cIterators = new LinkedList< Iterator< Pair<Crossing,Crossing> > >();
         for(Catcher c : catchers) {
             cIterators.add(c.getRoute().iterator());
         }
+        gcIterator = runner.getGlobalClues().iterator();
+
         timer = new Timer(Time.timeInterval, this);
     }
 
@@ -77,6 +83,10 @@ public class SimulationPlayer implements ActionListener {
             if(iter.hasNext()) {
                 c.add(iter.next().getKey());
             }
+        }
+        if(gcIterator.hasNext()) {
+            Clue clue = gcIterator.next();
+            gui.setGlobalClue(clue);
         }
         gui.setCatchersCrossings(c);
         gui.showEditedMap();

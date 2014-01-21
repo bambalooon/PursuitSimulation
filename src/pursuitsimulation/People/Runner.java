@@ -18,6 +18,7 @@ public class Runner extends Person {
     public static double lcp = SimulationProcess.LCP_INIT;
     public static double gcp = SimulationProcess.GCP_INIT;
     private LinkedList<Runner> team;
+    private LinkedList<Clue> globalClues = new LinkedList<Clue>();
     private Random rand = new Random();
 
     public static void changeLCP(double nLCP) {
@@ -49,5 +50,9 @@ public class Runner extends Person {
                     this
             ));
         }
+        globalClues.add(process.getClue());
+    }
+    public LinkedList<Clue> getGlobalClues() {
+        return globalClues;
     }
 }

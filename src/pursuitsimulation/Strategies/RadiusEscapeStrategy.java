@@ -111,17 +111,20 @@ public class RadiusEscapeStrategy extends RunningStrategy {
 
     private double calculatePresence(Crossing c, LinkedList<Catcher> catchers) {
         ListIterator<Catcher> it = catchers.listIterator();
-        double sum = 0;
+        double pres, bestPres = getPresence(c, it.next().getCurr());
 
-        while(it.hasNext())
-            sum += getPresence(c, it.next().getCurr());
+        while(it.hasNext()) {
+            pres = getPresence(c, it.next().getCurr());
+            if(pres < bestPres)
+                bestPres = pres;
+        }
 
-        return sum;
+        return bestPres;
     }
 
     private double getPresence(Crossing c1, Crossing c2) {
         double pres = c2.getVector().add( c1.getVector().negate() ).getLength();
 
-        return pres * pres;
+        return pres;
     }
 }

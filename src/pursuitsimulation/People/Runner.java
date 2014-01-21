@@ -42,6 +42,7 @@ public class Runner extends Person {
     }
     public void leaveClue() {
         if(rand.nextDouble() <= Runner.gcp) {
+            System.out.println(this + " has been reported");
             process.setClue(new Clue(
                     process.getTime(),
                     this.getCurr(),

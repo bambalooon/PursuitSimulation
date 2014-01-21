@@ -128,12 +128,15 @@ public class SimulationProcess extends Thread {
             synchronized(this) {
                 runner.move();
                 for(Catcher c : catchers) {
-                    endCheck(c);
+                    if(endCheck(c))
+                        return;
                     eyesOnTargetCheck(c);
                     c.move();
-                    endCheck(c);
+                    if(endCheck(c))
+                        return;
                 }
             }
+            
             iterationCount++;
             if(iterationCount > iterationsMax)
             {
@@ -203,7 +206,7 @@ public class SimulationProcess extends Thread {
         return pathFinder.getDistance( c.getCurr(), runner.getCurr() );
     }
 
-    public void endCheck(Catcher c) {
+    public Boolean endCheck(Catcher c) {
         if(caughtRunner(c)) {
             pursuitEnd();
             simulationStop();
@@ -212,7 +215,9 @@ public class SimulationProcess extends Thread {
                     simulationGUI.simulationEnd();
                 }
             });
+            return true;
         }
+        return false;
     }
 
 

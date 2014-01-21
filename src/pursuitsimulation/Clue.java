@@ -30,6 +30,7 @@ public class
     }
 
     public Crossing getDestination() { return destination; }
+    public Crossing getCurrent() { return currentLocation; }
 
     public Time getTime() {
         return time;

@@ -1,5 +1,6 @@
 package pursuitsimulation.GUI;
 
+import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.Exceptions.NoGuiException;
 import pursuitsimulation.Exceptions.NoPlayerException;
@@ -37,11 +38,12 @@ import java.util.Vector;
  * To change this template use File | Settings | File Templates.
  */
 public class SimulationGUI {
-    private static int personCircleDiameter = 10;
+    private static int personCircleDiameter = 15;
     private static Color runnerCol = Color.RED;
     private static Color catcherCol = Color.BLUE;
     private static Color outerCol = Color.BLACK;
-    private static Color clueCol = Color.GRAY;
+    private static Color clueCol = new Color(70, 70, 70, 80);
+
     private static int globalClueAlpha = 50;
     private static int localClueAlpha = 20;
     private static double ZOOM_MAX = 1.6;
@@ -55,7 +57,6 @@ public class SimulationGUI {
     private static int selectedCatchingStrategyIndex = 0;
     private static int selectedRunningStrategyIndex = 0;
 
-    private boolean running=false;
     private JFrame frame;
 
     private SimulationProcess process;
@@ -66,6 +67,8 @@ public class SimulationGUI {
     private MapPanel mapPanel;
     private int width = 800;
     private int height = 600;
+
+    private LinkedList<Clue> localClues=new LinkedList<Clue>();
 
     public SimulationGUI(SimulationProcess process) {
         this.process = process;
@@ -94,6 +97,11 @@ public class SimulationGUI {
     }
     public void setRunnerCrossing(Crossing c) {
         mapPanel.runnerCrossing = c;
+        Clue cl = c.look().getFreshClue();
+        if((cl!=null) && !localClues.contains(cl)) {
+            localClues.add(cl);
+            System.out.println("Clue added "+cl+" Crossing:"+cl.getDestination());
+        }
     }
     public void setULpos(Position pos) {
         SimulationGUI.pos = pos;
@@ -490,8 +498,29 @@ public class SimulationGUI {
                 g2d.setPaint(SimulationGUI.runnerCol);
                 Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
                 g2d.fill(circle);
-                g2d.setColor(SimulationGUI.outerCol);
-                g2d.drawOval(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
+
+            }
+            if(process.getClue()!=null) {
+                Position p = process.getClue().getDestination().getPos();
+                p = convert(p);
+                int x = (int) p.getX();
+                int y = (int) p.getY();
+
+                g2d.setPaint(SimulationGUI.clueCol);
+                Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
+                g2d.fill(circle);
+            }
+            if(!localClues.isEmpty()) {
+                for(Clue clue : localClues) {
+                    Position p = clue.getCurrent().getPos();
+                    p = convert(p);
+                    int x = (int) p.getX();
+                    int y = (int) p.getY();
+
+                    g2d.setPaint(SimulationGUI.clueCol);
+                    Ellipse2D.Double circle = new Ellipse2D.Double(x, y, SimulationGUI.personCircleDiameter, SimulationGUI.personCircleDiameter);
+                    g2d.fill(circle);
+                }
             }
 
             g2d.dispose();

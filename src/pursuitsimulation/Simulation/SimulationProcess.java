@@ -130,6 +130,7 @@ public class SimulationProcess extends Thread {
                         return;
                 }
             }
+            
             iterationCount++;
         }
     }

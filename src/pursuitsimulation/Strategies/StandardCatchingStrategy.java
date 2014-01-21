@@ -21,35 +21,24 @@ import java.util.LinkedList;
  * To change this template use File | Settings | File Templates.
  */
 public class StandardCatchingStrategy extends CatchingStrategy {
+    PathFinder pathFinder;
+
     public StandardCatchingStrategy(SimulationProcess process) {
         super(process);
+        pathFinder = new PathFinder( new CrowsDistanceHeuristic());
     }
 
     public Crossing getDestination(Person p) {
         Catcher c = (Catcher) p;
-        Clue bestClue = null;
-        // checks for any known clues and if there are any - chooses the closest suspected position
-            try {
-                Runner runner = process.getRunner();
-                Clue clue = process.getClueList().getFreshClue();
+        Clue clue = process.getClue();
 
-                if(clue != null) {
-                    bestClue = clue;
-                }
-            } catch(NullPointerException e) {}
-
-
-        if( bestClue != null && !bestClue.getDestination().equals( c.getDestination() ) ) {
-            PathFinder pathFinder = new PathFinder( new CrowsDistanceHeuristic());
-            long timeStart;
-            long timeElapsed;
-
-            timeStart = System.nanoTime();
-
-            c.setPath( pathFinder.getPath(c.getCurr(), bestClue.getDestination()) );
-            timeElapsed = System.nanoTime() - timeStart;
-
-//            System.out.println("A* time for " + c + ": " + (timeElapsed/1000000000.0) + "s");
+        if( clue == null ) {
+            if(c.peekNextPathStep() == null) {
+                System.out.println(c + " is going to random Crossing...");
+                c.setPath( pathFinder.getPath(c.getCurr(), process.getGraph().getRandomVertex()) );
+            }
+        } else if( !clue.getDestination().equals( c.getDestination() ) ) {
+            c.setPath( pathFinder.getPath(c.getCurr(), clue.getDestination()) );
         }
 
         if(c.peekNextPathStep() != null) {

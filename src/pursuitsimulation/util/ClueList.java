@@ -17,23 +17,6 @@ public class ClueList {
     public void add(Clue clue) {
         clues.add(clue);
         Collections.sort(clues);
-
-//        ListIterator<Clue> it = clues.listIterator();
-//        Clue c = null;
-//
-//        while(it.hasNext()) {
-//            c = it.next();
-//
-//            if(clue.getTime().getTimeStamp() > c.getTime().getTimeStamp()) {
-//                it.previous();
-//                it.add(clue);
-//
-//                return;
-//            }
-//        }
-//
-//        it.add(clue);
-
     }
 
     /* get the head of the list without removing it */

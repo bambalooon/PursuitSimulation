@@ -43,13 +43,12 @@ public class Runner extends Person {
     }
     public void leaveClue() {
         if(rand.nextDouble() <= Runner.gcp) {
-            Clue clue = new Clue(
+            process.setClue(new Clue(
                     process.getTime(),
                     this.getCurr(),
                     this.getNext(),
                     this
-            );
-            process.getClueList().add(clue);
+            ));
         }
     }
 

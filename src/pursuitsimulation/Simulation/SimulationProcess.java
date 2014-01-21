@@ -55,7 +55,7 @@ public class SimulationProcess extends Thread {
     private Runner runner=null;
     private Map<Catcher, CatchingStrategy> cStrategies = new HashMap<Catcher, CatchingStrategy>();
     private RunningStrategy rStrategy=null;
-    private ClueList clueList = new ClueList();
+    private Clue clue = null;
 
     private PathFinder pathFinder = new PathFinder(new CrowsDistanceHeuristic());
 
@@ -96,7 +96,16 @@ public class SimulationProcess extends Thread {
     public Runner getRunner() {
         return runner;
     }
-    public ClueList getClueList() { return clueList; }
+    public Clue getClue() { return clue; }
+    public Boolean setClue(Clue clue) {
+        if( this.clue == null || clue.getTime().getTimeStamp() > this.clue.getTime().getTimeStamp() ) {
+            this.clue = clue;
+            return true;
+        }
+
+        return false;
+    }
+    public void clearClue() { clue = null; }
 
     public void run() {
         iterationCount=0;
@@ -134,8 +143,8 @@ public class SimulationProcess extends Thread {
     public void eyesOnTargetCheck(Catcher c) {
         try {
             if(distanceToRunner(c) <= 5)
-                System.out.println("Catcher #" + c + " has eyes on target!");
-                clueList.add( new Clue(
+                System.out.println(c + " has eyes on target!");
+                setClue( new Clue(
                         getTime(),
                         runner.getPrev(),
                         runner.getCurr(),

@@ -21,25 +21,19 @@ public class Catcher extends Person {
 
     synchronized public void move() {
         super.move();
+
+        if( getCurr().equals( process.getClue().getDestination() ) ) {
+            process.clearClue();
+        }
+
         gatherClues();
     }
 
     public void gatherClues() {
         ListIterator<Clue> it = curr.look().listIterator();
-        Clue c = null;
 
-        while(it.hasNext()) {
-            c = it.next();
-            process.getClueList().add(c);
-
-//            System.out.println(this + " has found a clue with timestamp " + c.getTime().getTimeStamp());
-//            if(process.getClueList().getFreshClue().equals(c))
-//                System.out.println("It's the best clue!");
-        }
-    }
-
-    public void addTeammate(Catcher c) {
-        team.add(c);
+        while(it.hasNext())
+            process.setClue(it.next());
     }
 
     public void setPath(LinkedList<Crossing> path) {

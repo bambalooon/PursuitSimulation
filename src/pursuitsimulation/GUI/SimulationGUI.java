@@ -260,7 +260,7 @@ public class SimulationGUI {
             toolBar.add(label);
 
             spinner = new JSpinner(gcpModel);
-            spinner.setMaximumSize(new Dimension(45,30));
+            spinner.setMaximumSize(new Dimension(55,30));
             spinner.addChangeListener(this);
             spinner.setName(GCP);
             toolBar.add(spinner);

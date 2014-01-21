@@ -118,7 +118,11 @@ public class SimulationProcess extends Thread {
         iterationCount=1;
         while(running) {
             System.out.println("Iteracja #" + iterationCount);
-            simulationGUI.changeIterationCount(iterationCount);
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    simulationGUI.changeIterationCount(iterationCount);
+                }
+            });
             time.move();
 
             runner.getDestination(rStrategy);
@@ -186,7 +190,11 @@ public class SimulationProcess extends Thread {
 
     private void pursuitEnd() {
         System.out.println("Pościg trwał " + iterationCount + " iteracji.");
-        simulationGUI.iterationEnd(iterationCount);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                simulationGUI.iterationEnd(iterationCount);
+            }
+        });
         saveResult();
     }
 

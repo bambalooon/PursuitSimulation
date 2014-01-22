@@ -10,6 +10,7 @@ import javax.xml.stream.XMLStreamException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Random;
 
@@ -44,6 +45,10 @@ public class SimulationProgram {
         parser.chooseFile(filename);
         parser.parse();
     }
+    public void setXmlFile(InputStream inputStream) throws FileNotFoundException, XMLStreamException {
+        parser.chooseFile(inputStream);
+        parser.parse();
+    }
     public void setMapFile(String filename) {
         try {
             gui.chooseMapFile(filename);
@@ -69,7 +74,7 @@ public class SimulationProgram {
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, IOException  {
         SimulationProgram.programInstance = new SimulationProgram();
-        programInstance.setXmlFile(programInstance.getClass().getResource(mainPath + "ny2.osm").getPath());
+        programInstance.setXmlFile(programInstance.getClass().getResourceAsStream(mainPath + "ny2.osm"));
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

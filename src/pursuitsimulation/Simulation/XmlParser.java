@@ -15,6 +15,7 @@ import javax.xml.stream.events.XMLEvent;
 import javax.xml.stream.util.XMLEventAllocator;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -30,6 +31,7 @@ public class XmlParser {
     private XMLStreamReader reader;
     private static XMLEventAllocator allocator;
     String filename;
+    InputStream inputStream;
     public XmlParser(SimulationProgram parent) {
         this.parent = parent;
     }
@@ -37,10 +39,19 @@ public class XmlParser {
         this.filename = filename;
         setReader();
     }
+    void chooseFile(InputStream is) throws FileNotFoundException, XMLStreamException {
+        this.inputStream = is;
+        setReader(is);
+    }
     private void setReader() throws FileNotFoundException, XMLStreamException {
         factory.setEventAllocator(new XMLEventAllocatorImpl());
         allocator = factory.getEventAllocator();
         reader = factory.createXMLStreamReader(filename, new FileInputStream(filename));
+    }
+    private void setReader(InputStream inputStream) throws FileNotFoundException, XMLStreamException {
+        factory.setEventAllocator(new XMLEventAllocatorImpl());
+        allocator = factory.getEventAllocator();
+        reader = factory.createXMLStreamReader(inputStream);
     }
     private static XMLEvent getXMLEvent(XMLStreamReader reader) throws XMLStreamException {
         return allocator.allocate(reader);

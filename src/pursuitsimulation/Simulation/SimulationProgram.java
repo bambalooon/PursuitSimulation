@@ -7,6 +7,7 @@ import pursuitsimulation.Strategies.StandardRunningStrategy;
 import pursuitsimulation.util.Position;
 
 import javax.xml.stream.XMLStreamException;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
@@ -22,8 +23,9 @@ import java.util.Random;
 public class SimulationProgram {
     public static SimulationProcess process = null;
     public static Random randomGenerator = new Random();
-//    private static final String mainPath = "./PursuitSimulation/src/files/";
+//    public static final String mainPath = "./PursuitSimulation/src/files/";
     public static final String mainPath = "./src/files/";
+//    public static final String mainPath = "./files/";
 
     private SimulationGUI gui = null;
     private XmlParser parser;
@@ -49,16 +51,13 @@ public class SimulationProgram {
     }
     void setGraph(Map<Long, Crossing> graph) {
         process.setGraph(graph);
-//        System.out.println("Created graph with " + process.getGraph().getGraphSize() + " nodes");
     }
     void showEndAlert() {
         gui.showEndAlert();
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;
-        setMapFile(mainPath + "ny.png"); //map.png normalnie wywolywane przez GUI
-//        gui.setULpos(new Position(19.8988, 50.0684));
-//        gui.setDRpos(new Position(19.9307, 50.0524));
+        setMapFile(mainPath + "ny.png");
         gui.setULpos(new Position(-73.9828, 40.7913));
         gui.setDRpos(new Position(-73.8522, 40.7147));
         process.attachGUI(gui);
@@ -67,7 +66,7 @@ public class SimulationProgram {
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, IOException  {
         final SimulationProgram program = new SimulationProgram();
-        program.setXmlFile(mainPath + "ny2.osm"); //map.osm
+        program.setXmlFile(mainPath + "ny2.osm");
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {

@@ -38,7 +38,7 @@ public class SimulationPlayer implements ActionListener {
     private LinkedList<Catcher> catchers;
 
     private Iterator<Pair<Crossing,Crossing>> rIterator;
-    private LinkedList< Iterator< Pair<Crossing,Crossing> > > cIterators;
+    private LinkedList< ListIterator< Pair<Crossing,Crossing> > > cIterators;
     private Iterator<Clue> gcIterator; //globalClues
 
     private Timer timer=null;
@@ -62,9 +62,9 @@ public class SimulationPlayer implements ActionListener {
         }
         rIterator = runner.getRoute().iterator();
 
-        cIterators = new LinkedList< Iterator< Pair<Crossing,Crossing> > >();
+        cIterators = new LinkedList< ListIterator< Pair<Crossing,Crossing> > >();
         for(Catcher c : catchers) {
-            cIterators.add(c.getRoute().iterator());
+            cIterators.add(c.getRoute().listIterator());
         }
         gcIterator = runner.getGlobalClues().iterator();
 
@@ -72,23 +72,30 @@ public class SimulationPlayer implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        if(!rIterator.hasNext()) {
+        boolean hasNext = rIterator.hasNext();
+        if(!hasNext) {
             if(!process.isRunning()) {
                 stop();
             }
             return;
         }
-        if(rIterator.hasNext()) {
+        if(hasNext) {
             Pair<Crossing, Crossing> pair = rIterator.next();
             gui.setRunnerCrossing(pair.getKey());
             gui.setRunnerDestination(pair.getValue());
         }
 
         LinkedList<Crossing> c = new LinkedList<Crossing>();
-        for(Iterator<Pair<Crossing,Crossing>> iter : cIterators) {
+        for(ListIterator<Pair<Crossing,Crossing>> iter : cIterators) {
             if(iter.hasNext()) {
                 c.add(iter.next().getKey());
+            } else if(hasNext) {
+                if(iter.hasPrevious()) {
+                    iter.previous();
+                    c.add(iter.next().getKey());
+                }
             }
+
         }
         if(gcIterator.hasNext()) {
             Clue clue = gcIterator.next();

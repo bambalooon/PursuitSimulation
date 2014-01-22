@@ -401,7 +401,7 @@ public class SimulationGUI {
                     JComboBox box = (JComboBox) e.getSource();
                     SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
                 } else if (LEGEND.equals(cmd)) {
-                    ImageIcon icon = new ImageIcon(SimulationProgram.mainPath+"legend.png");
+                    ImageIcon icon = new ImageIcon(SimulationProgram.programInstance.getClass().getResource(SimulationProgram.mainPath +"legend.png").getPath());
                     JOptionPane.showMessageDialog(
                             null,
                             "",

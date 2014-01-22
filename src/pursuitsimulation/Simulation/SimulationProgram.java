@@ -22,10 +22,13 @@ import java.util.Random;
  */
 public class SimulationProgram {
     public static SimulationProcess process = null;
+    public static SimulationProgram programInstance;
     public static Random randomGenerator = new Random();
 //    public static final String mainPath = "./PursuitSimulation/src/files/";
-    public static final String mainPath = "./src/files/";
-//    public static final String mainPath = "./files/";
+//    public static final String mainPath = "./src/files/";
+    public static final String mainPath = "../../files/";
+
+
 
     private SimulationGUI gui = null;
     private XmlParser parser;
@@ -57,7 +60,7 @@ public class SimulationProgram {
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;
-        setMapFile(mainPath + "ny.png");
+        setMapFile(getClass().getResource(mainPath + "ny.png").getPath());
         gui.setULpos(new Position(-73.9828, 40.7913));
         gui.setDRpos(new Position(-73.8522, 40.7147));
         process.attachGUI(gui);
@@ -65,14 +68,13 @@ public class SimulationProgram {
 
 
     public static void main(String[] args) throws FileNotFoundException, XMLStreamException, IOException  {
-        final SimulationProgram program = new SimulationProgram();
-        program.setXmlFile(mainPath + "ny2.osm");
+        SimulationProgram.programInstance = new SimulationProgram();
+        programInstance.setXmlFile(programInstance.getClass().getResource(mainPath + "ny2.osm").getPath());
 
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-            program.setGUI(new SimulationGUI(program.process));
+                programInstance.setGUI(new SimulationGUI(programInstance.process));
             }
         });
-
     }
 }

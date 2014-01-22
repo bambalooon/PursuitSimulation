@@ -195,6 +195,7 @@ public class SimulationGUI {
         static final private String TIME_INTERVAL = "time_interval";
         static final private String LCP = "LCP";
         static final private String GCP = "GCP";
+        static final private String LEGEND = "LEGEND";
 
         private JPanel mainPanel;
         private MapPanel mapPanel=null;
@@ -348,6 +349,14 @@ public class SimulationGUI {
             intervalSlider.setPaintLabels(true);
 
             toolBar.add(intervalSlider);
+
+            toolBar.add(Box.createHorizontalGlue());
+
+            button = new JButton();
+            button.setText("Legenda");
+            button.addActionListener(this);
+            button.setActionCommand(LEGEND);
+            toolBar.add(button);
         }
         public void attachMapPanel(MapPanel mapPanel) {
             this.mapPanel = mapPanel;
@@ -391,6 +400,13 @@ public class SimulationGUI {
                 } else if (RUNNING_STRATEGY.equals(cmd)) {
                     JComboBox box = (JComboBox) e.getSource();
                     SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
+                } else if (LEGEND.equals(cmd)) {
+                    ImageIcon icon = new ImageIcon(SimulationProgram.mainPath+"legend.png");
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "",
+                            "Legenda", JOptionPane.INFORMATION_MESSAGE,
+                            icon);
                 }
             } catch(NoGuiException ex) {
                 JOptionPane.showMessageDialog(null, "Brak podpiętego GUI! (Do procesu)");

@@ -61,3 +61,6 @@ Tue Jan 21 22:22:18 CET 2014;pursuitsimulation.Strategies.DistanceRunningStrateg
 Tue Jan 21 22:22:39 CET 2014;pursuitsimulation.Strategies.DistanceRunningStrategy@78f3b352;pursuitsimulation.Strategies.StandardCatchingStrategy@3eabad22;59;1000;7;0.3;0.3
 Tue Jan 21 22:22:46 CET 2014;pursuitsimulation.Strategies.DistanceRunningStrategy@452d97ef;pursuitsimulation.Strategies.StandardCatchingStrategy@57ccfc9;87;1000;3;0.3;0.3
 Tue Jan 21 22:22:52 CET 2014;pursuitsimulation.Strategies.RadiusEscapeStrategy@17f2a5dc;pursuitsimulation.Strategies.StandardCatchingStrategy@575142b5;573;1000;3;0.3;0.3
+Wed Jan 22 13:44:11 CET 2014;pursuitsimulation.Strategies.StandardRunningStrategy@5ee058;pursuitsimulation.Strategies.StandardCatchingStrategy@20b3a9f4;307;1000;3;0.3;0.3
+Wed Jan 22 13:53:04 CET 2014;pursuitsimulation.Strategies.StandardRunningStrategy@18e8d651;pursuitsimulation.Strategies.StandardCatchingStrategy@6a525edc;187;1000;3;0.3;0.3
+Wed Jan 22 13:59:06 CET 2014;pursuitsimulation.Strategies.StandardRunningStrategy@4abadda3;pursuitsimulation.Strategies.StandardCatchingStrategy@24964c7;260;1000;3;0.3;0.3

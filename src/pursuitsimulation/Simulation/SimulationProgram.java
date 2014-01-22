@@ -23,7 +23,7 @@ public class SimulationProgram {
     public static SimulationProcess process = null;
     public static Random randomGenerator = new Random();
 //    private static final String mainPath = "./PursuitSimulation/src/files/";
-    private static final String mainPath = "./src/files/";
+    public static final String mainPath = "./src/files/";
 
     private SimulationGUI gui = null;
     private XmlParser parser;

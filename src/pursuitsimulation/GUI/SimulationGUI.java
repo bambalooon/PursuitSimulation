@@ -25,6 +25,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -87,6 +88,14 @@ public class SimulationGUI {
     }
     public void chooseMapFile(String filename) throws IOException {
         mapImage = ImageIO.read(new File(filename));
+        mapPanel = new MapPanel(mapImage);
+        window.attachMapPanel(mapPanel);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+    public void chooseMapFile(InputStream inputStream) throws IOException {
+        mapImage = ImageIO.read(inputStream);
         mapPanel = new MapPanel(mapImage);
         window.attachMapPanel(mapPanel);
 
@@ -401,12 +410,20 @@ public class SimulationGUI {
                     JComboBox box = (JComboBox) e.getSource();
                     SimulationGUI.selectedRunningStrategyIndex = box.getSelectedIndex();
                 } else if (LEGEND.equals(cmd)) {
-                    ImageIcon icon = new ImageIcon(SimulationProgram.programInstance.getClass().getResource(SimulationProgram.mainPath +"legend.png").getPath());
-                    JOptionPane.showMessageDialog(
-                            null,
-                            "",
-                            "Legenda", JOptionPane.INFORMATION_MESSAGE,
-                            icon);
+                    try {
+                        ImageIcon icon = new ImageIcon(ImageIO.read(SimulationProgram.programInstance.getClass().getResourceAsStream(SimulationProgram.mainPath +"legend.png")));
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "",
+                                "Legenda", JOptionPane.INFORMATION_MESSAGE,
+                                icon);
+                    } catch(IOException ex) {
+                        JOptionPane.showMessageDialog(
+                                null,
+                                "Nie można było załadować legendy.",
+                                "Legenda", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
                 }
             } catch(NoGuiException ex) {
                 JOptionPane.showMessageDialog(null, "Brak podpiętego GUI! (Do procesu)");

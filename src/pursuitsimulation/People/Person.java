@@ -1,19 +1,13 @@
 package pursuitsimulation.People;
 
-import javafx.util.Pair;
 import pursuitsimulation.Crossing;
-import pursuitsimulation.GUI.SimulationPlayer;
 import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Position;
 import pursuitsimulation.Strategies.Strategy;
 import pursuitsimulation.util.Vector;
+import pursuitsimulation.util.Pair;
 
 import java.util.LinkedList;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * Created with IntelliJ IDEA.

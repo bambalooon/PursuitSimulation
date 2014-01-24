@@ -25,11 +25,8 @@ public class SimulationProgram {
     public static SimulationProcess process = null;
     public static SimulationProgram programInstance;
     public static Random randomGenerator = new Random();
-//    public static final String mainPath = "./PursuitSimulation/src/files/";
-//    public static final String mainPath = "./src/files/";
-    public static final String mainPath = "../../files/";
-
-
+//    public static final String mainPath = "../../files/";
+    public static final String mainPath = "/files/";
 
     private SimulationGUI gui = null;
     private XmlParser parser;
@@ -54,6 +51,11 @@ public class SimulationProgram {
             gui.chooseMapFile(filename);
         } catch(IOException e) {} //Handle Ex
     }
+    public void setMapFile(InputStream inputStream) {
+        try {
+            gui.chooseMapFile(inputStream);
+        } catch(IOException e) {} //Handle Ex
+    }
     void updateGuiMap() {
         gui.showEditedMap();
     }
@@ -65,7 +67,7 @@ public class SimulationProgram {
     }
     void setGUI(SimulationGUI gui) {
         this.gui = gui;
-        setMapFile(getClass().getResource(mainPath + "ny.png").getPath());
+        setMapFile(getClass().getResourceAsStream(mainPath + "ny.png"));
         gui.setULpos(new Position(-73.9828, 40.7913));
         gui.setDRpos(new Position(-73.8522, 40.7147));
         process.attachGUI(gui);

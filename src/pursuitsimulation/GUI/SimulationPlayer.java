@@ -1,23 +1,17 @@
 package pursuitsimulation.GUI;
 
-import javafx.util.Pair;
 import pursuitsimulation.Clue;
 import pursuitsimulation.Crossing;
 import pursuitsimulation.People.Catcher;
 import pursuitsimulation.People.Runner;
 import pursuitsimulation.Simulation.SimulationProcess;
 import pursuitsimulation.util.Time;
+import pursuitsimulation.util.Pair;
 
-import javax.swing.*;
 import javax.swing.Timer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Created with IntelliJ IDEA.
